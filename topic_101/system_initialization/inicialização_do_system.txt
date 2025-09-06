@@ -1,0 +1,155 @@
+                       ━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        INICIALIZAÇÃO DO SISTEMA
+
+                                 Gabriel Ferreira
+                       ━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. System init
+.. 1. Processo de inicialização do sistema (sequence):
+..... 1. BIOS:
+..... 2. Bootloadr 1 estágio:
+..... 3. Bootloader 2 estágio:
+..... 4. Kernel:
+..... 5. Init/Systemd:
+2. Iniciando o kernel com parameters
+3. More parameters
+..... 1. acpi
+..... 2. init
+..... 3. mem
+..... 4. maxcpus
+..... 5. quiet
+..... 6. vga
+..... 7. root
+..... 8. ro ou rw
+
+
+1 System init
+═════════════
+
+1.1 Processo de inicialização do sistema (sequence):
+────────────────────────────────────────────────────
+
+1.1.1 BIOS:
+╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Computador ligado
+  ‣ BIOS executado
+  ‣ Seleciona o dispositivo de boot
+
+
+1.1.2 Bootloadr 1 estágio:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Carrega o bootloader de segundo estágqio
+
+
+1.1.3 Bootloader 2 estágio:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Exibe a tela de seleção do sistema
+  ‣ Passa o controle da inicialização para o *Kernel Linux*
+
+
+1.1.4 Kernel:
+╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Kernel reconhece o hardware
+  ‣ Monta a partição raiz */*
+  ‣ Passa o controle da inicialização para o *kernel linux*
+
+
+1.1.5 Init/Systemd:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Carrega os serviços necessários e configurados pelo Admin
+
+
+2 Iniciando o kernel com parameters
+═══════════════════════════════════
+
+  No bootloader menu como por exemplo no GNU GRUB, é possível iniciar o
+  sistema com alguns parametros, no GRUB com a tecla minuscula ’e’
+
+  *root* é onde o sistema será montado ?
+
+  ┌────
+  │ root=UUID (default value)
+  │ 
+  │ root=/dev/sda
+  │ 
+  │ root=LABEL=noma_da_particao
+  └────
+
+  `UUID' = Identificador universal da partição=
+
+  `ro' = Read-only
+
+  `quiet' = Menos verbosidade na inicializaçõa
+
+  `init' = Paremetro que possibilita eu definir qual programa ira rodar
+  no lugar do systemd ou init, que são mais comuns em distros
+
+  • Poderia no caso passar o parametro init para =/bin/bash, iniciar o
+    system já no shell como root
+
+  `mem' Definir quanto de memoria pra o Operational System iniciar e
+  rodar.
+
+
+3 More parameters
+═════════════════
+
+3.0.1 acpi
+╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Liga/Desliga o suporte a ACPI [acip=off]
+
+
+3.0.2 init
+╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Define um outro programa para executar no lugar de /sbin/init
+    [init=/bin/bash]
+
+
+3.0.3 mem
+╌╌╌╌╌╌╌╌╌
+
+  ‣ Define o quanto de memória RAM estará disponível para o sistema
+
+
+3.0.4 maxcpus
+╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Número máximo de processadores (ou núcleos) visíveis para o sistema.
+
+
+3.0.5 quiet
+╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Não exibe a maioria das mensagens de inicialização
+
+
+3.0.6 vga
+╌╌╌╌╌╌╌╌╌
+
+  ‣ Seleciona o modo de vídeo
+
+
+3.0.7 root
+╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Define uma partição raiz onde o sistema está instalado.
+
+
+3.0.8 ro ou rw
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  ‣ Realiza a montagem inicial do dispositivo root definido no parâmetro
+    “root=” como somente leitura ou leitura e escrita
+    ‣ Read-Only
+    ‣ Read and Write

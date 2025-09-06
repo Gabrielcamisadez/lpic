@@ -1,0 +1,51 @@
+* Identificando se o sistema utiliza SysVinit ou systemd
+
+Em distribuições Linux modernas, o processo de inicialização pode variar de acordo com o sistema de init adotado.  
+Os dois mais comuns são:
+- SysVinit (tradicional)
+- systemd (mais recente e amplamente adotado)
+
+A seguir, apresentamos os principais métodos para verificar qual sistema de init está em uso.
+
+** 1. Verificando o processo init em execução
+O processo init é sempre o primeiro iniciado pelo kernel (PID 1).  
+Execute:
+
+  ps -p 1 -o comm=
+
+Se o resultado for:
+- "systemd" → o sistema utiliza systemd.
+- "init" → pode estar utilizando SysVinit ou outro sistema de init compatível.
+
+** 2. Confirmando via diretório de processos
+Verifique o link simbólico do PID 1:
+
+  ls -l /sbin/init
+
+Possíveis resultados:
+- link apontando para /lib/systemd/systemd → systemd
+- link apontando para /lib/sysvinit/init ou similar → SysVinit
+
+** 3. Utilizando comandos nativos do systemd
+Tente executar:
+
+  systemctl
+
+- Se o comando existir e listar serviços/unidades, o sistema utiliza systemd.
+- Caso retorne erro de comando inexistente, provavelmente trata-se de SysVinit.
+
+** 4. Checando a versão da distribuição
+Algumas distribuições têm padrões conhecidos:
+- Debian ≥ 8 (Jessie), Ubuntu ≥ 15.04, CentOS ≥ 7 → systemd
+- Versões anteriores → SysVinit por padrão (salvo modificações manuais).
+
+** 5. Verificando o diretório de scripts de inicialização
+- Presença de /etc/init.d/ → característica de SysVinit.
+- Presença de diretórios como /etc/systemd/ ou /lib/systemd/ → característica de systemd.
+Observação: em muitos sistemas com systemd, ainda existe /etc/init.d/ por compatibilidade.
+
+* Conclusão
+O método mais confiável é inspecionar o processo com PID 1 ou verificar o link de /sbin/init.  
+
+Assim, é possível identificar com precisão se o sistema utiliza SysVinit ou systemd.
+

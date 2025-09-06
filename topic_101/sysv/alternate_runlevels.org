@@ -1,0 +1,111 @@
+#+title: Alternate Runlevels
+#+author: Gabriel
+
+No GRUB menu já é possível definir o runlevel a ser executado utilizando o 'e' para editar
+
+Lembrando que o runlevel 1 (Single User) é utilizado como root, e por questões de segurança é uma ótima ideia aplicar uma *password no GRUB menu*
+
+* Runlevels
+
+** DEBIAN Rulevels
+
+ 0 -> Desligar o sistema
+
+ 1 -> Single user mode
+
+ 2 -> Multiuser with text mode complete (with network)
+
+ 3 -> Usually the same as runlevel 2, but with extra network services
+
+ 4 -> Not usable, customizable
+
+ 5 -> Multiuser with graphical mode complete
+
+ 6 -> System reboot
+
+** RED HAT Runlevels
+
+ 0 -> System shutdown
+
+ 1 -> Single user mode
+
+ 2 -> Multiuser mode without network NFS
+
+ 3 -> Full multiuser mode with network. Standart text-based mode for server environments
+
+ 4 -> Unused and available for customizations by the administrator
+
+ 5 -> Full multiuser mode with network and a graphical display manager (GUI)
+
+ 6 -> System reboot
+
+* SysVinit LSB (Linux Standart Base)
+
+Com adesão deste padrão, agora existe um cabeçalho em todos os scripts que inicialização, sendo que neste mesmo estão indicadas as dependências necessárias à sua execução.
+
+Exemplo do */etc/init.d/ssh*
+
+#+begin_src sh
+head /etc/init.d/ssh
+
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:sshd
+# Required-Start: $remote_fs    $syslog
+# Required-Stop: $remote_fs    $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop:
+# Short-Description: OpenBSD Secure Shell server
+### END INIT INFO
+#+end_src
+
+*Provides*:
+Nome do script
+
+*Required-Start*:
+Defini scripts que devem ser inicializados antes de carregar este script.
+
+*Required-Stop*:
+Defini scripts que devem ser parados, antes de descarregar este script.
+
+*Should-Start*:
+Define que irá rodar só depois que os serviços declarados forem inicializados.
+
+*Should-Stop*:
+Defini que irá parar só depois que os serviços declarados forem parados.
+
+*Default-Start*:
+Níveis para carregar o serviço.
+
+*Default-Stop*:
+Níveis para descarregar o serviço.
+
+*Short-Description*:
+Descrição rápido do script.
+
+*Description*:
+Descrição mais detalhada do script.
+
+** Para adicionar/remover serviços ~insserv~
+
+Remover o serviço de inicialização
+#+begin_src sh
+insserv rv rsyslog
+#+end_src
+
+Adicionar o serviço de inicialização
+#+begin_src sh
+insserv dv rsyslog
+#+end_src
+
+O comando update-rc.d sofreu alguams mudanças para trabalhar com o padrão SysVinit que utiliza LSB (Linux Standart Base)
+
+Desabilitar o ~ssh~ nos runlevels 2,3 e 4
+#+begin_src sh
+update-rc.d ssh disable 2 3 4
+#+end_src
+
+Habilitar o ~ssh~ no runlevel 4
+#+begin_src sh
+update-rc.d ssh enable 4
+#+end_src
