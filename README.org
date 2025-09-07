@@ -2,9 +2,7 @@
 #+AUTHOR: gabriel
 #+SUBTITLE:
 
-* Objetivo
 Material de consulta rápida para revisões.
-
 
 * Referências
 - [[https://www.lpi.org/our-certifications/lpic-1-overview][LPIC-1 Official Overview]]
