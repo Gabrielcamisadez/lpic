@@ -8,4 +8,3 @@ Material de consulta rápida para revisões.
 - [[https://www.lpi.org/our-certifications/lpic-1-overview][LPIC-1 Official Overview]]
 - [[https://tldp.org][The Linux Documentation Project]]
 - [[https://wiki.archlinux.org][Arch Wiki]]
-.
