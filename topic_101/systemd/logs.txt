@@ -1,0 +1,157 @@
+                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                       LOGS SYSTEMD (JOURNALCTL)
+
+                                Gabriel
+                      ━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Logs no systemd (journalctl)
+.. 1. Conceito
+.. 2. Características
+.. 3. Comandos principais
+.. 4. Persistência
+2. Contexto
+3. Logs no systemd (journalctl)
+.. 1. Conceito
+.. 2. Características
+.. 3. Comandos principais
+.. 4. Persistência
+4. Comparação SysVinit x systemd (Logs)
+5. Tópicos LPIC-1
+6. Resumo prático
+
+
+1 Logs no systemd (journalctl)
+══════════════════════════════
+
+1.1 Conceito
+────────────
+
+  • Gerenciados pelo *systemd-journald*.
+  • Logs binários, centralizados, unificados (kernel, serviços,
+    sistema).
+  • Podem coexistir com rsyslog, dependendo da distro.
+
+
+1.2 Características
+───────────────────
+
+  • Logs em formato binário (não legíveis diretamente em texto).
+  • Local padrão: /run/log/journal/ (volátil) ou /var/log/journal/
+    (persistente).
+  • Inclui metadados (PID, UID, cgroup, unidade systemd).
+
+
+1.3 Comandos principais
+───────────────────────
+
+  • journalctl → exibe todos os logs
+  • journalctl -xe → últimos logs detalhados
+  • journalctl -b → logs do último boot
+  • journalctl -b -1 → boot anterior
+  • journalctl -u serviço → logs de um serviço
+  • journalctl –since “2025-09-01” –until “2025-09-07” → intervalo de
+    tempo
+  • journalctl -f → acompanhamento em tempo real
+  • journalctl _PID=1234 → logs de um processo específico
+
+
+1.4 Persistência
+────────────────
+
+  • Por padrão, logs podem ser voláteis (limpos a cada boot).
+  • Criar diretório /var/log/journal/ garante persistência.
+  • Configuração em /etc/systemd/journald.conf
+
+
+2 Contexto
+══════════
+
+  O gerenciamento de logs é parte essencial da administração Linux. Na
+  LPIC-1, é cobrado o entendimento das diferenças entre:
+
+  • *SysVinit*: utiliza o syslog tradicional (rsyslog, syslog-ng).
+  • *systemd*: utiliza o *journald* e o comando journalctl.
+
+
+3 Logs no systemd (journalctl)
+══════════════════════════════
+
+3.1 Conceito
+────────────
+
+  • Gerenciados pelo *systemd-journald*.
+  • Logs binários, centralizados, unificados (kernel, serviços,
+    sistema).
+  • Podem coexistir com rsyslog, dependendo da distro.
+
+
+3.2 Características
+───────────────────
+
+  • Logs em formato binário (não legíveis diretamente em texto).
+  • Local padrão: /run/log/journal/ (volátil) ou /var/log/journal/
+    (persistente).
+  • Inclui metadados (PID, UID, cgroup, unidade systemd).
+
+
+3.3 Comandos principais
+───────────────────────
+
+  • journalctl → exibe todos os logs
+  • journalctl -xe → últimos logs detalhados
+  • journalctl -b → logs do último boot
+  • journalctl -b -1 → boot anterior
+  • journalctl -u serviço → logs de um serviço
+  • journalctl –since “2025-09-01” –until “2025-09-07” → intervalo de
+    tempo
+  • journalctl -f → acompanhamento em tempo real
+  • journalctl _PID=1234 → logs de um processo específico
+
+
+3.4 Persistência
+────────────────
+
+  • Por padrão, logs podem ser voláteis (limpos a cada boot).
+  • Criar diretório /var/log/journal/ garante persistência.
+  • Configuração em /etc/systemd/journald.conf
+
+
+4 Comparação SysVinit x systemd (Logs)
+══════════════════════════════════════
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Característica        SysVinit (syslog)            systemd (journalctl)                          
+  ──────────────────────────────────────────────────────────────────────────────────────────────────
+   Formato               Texto plano                  Binário (estruturado)                         
+   Local padrão          /var/log/*                   /run/log/journal/, /var/log/journal/          
+   Ferramenta principal  tail, less, grep, logger     journalctl                                    
+   Estrutura             Arquivos separados por tipo  Banco centralizado                            
+   Filtros               Facility + Priority          Metadados avançados (PID, UID, unit)          
+   Persistência          Padrão em disco (/var/log)   Volátil por padrão, persistente se habilitado 
+   Compatibilidade       Universal (todas distros)    Distros modernas (systemd)                    
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+5 Tópicos LPIC-1
+════════════════
+
+  • Conhecer os principais arquivos em /var/log no SysVinit.
+  • Saber usar dmesg, tail, logger.
+  • Entender facility e priority do syslog.
+  • Conhecer journalctl: filtros, opções (-u, -b, -xe, -f).
+  • Saber configurar persistência dos logs do journal.
+  • Comparar o modelo de logs clássico (syslog) e moderno (journald).
+
+
+6 Resumo prático
+════════════════
+
+  • *SysVinit*: logs em texto, grep/tail/less, arquivos em /var/log/.
+  • *systemd*: logs binários, centralizados, comandos via journalctl.
+  • Prova: pode pedir equivalência de comandos, ou identificar onde
+    encontrar informações (ex.: autenticação → /var/log/auth.log no
+    SysVinit, journalctl -u ssh.service no systemd).
