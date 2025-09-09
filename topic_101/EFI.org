@@ -1,0 +1,48 @@
+#+title: Efi
+#+description: topic 102.1 Projetar Layout do disco rígido (EFI System Partition)
+
+* EFI EFI System Partition (ESP)
+
+ * Não lê dados da MBR
+ * Armazena os arquivos para iniciar os sitemas operacionais instalados
+ * *ESP usa o sistema de arquivos FAT*
+
+*Mount Point* -> /boot/efi
+
+*efibootmgr* -> Comando utilizado para gerenciar entradas de incialização do UEFI
+
+#+begin_src sh
+(venv) [16:22][]~/vms ✮ efibootmgr
+
+BootCurrent: 0002
+Timeout: 1 seconds
+BootOrder: 0002,0000
+Boot0000  Windows Boot Manager  VenHw(99e275e7-75a0-4b37-a2e6-c5385e6c00cb)57494e444f57530001000000880
+00000780000004200430044004f0042004a004500430054003d007b00390064006500610038003600320063002d00350063006
+40064002d0034006500370030002d0061006300630031002d006600330032006200330034003400640034003700390035007d0
+0000000000100000010000000040000007fff0400
+Boot0002* Ubuntu        HD(1,GPT,f48c0968-b2a1-491d-963e-fc7b9305e4dd,0x800,0x100000)/File(\EFI\UBUNTU
+\SHIMX64.EFI)
+#+end_src
+
+* At system
+
+O princiapl dir(Mount POint) é /boot/efi, onde subdirectorys são criados cotnendo o nome do Linux utilizado e contendo também os arquivos essencias de incialização.
+
+#+begin_src sh
+ tree /boot/efi
+/boot/efi
+└── EFI
+    ├── BOOT
+    │   ├── BOOTX64.EFI
+    │   ├── fbx64.efi
+    │   └── mmx64.efi
+    └── ubuntu
+        ├── BOOTX64.CSV
+        ├── grub.cfg
+        ├── grubx64.efi
+        ├── mmx64.efi
+        └── shimx64.efi
+
+4 directories, 8 files
+#+end_src

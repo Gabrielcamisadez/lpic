@@ -1,0 +1,9 @@
+    └── ubuntu
+        ├── BOOTX64.CSV
+        ├── grub.cfg
+        ├── grubx64.efi
+        ├── mmx64.efi
+        └── shimx64.efi
+
+4 directories, 8 files
+SESEI-69198#

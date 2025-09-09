@@ -1,0 +1,46 @@
+#+title: Grub 2
+#+author: gabriel
+#+description: topic 102.2 Instalar o gerenciador de inicialização GRUB 2
+
+
+No GRUB 2 o principal arquivo de configuração é o */boot/grub/grub.cfg*, sendo que ele não deve ser editado diretamente, pois as alterações são feitas editando os arquivos em */etc/grub.d* e no arquivo */etc/default/grub*
+
+O comando ~update-grub~ sempre que é executado, lê os arquivos presentes em */boot/grub/grub.cfg*.
+
+Cada um dos scripts em */boot/grub/grub.cfg* possuem suas próprias finalidades, como por exemplo o
+
+*00_header*-> importa as configurações do dir */etc/default/grub*
+*05_debian_theme*-> responsável por configurar a tela de menu, background, color etc...
+*10_linux*-> script responsável por identificar os Kernels presentes em /boot, e cria entradas no GRUB men
+*30_os-prober* -> automatiza a inclusão de novas entradas no menu do GRUB para outros SOs no disk
+*40_custom*-> utilizado para adicionar entradas personalizadas que serão inseridos no /etc/grub/grub.cfg
+
+* Adicionando uma nova entrada no script *40_custom*
+
+#1
+#+begin_src sh
+#!/bin/sh
+exec tail -n +3 $0
+#This file provides an easy way to add custom entries ....
+# ...
+#...
+menuentry "System Reboot"{
+   insmod reboot
+   reboot
+   }
+#+end_src
+
+
+#2
+#+begin_src sh
+menuentry "System Shutdown"{
+    insmod halt
+    halt
+}
+#+END_SRC
+
+
+Após salvar as alterações, para aplicar elas é necessário ->
+#+begin_src sh
+update-grub
+#+end_src
