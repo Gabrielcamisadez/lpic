@@ -44,3 +44,24 @@ Após salvar as alterações, para aplicar elas é necessário ->
 #+begin_src sh
 update-grub
 #+end_src
+
+
+* Arquivos
+
+Se olharmos o arquivo *grub.cfg*, as alterações estarão lá presentes
+
+*grub-mkconfig -o /boot/grub/grub.cfg* -> definir o local de configs do GRUB em sistemas que não possuem ele por default.
+
+*/etc/default/grub* -> Arquivo que contém infos sobre o Menu do GRUB, utilizado para criação de parameters personalizados ou parameters necessários
+
+Após apagar tudo em */boot/grub* ->
+
+#+begin_src sh
+grub-install --boot-directory=/boot /dev/sda
+#+end_src
+
+ainda é necessário gerar o arquivo de config, que é essencial para inicialização de sistema->
+
+#+begin_src sh
+grub-mkconfig -o /boot/grub/grub.cfg
+#+end_src
