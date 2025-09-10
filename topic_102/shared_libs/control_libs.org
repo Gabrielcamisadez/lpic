@@ -1,6 +1,8 @@
 #+title: Controle de bibiliotecas compartilhadas
 #+description: Topic 102.3
 
+ld.so = Linker
+
 * Bibliotecas Estáticas x Bibliotecas Dinâmicas
 
 *Estática* ->
