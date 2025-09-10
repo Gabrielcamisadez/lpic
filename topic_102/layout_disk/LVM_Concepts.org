@@ -1,9 +1,12 @@
-    └── ubuntu
-        ├── BOOTX64.CSV
-        ├── grub.cfg
-        ├── grubx64.efi
-        ├── mmx64.efi
-        └── shimx64.efi
+#+title: Conceitos do LVM
+#+description: topic 102.1 - Projetar layout to disco rígido [Conceitos do LVM]
 
-4 directories, 8 files
-SESEI-69198#
+A alocação dinâmica de espaço gerenciada pelo LVM tem os seguintes elementos fundamentais:
+
+*PV* Physical volume -> Disco rígido
+
+*VG* Volume Group -> Reúne uma coleção de volumes lógicos *LV* e volumes físico *PV*.
+
+*LV* Logical Volume -> Equivalente a uma partição de disco.
+
+Só é possível formatar e alterar sistemas de arquivos em Logical Volumes *LV*
