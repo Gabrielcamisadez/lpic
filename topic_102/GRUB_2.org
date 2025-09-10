@@ -46,6 +46,39 @@ update-grub
 #+end_src
 
 
+-----
+
+Execute o comando que gera a configuração do arquivo do GRUB2 na ausência do comando update-grub2. Passe o comando completo informando opções e argumentos necessários. ->
+#+begin_src sh
+grub-mkconfig -o /boot/grub/grub.cfg
+
+ou
+
+grub2-mkconfig -o /boot/grub/grub.cfg
+#+end_src
+
+Qual comando que reinstala o grub na mbr(informe somente o comando) ?
+#+begin_src sh
+grub-install
+#+end_src
+
+No GRUB2 o script que busca pelos sistemas operacionais disponíveis em outros discos e ou partições no mesmo computador é o ->
+#+begin_src sh
+30_os-prober
+#+end_src
+
+A opção  do arquivo /etc/default/grub define os parâmetros passados para o kernel linux do sistema operacional ->
+#+begin_src sh
+GRUB_CMDLINE_LINUX
+#+end_src
+
+
+Salvar alterações realizadas no arquivo */etc/default/grub*, e para atualizar o arquivo */boot/grub/grub.cfg* ->
+#+begin_src sh
+update-grub2
+#+end_src
+
+
 * Arquivos
 
 Se olharmos o arquivo *grub.cfg*, as alterações estarão lá presentes

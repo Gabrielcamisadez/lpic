@@ -10,7 +10,7 @@
 *GRUB 2*
  * /etc/default/grub
  * /boot/grub/grub.cfg
-
+ * /etc/grub.d/*
 
 * Referência ao disk
 
@@ -25,7 +25,6 @@
  * /dev/sda2 = hd0,2 ou hd0,msdos2
  * /dev/sdc1 = hd2,1 ou hd2,msdos1
  * /dev/sdd2 = hd3,2 ou hd3,gpt2
-
 
 * Principais parameters
 
