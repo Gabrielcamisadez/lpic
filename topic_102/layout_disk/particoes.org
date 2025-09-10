@@ -1,0 +1,86 @@
+#+title: Particoes
+#+description: topic 102.1 - Projetar Layout do disco rígido
+
+* Partições
+
+*Partições Primárias* ->
+Este tipo de partição pode ser formatada para receber um sistema de arquivos. Em um disco deve haver no mínimo uma e no máximo quatro partições primárias. Caso já existam quatro partições primárias, nenhuma outra partição poderá existir neste disco
+
+*Partições Estendidas* ->
+Partição estendida é um tipo especial de partição que não pode conter um sistema de arquivos. Ao invés disso, ela contém partições lógicas.
+
+*Partições Lógicas* ->
+Partição estendida é um tipo especial de partição que não pode conter um sistema de arquivos. Ao invés disso, ela contém partições lógicas.
+
+------
+
+Este documento tem como objetivo revisar os conceitos fundamentais de identificação de discos e partições no Linux, especialmente voltados para a certificação **LPIC-1**.
+
+** Introdução
+No Linux, os dispositivos de armazenamento são representados como arquivos especiais dentro do diretório */dev/*. Cada tipo de tecnologia de disco (IDE, SCSI, SATA, NVMe) possui convenções diferentes de nomenclatura. Entender essas diferenças é essencial para interpretar corretamente questões de prova e administrar sistemas Linux.
+
+** Tipos de Discos e Nomenclatura
+- ⬛ **IDE (PATA)**
+  - Nomenclatura: /dev/hd[a-d]
+  - *Exemplo*:
+    - /dev/hda → primeiro disco IDE (Primary Master)
+    - /dev/hdb → segundo disco IDE (Primary Slave)
+    - /dev/hdc → terceiro disco IDE (Secondary Master)
+    - /dev/hdd → quarto disco IDE (Secondary Slave)
+
+- 🔷 **SCSI e SATA (no kernel 2.6+ todos passam a ser tratados como SCSI)**
+  - Nomenclatura: /dev/sd[a-z]
+  - *Exemplo*:
+    - /dev/sda → primeiro disco SCSI/SATA
+    - /dev/sdb → segundo disco
+    - /dev/sdc → terceiro disco
+
+- ⚡ **NVMe**
+  - Nomenclatura: /dev/nvmeXnYpZ
+  - *Exemplo*:
+    - /dev/nvme0n1 → primeiro disco NVMe
+    - /dev/nvme0n1p1 → primeira partição deste disco
+
+** Estrutura de Partições
+- A tabela de partições **msdos (MBR)** permite no máximo **4 partições primárias**.
+- Para criar mais partições, é necessário utilizar uma **partição estendida**, que pode conter várias **partições lógicas**.
+
+** Identificação de Partições
+- Partições são numeradas em sequência no disco:
+  - /dev/sda1 → primeira partição primária do primeiro disco
+  - /dev/sda2 → segunda partição
+  - /dev/sda3 → terceira partição
+  - /dev/sda4 → quarta partição (pode ser estendida)
+  - /dev/sda5 → primeira partição lógica dentro da estendida
+  - /dev/sda6 → segunda partição lógica
+  - E assim por diante…
+
+** Questões Típicas da Prova
+
+1. ✦ *Questão:* "A tabela de partições msdos pode ter no máximo 4 partições primárias. Informe a localização completa da segunda partição lógica do primeiro disco SCSI no sistema Linux."
+   - *Resposta:* /dev/sda6
+
+   *Explicação*:
+   - Disco: primeiro SCSI → /dev/sda
+   - Segunda partição lógica:
+     - /dev/sda5 = primeira lógica
+     - /dev/sda6 = segunda lógica
+
+2. ✦ *Questão:* "Em um sistema Linux com kernel versão 2.6.x usando um disco IDE primary master, qual é o arquivo de dispositivo que representa a partição estendida, depois de ter criado as três primeiras partições como primárias?"
+   - *Resposta:* /dev/hda4
+
+   *Explicação*:
+   - Disco IDE primary master: /dev/hda
+   - Três primeiras partições: /dev/hda1, /dev/hda2, /dev/hda3
+   - A quarta, /dev/hda4, é a estendida
+
+** Resumo Visual
+- IDE:
+  - Disco: /dev/hd[a-d]
+  - Partições: /dev/hda1, /dev/hda2, ...
+- SCSI/SATA:
+  - Disco: /dev/sd[a-z]
+  - Partições: /dev/sda1, /dev/sda2, ...
+- NVMe:
+  - Disco: /dev/nvme0n1
+  - Partições: /dev/nvme0n1p1, /dev/nvme0n1p2, ...
