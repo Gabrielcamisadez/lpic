@@ -1,0 +1,17 @@
+#+title: Controle de bibliotecas compartilhadas [ldconfig, ld.so.conf, ld.
+#+description: simulado
+
+* 1
+você é administrador de um servidor web e precisa instalar uma nova aplicação que usa bibliotecas dinâmicas. antes de instalar você precisa testar a aplicação, é necessário definir a variável ___________________ com o seguinte valor /usr/local/lib que contém a biblioteca dinâmica e em seguida exporte a variável.
+
+* 2
+O arquivo /etc/_____________contém o mapeamento de todas as bibliotecas disponíveis no sistema ?
+
+* 3
+O linker _________ é usado sempre que uma aplicação precisa carregar na memoria uma biblioteca dinâmica.
+
+* 4
+O sysadmin deve incluir a localização do diretório que contém a biblioteca dinâmica no arquivo /etc/_____________.
+
+* 5
+Após incluir o diretório que contém a localização da biblioteca dinâmica o comando _________ deve ser executado para atualizar o arquivo /etc/ld.so.cache.
