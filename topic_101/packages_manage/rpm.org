@@ -96,3 +96,8 @@ Saber qual pacote instalou algum arquivo/comando ->
 #+begin_src sh
 rpm -qf /bin/dd
 #+end_src
+
+Modo de verificação em pacotes -> ~-V~
+#+begin_src sh
+rpm -Vv bind-utils
+#+end_src
