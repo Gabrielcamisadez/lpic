@@ -1,0 +1,98 @@
+#+title: Rpm
+#+description: 102.5
+#+author: gabriel
+
+* Introdução
+O comando *RPM* é um gerenciador de pacotes de baixo nível assim como o *dpkg* no debian.
+É um comando poderoso que pode ser utilizado para construir, instalar, consultar, veriricar, atualizar e desinstalar pacotes e softwares no sistema.
+
+As principais opções utilizadas em operações com o *RPM* são ->
+
+*Modo de instalação* -> rpm -i
+*Modo de consulta* -> rpm -q
+*Modo de desintalação* -> rpm -e
+*Modo de verificação* -> rpm -V --verify
+
+* Instalação e desintalação
+
+Após realizar o download de um pacote *RPM* com o ~yumdownloader~ , apenas testar a instalaçoa do pacote com o parameter --test
+#+begin_src sh
+rpm -iv  --test epel-release-6-8.noarch.rpm
+#+end_src
+
+Para verificar se o pacote foi instalado ->
+#+begin_src sh
+rpm -q epel-release
+#+end_src
+
+Instalar de fato e ainda utilizar uma "barra de progressão com o -h" ->
+#+begin_src sh
+rpm -ivh epel-release-6-8.noarch.rpm
+#+end_src
+
+Forçar instalaçao de um pacote ->
+#+begin_src sh
+rpm -if epel-release-6-8.noarch.rpm
+#+end_src
+
+Instalar um pacote novo, ou atualizar caso seja existente ->
+#+begin_src sh
+rpm -Uvh epel-release-6-8.noarch.rpm
+#+end_src
+
+Desinstalação de um pacote ->
+#+begin_src sh
+rpm -ev epel-release
+#+end_src
+
+* VErificação de pacotes
+
+Checar um pacote ->
+#+begin_src sh
+rpm -K epel-release
+#+end_src
+
+Consultar um pacote ->
+#+begin_src sh
+rpm -q gimp
+#+end_src
+
+Todos os pacotes instalados sistema ->
+#+begin_src sh
+rpm -qa
+#+end_src
+
+Listar os arquios que vieram com algum pacote já instalado no sistema ->
+#+begin_src sh
+rpm -ql iptables
+#+end_src
+
+Listar os arquivos de um pacote que não está instalado no sistema ->
+#+begin_src sh
+rpm -qpl nikto
+#+end_src
+
+Listar arquivos de documentação de um pacote ->
+#+begin_src
+rpm -qd net-tools
+#+end_src
+
+Listar arquivos de configuração de um pacote ->
+#+begin_src sh
+rpm -qc net-tools
+#+end_src
+
+Para verificar arquivos de documentações de pacotes que  ainda não foram instalados, sempre utiliza-se o -p ->
+#+begin_src sh
+rpm -qpd gimp
+#+end_src
+
+Para verificar arquivos de configurações de pacotes que  ainda não foram instalados, sempre utiliza-se o -p ->
+#+begin_src sh
+rpm -qpc gimp
+#+end_src
+
+Saber qual pacote instalou algum arquivo/comando ->
+#+begin_src sh
+rpm -qf /bin/dd
+#+end_src

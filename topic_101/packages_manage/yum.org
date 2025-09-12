@@ -1,4 +1,4 @@
-#+title: Utilização d sistema de pacotes RPM e YUM
+#+title: Utilização do sistema de pacotes RPM e YUM
 #+description: 102.5
 #+author: gabriel
 
@@ -26,6 +26,10 @@ Existem configurações que podem ser definidas/alteradas neste arquivo também,
 *gpgkey* -> local de armazenamento da gpgkey
 
 * YUM
+Para realizar apenas o download de algum pacote pode-se utilizar o comando ~yumdownloader~
+#+begin_src sh
+yumdownloader epel-release
+#+end_src
 
 Utilização do yum para pesquisar por pacotes existentes ->
 #+begin_src sh
