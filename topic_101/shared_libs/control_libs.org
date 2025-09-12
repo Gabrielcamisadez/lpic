@@ -5,7 +5,7 @@ ld.so = Linker
 
 * Bibliotecas Estáticas x Bibliotecas Dinâmicas
 
-*Estática* ->
+*Estáticas* ->
 Binário roda de forma independente
 BInário é mais rápido em sua execução
 Uso desnecessário de memória
