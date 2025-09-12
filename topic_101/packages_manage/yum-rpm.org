@@ -1,1 +1,3 @@
-#+title:
+#+title: Utilização d sistema de pacotes RPM e YUM
+#+description: 102.5
+#+author: gabriel
