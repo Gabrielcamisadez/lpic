@@ -1,0 +1,15 @@
+#+title: Utilização do sistema de pacotes Debian [dpkg]
+#+description: 102.4
+
+Para realizar estes estudos vou apenas realizar o download de alguns pacotes com o comando ~apt-get~ ->
+
+A opção ~-d~ faz com que o apt-get apenas realize o download dos pacotes .deb, e a instalação não será de fato concluída.
+#+begin_src sh
+apt-get -d install rar unrar
+#+end_src
+
+
+
+* comando dpkg
+
+Responsável por gerenciar pacotes debian em baixo nível, por trás dos comandos apt e apt-get.
