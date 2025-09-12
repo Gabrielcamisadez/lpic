@@ -3,12 +3,39 @@
 
 Definir o editor padrão do sistema é algo que um SYsAdmin deve ser capaz de realizar, em meu caso desejo sempre utilizar o VIM, e não o NANO
 
+
 Arquivo responsável ->
 
 #+begin_src sh
 ls -l /usr/bin/editor
 
-
 [12:56][]~/sesei/lpic/topic_101:main ✗ ✮ ls -l /usr/bin/editor
+
 lrwxrwxrwx 1 root root 24 jan 23  2025 /usr/bin/editor -> /etc/alternatives/editor
 #+end_src
+
+Comando utilizado para editar o editor default do sistema ->
+#+begin_src sh
+update-alternatives --config editor
+#+end_src
+
+Uma lista será exibida com opções para os editores presentes no sistema ->
+#+begin_src sh
+[13:02][]~ ✮ update-alternatives --config editor
+There are 7 choices for the alternative editor (providing /usr/bin/editor).
+
+  Selection    Path                Priority   Status
+------------------------------------------------------------
+  0            /bin/nano            40        auto mode
+  1            /bin/ed             -100       manual mode
+  2            /bin/nano            40        manual mode
+  3            /usr/bin/code        0         manual mode
+  4            /usr/bin/emacs       0         manual mode
+  5            /usr/bin/nvim        30        manual mode
+* 6            /usr/bin/vim.basic   30        manual mode
+  7            /usr/bin/vim.tiny    15        manual mode
+
+Press <enter> to keep the current choice[*], or type selection number:
+#+end_src
+
+O atual fica marcado com o asteristico, no meu caso o */usr/bin/vim.basic*
