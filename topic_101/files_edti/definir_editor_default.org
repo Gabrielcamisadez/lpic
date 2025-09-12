@@ -1,0 +1,14 @@
+#+title: Definir editor de arquivos padrão
+#+description: 103.8
+
+Definir o editor padrão do sistema é algo que um SYsAdmin deve ser capaz de realizar, em meu caso desejo sempre utilizar o VIM, e não o NANO
+
+Arquivo responsável ->
+
+#+begin_src sh
+ls -l /usr/bin/editor
+
+
+[12:56][]~/sesei/lpic/topic_101:main ✗ ✮ ls -l /usr/bin/editor
+lrwxrwxrwx 1 root root 24 jan 23  2025 /usr/bin/editor -> /etc/alternatives/editor
+#+end_src
