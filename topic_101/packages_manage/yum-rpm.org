@@ -1,3 +1,82 @@
 #+title: Utilização d sistema de pacotes RPM e YUM
 #+description: 102.5
 #+author: gabriel
+
+* /etc/yum.conf
+O yum possui várias configurações centralizadas no arquivo */etc/yum.conf*, podemos determinar a partir desse arquivo como serão diversos comportamentos no programa.
+
+*cachedir* -> Diretório de armazenamento dos pacotes e demais arquivos de dados.  */var/cache/yum*
+
+*keepcache* -> Determina se o yum deve manter os pacotes e arquivos relacionados após uma instalação bem sucedida. 0 or 1
+
+*reposdir* -> Lista de diretórios que o yum irá buscar os arquivos que contém a configuração dos repositórios e que devem ter a extensão .repo.    */etc/yum.repos.d*
+
+*logfile* -> Localização completa do arquivo de log do gerenciador de pacotes yum.
+
+*gpgcheck* -> Determina se o yum deve ou não fazer a verificação de signatures GPG dos pacotes que estão sendo instalados
+
+* /etc/yum.repos.d
+
+ * Local em que o YUM armazena os repositórios de pacotes.
+
+Existem configurações que podem ser definidas/alteradas neste arquivo também,
+
+*enable=1* ->  para um repositório, caso não tenha nenhuma opção do enable o default é 0
+*gpgcheck=1* -> define se o gpgcheck estará ativo ou não
+*gpgkey* -> local de armazenamento da gpgkey
+
+* YUM
+
+Utilização do yum para pesquisar por pacotes existentes ->
+#+begin_src sh
+yum search nmap
+#+end_src
+
+Instalar um pacote RPM ->
+#+begin_src sh
+yum install nmap btop
+#+end_src
+
+Remover um pacote instalado ->
+#+begin_src sh
+yum remove nmap
+#+end_src
+
+Verificar a existência de novas versões de pacotes já instalados ->
+#+begin_src sh
+yum check-update
+#+end_src
+
+Atualizar todos os pacotes como no apt ->
+#+begin_src sh
+yum update
+#+end_src
+
+Descobrir qual pacote instalou determinado arquivo ->
+#+begin_src sh
+yum provides "*/ifconfig"
+#+end_src
+
+* rpm2cpio
+
+Os pacotes RPM são compostos por diversos arquivos/directorys que serão criados, o comando rpm2cpio irá extrair o conteúdo de um pacote RPM ->
+
+ * Realizar o download de um pacote RPM
+   #+begin_src sh
+yum install --downloadonly --downloaddir=/root/rpm epel-release
+   #+end_src
+
+Utilização do rpm2cpio ->
+#+begin_src sh
+rpm2cpio epel-release-7-11.noarch.rpm > epel-release.cpio
+#+end_src
+
+Após a criação do arquivo *.cpio*, para a extração utiliza-se ->
+*i* -> extração
+*d* -> respeitar/manter estrutura de diretórios
+*v* -> verbose mode
+#+begin_src sh
+cpio -idv < epel-release.cpio
+#+end_src
+
+E então os arquivos/dirs serão extraídos para a localização atual em que o comando foi executado
