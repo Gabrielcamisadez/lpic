@@ -17,6 +17,3 @@ O sysadmin deve incluir a localização do diretório que contém a biblioteca d
 Após incluir o diretório que contém a localização da biblioteca dinâmica o comando __ldconfig____ deve ser executado para atualizar o arquivo /etc/ld.so.cache
 
 
-#+begin_quote
-fewafwa
-#+end_quote
