@@ -12,6 +12,9 @@ Partição estendida é um tipo especial de partição que não pode conter um s
 *Partições Lógicas* ->
 Partição estendida é um tipo especial de partição que não pode conter um sistema de arquivos. Ao invés disso, ela contém partições lógicas.
 
+=As partições lógicas residem dentro da partição estendida.=
+=As partições lógicas são numeradas a partir de 5 e podem receber sistema de arquivos=
+
 ------
 
 Este documento tem como objetivo revisar os conceitos fundamentais de identificação de discos e partições no Linux, especialmente voltados para a certificação **LPIC-1**.
