@@ -16,7 +16,7 @@ Ele foi projetado para ser compatível com os scripts de incialização SysVinit
 
   Geralmente seu principal dir está em */lib/systemd/system*, em distros red hat podem estar em */usr/lib/systemd/system*
 
-* unidades
+* units
 O systemd inicializa e supervisiona todo o sistema e é baseado no conceito de unidades. Uma unidade é composta por um nome e um tipo e possui um arquivo de configuração correspondente.
 
 =Tipos de unidades SystemD:=
@@ -35,3 +35,5 @@ Unidade especial pois trata-se de um agrupamento de unidades, de forma que sejam
 
 *** mount
 Uma unidade que é responsável por um ponto de montagem no sistema de arquivos
+
+-----

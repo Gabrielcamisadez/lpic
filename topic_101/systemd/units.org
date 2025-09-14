@@ -1,0 +1,63 @@
+#+title: Rvw Sysd
+#+description: review
+
+O systemd inicialize e supervisona todo o sistema e é baseado no conceito de unidades. Uma unidade é composta por um nome e um tipo e possui um arquivo de configuração correspodente. Os seguintes tipos de unidades são mais utilizados e conhecidos ->
+
+~service~ -> o tipo mais comum, onde os serviços podem ser iniciados, interrompidos, reiniciados e recarregados.
+
+-----
+
+~socket~ -> esse tipo de unidade pode ser um socket no sistema de arquivos ou na rede. cada unidade do tipo socket possui uma unidade do tipo service correspondente, que é iniciada somente quando uma conexão chega à unidade socket.
+
+*um ponto de comunicação entre os processos*
+
+Na prática é um arquivo no sistema de arquivos.
+
+-----
+
+~device~ -> uma unidade para um dispositivo presente na árvore de dispositivos do Linux. um dispositivo é exposto como unidade do systemd se houver uma regra do udev com essa finalidade.
+
+-----
+
+~mount~ -> uma unidade que é responsável por um ponto de montagem no sistema de arquivos.
+
+Utilizada para montar sistemas de arquivos, partições, LVM, Network Shared, NFS
+
+Opção comparada com o fstab, utilizando unidades .mount
+
+-----
+
+~automount~ -> unidade responsável por montar um ponto de montagem no sistema de arquivos, mas automaticamente. cada unidade .automount possui uma unidade .mount correspondente, que é iniciada quando o ponto de montagem automatico é acessado
+
+Montar sistema de arquivos também, porém sobre demanda, não é montado até que seja acessado
+
+-----
+
+~target~ -> unidade especial pois trata-se de um agrupamento de unidades de forma que sejam controladas em conjunto.
+
+* equivalent to runlevels
+
+#+begin_src sh
+ls -l /lib/systemd/system
+
+lrwxrwxrwx 1 root root    15 jul  2 11:04  runlevel0.target -> poweroff.target
+lrwxrwxrwx 1 root root    13 jul  2 11:04  runlevel1.target -> rescue.target
+lrwxrwxrwx 1 root root    17 jul  2 11:04  runlevel2.target -> multi-user.target
+lrwxrwxrwx 1 root root    17 jul  2 11:04  runlevel3.target -> multi-user.target
+lrwxrwxrwx 1 root root    17 jul  2 11:04  runlevel4.target -> multi-user.target
+lrwxrwxrwx 1 root root    16 jul  2 11:04  runlevel5.target -> graphical.target
+lrwxrwxrwx 1 root root    13 jul  2 11:04  runlevel6.target -> reboot.target
+#+end_src
+
+* main d
+
+Principal diretório do systemd -> */lib/systemd/system*
+
+Em distribuições red-hat -> */usr/lib/systemd/system*
+
+Diretório para inclusão de unidades personalizadas -> */etc/systemd/system*
+- este dir também armazena units
+
+
+
+Estas unidades não devem ser alteradas diretamente, e sim com o comando ~systemctl~ geralmente.
