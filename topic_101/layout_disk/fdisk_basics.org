@@ -1,3 +1,7 @@
 #+title: Fdisk Basics
 #+description: 102.1 (fdisk basic)
 #+author: gabriel
+
+* fdisk
+
+fdisk
