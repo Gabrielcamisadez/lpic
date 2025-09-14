@@ -1,0 +1,96 @@
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                     RED HAT (CENTOS) WITH SYSVINIT
+
+                                Gabriel
+                    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Gerenciando os serviços com `chkconfig'
+
+
+Em distros Red Hat/ CEntoOS os serviços ficam em /etc/rc.d/init.d, todos
+os arquivos possuem um hard link para /etc/init.d. Então tanto faz mudar
+em um como em outro, ambos serão atualizados
+
+Cabeçalho de inicialização do sshd no CEntoOS ->
+
+┌────
+│ # head -n 15 /etc/rc.d/init.d/sshd
+│ # !/ bin / bash
+│ #
+│ # Init file for OpenSSH server daemon
+│ #
+│ # chkconfig : 2345 55 25
+│ # description : OpenSSH server daemon
+│ #
+│ # processname : sshd
+│ # config : /etc/ssh/ssh_host_key
+│ # config : /etc/ssh/ssh_host_key.pub
+│ # config : /etc/ssh/ssh_random_seed
+│ # config : /etc/ssh/sshd_config
+│ # pidfile : /var/run/sshd.pid
+└────
+
+*chkconfig*: <Níveis de execução para inicialização> <Ordem de
+ inicialização “S”> <Ordem de parada “K”>
+
+*Description*: Descrição
+
+*config* Arquivos de configuração
+
+*pidfile* Localização do PID do process
+
+
+1 Gerenciando os serviços com `chkconfig'
+═════════════════════════════════════════
+
+  Verificar serviços habilitados em cada runlevel ->
+  ┌────
+  │ chkconfig --list
+  └────
+
+  Para serviço específico ->
+  ┌────
+  │ chkconfig --list httpd
+  └────
+
+  Adicionar serviço ssh na inicialização ->
+  ┌────
+  │ chkconfig --add sshd
+  │ 
+  │ ou
+  │ 
+  │ chkconfig sshd on
+  └────
+
+  Desabilitar serviço sshd na inicialização ->
+  ┌────
+  │ chkconfig --del sshd
+  │ 
+  │ ou
+  │ 
+  │ chkconfig sshd off
+  └────
+
+  Para habilitar o serviço em determinados níveis ->
+  ┌────
+  │ chkconfig --level 23 sshd on
+  └────
+
+  Para desabilitar o serviço ssh em determinados níveis ->
+  ┌────
+  │ chkconfig --level 2 sshd off
+  └────
+
+  Para iniciar um serviço ->
+  ┌────
+  │ service sshd start
+  └────
+
+  Para parar um serviço ->
+  ┌────
+  │ service sshd stop
+  └────
