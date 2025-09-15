@@ -2,6 +2,10 @@
 #+description: 102.1 (fdisk basic)
 #+author: gabriel
 
+Os discos rígidos que utilizam a tabela de partições do tipo msdos, podem ter no máximo 4 partições primárias, ou, 3 partições primárias e uma do tipo estendida, que por sua vez dividida em mais partições lógicas
+
 * fdisk
+
+O fdisk é o programa padrão para manipular partições em uma distribuição GNU/Linux. Com a opção
 
 fdisk
