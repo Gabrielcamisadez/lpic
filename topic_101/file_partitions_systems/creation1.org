@@ -21,3 +21,23 @@ O ~parted~ diferente do gdisk e fdisk, as alterações são aplicadas imediatame
 | print          | mostra a tabela de partição, dispositivos disponíveis
 | rm             | apaga uma partição do disco selecionado
 | select        | seleciona o dispositivo a editar
+
+*Entrar no parted* ->
+#+begin_src sh
+parted
+#+end_src
+
+*Printar partições do disco atual* ->
+#+begin_src sh
+print
+#+end_src
+
+*Alterar o disco selecionado* ->
+#+begin_src sh
+select /dev/sdb
+#+end_src
+
+*Criar tabela de partições* ->
+#+begin_src
+mklabel
+#+end_src
