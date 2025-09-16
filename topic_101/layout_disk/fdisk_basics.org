@@ -72,3 +72,17 @@ Partition 2 does not end on cylinder boundary.
 
 *Criar nova partição* ->
 : n
+
+*Verificar cógidos hexadecimais disponíveis* ->
+: l
+
+*83* -> Linux
+*82* -> swap
+*-8E* -> lvm
+*-EF* -> uefi
+
+*Para alterar o tipo de uma partição* ->
+: t
+
+Definir como tipo swap ->
+: 82

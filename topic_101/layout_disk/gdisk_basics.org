@@ -1,0 +1,40 @@
+#+title: Gdisk Basics
+#+author: gabrie
+#+description: gerenciar partições com o gdisk
+
+O comando gdisk é similar ao comando fdisk, a diferença é que o comando gdisk manipula (tabela de partições) partições do tipo GPT
+
+O gdisk também tem a capacidade de transformar partições MBR em partições GPT. E assim como o comando fdisk as alterações só são gravadas quando são salvas executando o comando "w"
+
+*Principais cmandos do gdisk*
+
+
+| comando | Finalidade
+|      p       |   Lista a tabela de partições, lista as partições do disco rígido
+|      n       |  Cria uma nova partição interativamente
+|      t       |   Muda o código de identificação da partição
+|      d       |   Apaga/Deleta uma partição
+|      q       |    Sai do fdisk sem gravar as alterações
+|      w      |    Sai do fdisk e grava as alterações
+|      m      |     Mostra a ajuda de comandos
+
+* selecionar o disco
+
+*Selecionar o disco rígido*
+: gdisk /dev/sdb
+
+Após realizar alterações no disco com o comando ~gdisk~ é necessário reiniciar o sistema operacional para que alterações vigorem, onde nem sempre é possível que isto acontece, especialmente em servidores de produção.
+
+Nestas situações podemos utilizar o comando ~partprobe~, para forçar a escrita das alterações na tabela de partições.
+
+*install* ->
+: apt-get install parted
+
+* mais codigos hexadecimais
+
+8300 -> Linux filesystem
+8302 -> Linux /home
+8304 -> x86-64 root (/)
+8306 -> Linux /srv
+8308 -> Linux dm-crypt
+830a Linux IA-64 root

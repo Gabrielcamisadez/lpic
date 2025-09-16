@@ -1,0 +1,16 @@
+#+title: Tabela MBR
+#+author: gabriel
+#+description: 104.1
+
+*MBR* -> Master Boot Record
+
+O MBR é um padrão antigo, que todos certamente conhecem, e que define a estrutura das partições, mantendo a informação sobre como as partições lógicas estão organizadas no disco. Usando esta estrutura, há mais limitações do que propriamente vantagens
+
+ * Um disco pode dividir-se num máximo de 4 partições primárias
+   (Para contornar esta limitação é possível dividr o disco em até 3 partições primárias e 1 partição estendida)
+
+ * Uma partição estendida pode dividir-se em múltiplas partições lógicas. Cada partição primária e lógica tem sua própria identificação no sistema
+
+ * Como o MBR usar 32 bits para guardar informações da partições, cada partição apenas pode ter um tamanho máximo de 2 TB
+
+ * Toda a informação das partições é guardada apenas num únicpo local (..se o MBR ficar corrompido..)
