@@ -30,6 +30,13 @@ Nestas situações podemos utilizar o comando ~partprobe~, para forçar a escrit
 *install* ->
 : apt-get install parted
 
+* some basic operations with gdisk
+
+#+begin_src
+gdisk /dev/sdb
+#+end_src
+
+
 * mais codigos hexadecimais
 
 8300 -> Linux filesystem
