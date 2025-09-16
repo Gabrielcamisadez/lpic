@@ -1,0 +1,21 @@
+#+title: Mkfs Mkswap
+#+author: gabriel
+#+description: 104.1
+
+Para criarmos um FileSystem em uma partição, devemos escolher o seu tipo e utilizar o comando "mkfs" com a seguinte sintaxe ->
+
+#+begin_src sh
+mkfs -t tipo device
+#+end_src
+
+Pode-se exemplificar a criação de um filesystem e um dispostivo utilizando o seguinte comando :
+
+#+begin_src sh
+mkfs -t et3 /dev/sdc2
+#+end_src
+
+Podemos criar um sistema de arquivos ext3 adicionar um LABEL, ou seja um nome pelo qual a partição será identificada
+
+#+begin_src sh
+mkfs.ext3 -L FS_EXT3 /dev/sdc2
+#+end_src
