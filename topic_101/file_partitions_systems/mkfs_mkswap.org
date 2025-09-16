@@ -36,3 +36,18 @@ O comando ~mkfs~ é universal em diversas distros, utiliza-se o -t para definir 
  * ext2
  * ext3
  * ext4
+
+*aplicar sistema de arquivos* ->
+#+begin_src sh
+mkfs /dev/sdc
+#+end_src
+
+*Verificar tipo de sistema de arquivos* ->
+#+begin_src sh
+file -s /dev/sdc
+#+end_src
+
+*Criar um sistema de arquivos do tipo ext3* ->
+#+begin_src sh
+mkfs -t ext3 /dev/sdc5
+#+end_src
