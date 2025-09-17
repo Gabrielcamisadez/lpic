@@ -1,0 +1,57 @@
+                           ━━━━━━━━━━━━━━━━━━
+                            CONCEITOS DO LVM
+
+                                  ilak
+                           ━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. PV
+2. VG
+3. LV
+
+
+A alocação dinâmica de espaço gerenciada pelo LVM tem os seguintes
+elementos fundamentais:
+
+
+1 PV
+════
+
+  *PV* Physical volume -> Disco rígido
+
+  Tipicamente um disco rígido, uma partição do disco ou qualquer
+  dispositivo de armazenamento de mesma natureza, como dispositivo RAID.
+
+
+2 VG
+════
+
+  *VG* Volume Group -> Reúne uma coleção de volumes lógicos *LV* e
+   volumes físico *PV*.
+
+  Nível mais alto de abstração do LVM. Reúne a coleção de volumes
+  lógicos(*LV*) e volumes físicos(*PV*) em uma unidade administrativa.
+
+
+3 LV
+════
+
+  *LV* Logical Volume -> Equivalente a uma partição de disco.
+
+  Equivalente a uma partição de disco. Como o Logical Volume age como
+  uma partição, pode conter um sistema de arquivos e pode utilizar
+  vários discos que estão agrupados no *Volume Group*.
+
+  É um recurso incluído no Kernel Linux a partir da versão 2.4 que cria
+  uma camada de abstração entre o sistema operacional e os HDs (ou
+  outras unidades de armazenamento utilizadas, como o RAID por exemplo)
+
+  Ele adiciona um pouco de complexidade apenas na configuração, mas em
+  compensação oferece um conjunto de vantagens muito insteressantes.
+
+
+  Só é possível formatar e alterar sistemas de arquivos em Logical
+  Volumes *LV*
