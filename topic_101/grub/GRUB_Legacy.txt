@@ -1,0 +1,109 @@
+                             ━━━━━━━━━━━━━
+                              GRUB LEGACY
+
+                                  ilak
+                             ━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. GRUB Legacy
+2. Principal arquivo de configuração do GRUB Legacy
+.. 1. Explicação do arquivo e suas variables ->
+.. 2. Criando um item de exemplo chamado Windows ->
+3. Add some security at this process
+
+
+1 GRUB Legacy
+═════════════
+
+  Um bootloader é o software responsável por carregar o sistema
+  operacional durante a incialização do sistema. Há vários “bootloaders”
+  diferentes disponíveis no GNU/Linux.
+
+  O papel do “bootloader” é fornecer uma lista de opções de sistemas
+  operacionais disponíveis na máquina e que podem ser carregados
+
+  Quando o user seleciona o sistema operacional que ele deseja utilizar,
+  o GRUB inicia o carregamento do kernel na memória RAM, o qual passa a
+  ter o controle sobre a máquina
+
+  Principal dir do GRUB Legacy -> */boot/grub*
+
+
+2 Principal arquivo de configuração do GRUB Legacy
+══════════════════════════════════════════════════
+
+  O grub usa o arquivo de configuração *“/boot/grub/menu.lst”* no
+  Debian,
+
+  No CentOS até a versão 6.x ele é um link simbólico para
+  *“/boot/grub/grub.conf”*. Este arquivo é lido a cada boot, por isso
+  não é necessário reinstalar o grub ao fazer alterações.
+
+  Exemplo do arquivo de configuração ->
+
+  ┌────
+  │ default 0
+  │ timeout 5
+  │ color cyan/blue white/blue
+  │ splashimage=(hd0,0)/grub/splash.xpm.gz
+  │ 
+  │ title CentOS
+  │ root(hd0,0)
+  │ kernel /vmlinuz-2.6.32-71.el6lx86_64 ro root=/dev/VolGroup/lv_root
+  │ initd/initramfs-2.6.32-71.el6lx86_64
+  └────
+
+
+2.1 Explicação do arquivo e suas variables ->
+─────────────────────────────────────────────
+
+  *default*-> define qual item (title/SystemOperational) vai ser
+  *carregado prioritariamente. timeout*-> tempo de espera para o user
+  *selecionar o SO, caso não escolha carrega o valor de `default'
+  *splashimage*-> imagem .jpeg que é exibida na tela do menu GRUB
+  *title*-> nome que descreve o item que será carregado, nome exibido no
+  *Menu GRUB root*-> idenfitica disco onde o kernel linux está presente
+  *e sua respectiva partição kernel*-> informa o kernel linux do item
+  *que será carregado (Aceita os parameters para inicialização)
+
+
+2.2 Criando um item de exemplo chamado Windows ->
+─────────────────────────────────────────────────
+
+  ┌────
+  │ title Microsoft Windows 7
+  │ root (hd0,2)
+  │ makeactive
+  └────
+
+  *Gravar alterações* ->
+  ┌────
+  │ grub-install /dev/sda
+  └────
+
+
+3 Add some security at this process
+═══════════════════════════════════
+
+  Vamos adicionar uma senha no menu GRUB, para que o user antes de
+  tentar executar as opções, seja exigida uma senha de input.
+
+  Isto é realizado editando o arquivo menu.lst, que no CentOS está
+  presente em */boot/grub/menu.lst*
+
+  ┌────
+  │ password --md5
+  └────
+
+  Saia e salve o arquivo.
+
+  Após sair e salvar, rode o seguinte comando ->
+  ┌────
+  │ grub-md50-crypt | tee -a /boot/grub/menu.lst
+  └────
+
+  O hash será append no final do arquivo */boot/grub/menu.lst*, acesse o
+  arquivo e edite isto, deixando o hash na mesma linha da `password'

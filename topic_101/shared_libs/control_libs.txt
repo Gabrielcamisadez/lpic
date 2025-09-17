@@ -1,0 +1,87 @@
+               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                CONTROLE DE BIBILIOTECAS COMPARTILHADAS
+
+                                  ilak
+               ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Bibliotecas Estáticas x Bibliotecas Dinâmicas
+2. Arquivos /etc/ld.so.conf e /etc/ld.so.cache
+3. Verificar libs dinâmicas em binarios com ldd
+
+
+ld.so = Linker
+
+
+1 Bibliotecas Estáticas x Bibliotecas Dinâmicas
+═══════════════════════════════════════════════
+
+  *Estáticas* -> Binário roda de forma independente BInário é mais
+  rápido em sua execução Uso desnecessário de memória Tamanho maior no
+  final do arquivo
+
+  *Dinâmicas* -> Binário faz referências a várias bibliotecas Binário é
+  mais lento em sua execução Menor uso de memória Tamanho menor no
+  arquivo final
+
+  O comando `ldd' tem a finalidade de demonstrar quais bibliotecas um
+  determinado binário necessita para sua execução, exemplo ->
+  ┌────
+  │ ldd /bin/ls
+  │ 
+  │         linux-vdso.so.1 (0x00007ffc76bb7000)
+  │         libselinux.so.1 => /lib/x86_64-linux-gnu/libselinux.so.1 (0x0000781662050000)
+  │         libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x0000781661e00000)
+  │         libpcre2-8.so.0 => /lib/x86_64-linux-gnu/libpcre2-8.so.0 (0x0000781661d66000)
+  │         /lib64/ld-linux-x86-64.so.2 (0x00007816620bd000)
+  └────
+
+  Ou seja, binário */bin/ls* necessita que o Linker (ld.so) carrega
+  estas bibliotecas dinâmicas no momento de execução do binário.
+
+  O `ldd' usa o Linker *(ld.so)*, que é o responsável por saber onde
+  estão as bibliotecas dinâmicas necessárias, essa busca é realizada no
+  arqiuvo */etc/ld.so.cache*
+
+  O arquivo */etc/ld.so.cache* é um arquivo binário, que mantém todo o
+  mapeamento das bibliotecas compartilhadas em todo o sistema. Este
+  arquivo é gerado com um outro comando, o `ldconfig'.
+
+  Para listar o conteúdo do */etc/ld.so.cache* podemos utilizar este
+  comando, que exibirá uma extensa lista ->
+  ┌────
+  │ ldconfig -p
+  └────
+
+  O arquivo *ld.so.conf* é apenas um “read all from” do directory
+  */etc/ld.so.conf.d*
+
+
+2 Arquivos /etc/ld.so.conf e /etc/ld.so.cache
+═════════════════════════════════════════════
+
+  Quando o comando `ldconfig' é executado ele busca as bibliotecas na
+  localização definitiva pelo arquivo */etc/ld.so.conf*. Há
+  distribuições que possuem o directory */etc/ld.so.conf.d*, que pode
+  possui outros arquivos de extensão .conf.
+
+  Sempre que quiser incluir novas libs, inclua a localização do
+  diretório onde a biblioteca está armazenada dentro do arquivo
+  */etc/ld.so.conf* e sem seguida utilize o comando `ldconfig'
+
+  Após execução do comando `ldconfig', é gerado o arquivo
+  */etc/ld.so.cache*, este arquivo contém a localização de todas as
+  bibliotecas encontradas nos diretórios informados dentro do arquivo
+  */etc/ld.so.conf*
+
+  Outra maneira de deixar uma localização de biblioteca para o linker
+  ld.so, é adicionar seu caminho à variável de ambiente LD_LIBRARY_PATH
+
+  export LD_LIBRARY_PATH=“caminho_da_lib”"
+
+
+3 Verificar libs dinâmicas em binarios com ldd
+══════════════════════════════════════════════

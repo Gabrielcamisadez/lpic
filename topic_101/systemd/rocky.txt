@@ -1,0 +1,87 @@
+                                ━━━━━━━
+                                 ROCKY
+
+                                  ilak
+                                ━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. service files configuration
+2. targets
+3. systemd configuration files
+
+
+O systemd organiza os services e units em arquivos chamados unit files,
+como .service e .target
+
+*/usr/lib/systemd/system*
+‣ Contém os unit files default do sistema, fornecidos pelos pacotes da
+  distribuição
+‣ Não editar diretamente,
+
+*/etc/systemd/system*
+‣ Contém unit files personalizados ou sobrescritos
+‣ Precedence mais alta que */usr/lib/systemd/system*
+‣ Links simbólicos para targets.
+
+*/run/systemd/system*
+‣ unit files temporários em runtim
+‣ apagados ao reiniciar
+
+
+1 service files configuration
+═════════════════════════════
+
+  *[Unit]* -> descrição (Description=, Requires=, After=)
+
+  *[Service]* -> tipo do service (ExecStart, ExecStop=, Restart=)
+
+  *[Install]* -> target de instalação (WantedBy=multi-user.target)
+
+  Exemplo de override customizado -> */etc/systemd/system/sshd.service*
+
+  Unit fornecida pelo pacote -> */usr/lib/systemd/system/sshd.service*
+
+
+2 targets
+═════════
+
+  no systemd os runlevels tradicionais são substituídos por targets, que
+  agrupam serviços ->
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Runlevel SysV  Target systemd      
+   ————-          ——————-             
+   0              `poweroff.target`   
+   1              `rescue.target`     
+   2,3,4,5        `multi-user.target` 
+   3 (texto)      `multi-user.target` 
+   5 (GUI)        `graphical.target`  
+   6              `reboot.target`     
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Targets podem ser visualizados com ->
+  ┌────
+  │ systemctl list-units --type=target
+  └────
+
+
+3 systemd configuration files
+═════════════════════════════
+
+  */etc/systemd/system.conf* ->
+  ‣ Configura parâmetros globais do systemd como limite de tarefas e
+    tempo de timeout
+
+  */etc/systemd/user.conf* ->
+  ‣ Configurações para sessões de usuário
+    ┌────
+    │ systemd --user
+    └────
+
+  */etc/systemd/logind.conf*
+  ‣ Configurações de login, suspend, hibernate, timeout de session
+
+  */etc/systemd/journald.conf* ->

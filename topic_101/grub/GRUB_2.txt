@@ -1,0 +1,128 @@
+                               ━━━━━━━━━
+                                 GRUB 2
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Adicionando uma nova entrada no script *40_custom*
+2. Arquivos
+
+
+No GRUB 2 o principal arquivo de configuração é o */boot/grub/grub.cfg*,
+sendo que ele não deve ser editado diretamente, pois as alterações são
+feitas editando os arquivos em */etc/grub.d* e no arquivo
+*/etc/default/grub*
+
+O comando `update-grub' sempre que é executado, lê os arquivos presentes
+em */boot/grub/grub.cfg*.
+
+Cada um dos scripts em */boot/grub/grub.cfg* possuem suas próprias
+finalidades, como por exemplo o
+
+*00_header*-> importa as configurações do dir */etc/default/grub*
+*05_debian_theme*-> responsável por configurar a tela de menu,
+*background, color etc… 10_linux*-> script responsável por identificar
+*os Kernels presentes em /boot, e cria entradas no GRUB men
+*30_os-prober* -> automatiza a inclusão de novas entradas no menu do
+*GRUB para outros SOs no disk 40_custom*-> utilizado para adicionar
+*entradas personalizadas que serão inseridos no /etc/grub/grub.cfg
+
+
+1 Adicionando uma nova entrada no script *40_custom*
+════════════════════════════════════════════════════
+
+  #1
+  ┌────
+  │ #!/bin/sh
+  │ exec tail -n +3 $0
+  │ #This file provides an easy way to add custom entries ....
+  │ # ...
+  │ #...
+  │ menuentry "System Reboot"{
+  │    insmod reboot
+  │    reboot
+  │    }
+  └────
+
+
+  #2
+  ┌────
+  │ menuentry "System Shutdown"{
+  │     insmod halt
+  │     halt
+  │ }
+  └────
+
+
+  Após salvar as alterações, para aplicar elas é necessário ->
+  ┌────
+  │ update-grub
+  └────
+
+
+  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+  Execute o comando que gera a configuração do arquivo do GRUB2 na
+  ausência do comando update-grub2. Passe o comando completo informando
+  opções e argumentos necessários. ->
+  ┌────
+  │ grub-mkconfig -o /boot/grub/grub.cfg
+  │ 
+  │ ou
+  │ 
+  │ grub2-mkconfig -o /boot/grub/grub.cfg
+  └────
+
+  Qual comando que reinstala o grub na mbr(informe somente o comando) ?
+  ┌────
+  │ grub-install
+  └────
+
+  No GRUB2 o script que busca pelos sistemas operacionais disponíveis em
+  outros discos e ou partições no mesmo computador é o ->
+  ┌────
+  │ 30_os-prober
+  └────
+
+  A opção do arquivo /etc/default/grub define os parâmetros passados
+  para o kernel linux do sistema operacional ->
+  ┌────
+  │ GRUB_CMDLINE_LINUX
+  └────
+
+
+  Salvar alterações realizadas no arquivo */etc/default/grub*, e para
+  atualizar o arquivo */boot/grub/grub.cfg* ->
+  ┌────
+  │ update-grub2
+  └────
+
+
+2 Arquivos
+══════════
+
+  Se olharmos o arquivo *grub.cfg*, as alterações estarão lá presentes
+
+  *grub-mkconfig -o /boot/grub/grub.cfg* -> definir o local de configs
+   do GRUB em sistemas que não possuem ele por default.
+
+  */etc/default/grub* -> Arquivo que contém infos sobre o Menu do GRUB,
+   utilizado para criação de parameters personalizados ou parameters
+   necessários
+
+  Após apagar tudo em */boot/grub* ->
+
+  ┌────
+  │ grub-install --boot-directory=/boot /dev/sda
+  └────
+
+  ainda é necessário gerar o arquivo de config, que é essencial para
+  inicialização de sistema->
+
+  ┌────
+  │ grub-mkconfig -o /boot/grub/grub.cfg
+  └────

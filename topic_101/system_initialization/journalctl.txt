@@ -1,0 +1,36 @@
+                           ━━━━━━━━━━━━━━━━━━
+                               JOURNALCTL
+
+                            Gabriel Ferreira
+                           ━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Journalctl
+
+
+1 Journalctl
+════════════
+
+  Utilizado para ler logs do sistema e logs de inicialização também. Faz
+  parte do SystemD (systemd-journald) com a finalidade de coletar e
+  armazenar Logs
+
+  Verificar os logs de inicialização ->
+  ┌────
+  │ journalctl -b
+  └────
+
+  Verificar somente os logs do Kernel ->
+  ┌────
+  │ journalctl -k
+  └────
+
+  Ler logs de serviço específico ->
+  ┌────
+  │ journalctl -u NetworkManager.service
+  │ 
+  │ journalctl -u cron.service
+  └────

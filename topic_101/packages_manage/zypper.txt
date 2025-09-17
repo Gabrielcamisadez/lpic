@@ -1,0 +1,59 @@
+                               ━━━━━━━━━
+                                 ZYPPER
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. comandos com o zypper
+
+
+`zypper' é um gerenciador de pacotes utilizados em distros como
+SUSELinux e OpenSUSE.
+
+
+1 comandos com o zypper
+═══════════════════════
+
+  Buscar por pacotes ->
+  ┌────
+  │ zypper search squid cpio
+  └────
+
+  Pegar informações de algum pacote ->
+  ┌────
+  │ zypper info squid
+  └────
+
+  Para instalar um pacote no sistema ->
+  ┌────
+  │ zypper install nmap
+  └────
+
+  Remover pacote instalado ->
+  ┌────
+  │ zypper remove nmap gcc
+  └────
+
+  Remover os pacotes e suas dependências ->
+  ┌────
+  │ zypper remove --clean-deps nmap gcc
+  └────
+
+  Verificar atualizações disponíveis em pacotes instalados ->
+  ┌────
+  │ zypper list-updates
+  └────
+
+  Atualizar somente 1 pacote ->
+  ┌────
+  │ zypper update bzip2
+  └────
+
+  Atualizar todos os pacotes ->
+  ┌────
+  │ zypper update
+  └────

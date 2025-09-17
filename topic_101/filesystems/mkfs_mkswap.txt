@@ -1,0 +1,74 @@
+                             ━━━━━━━━━━━━━
+                              MKFS MKSWAP
+
+                                gabriel
+                             ━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. usage
+
+
+Para criarmos um FileSystem em uma partição, devemos escolher o seu tipo
+e utilizar o comando “mkfs” com a seguinte sintaxe ->
+
+O comando `mkfs' busca suas informações no arquivo */etc/mke2fs.conf*
+
+┌────
+│ mkfs -t tipo device
+└────
+
+Pode-se exemplificar a criação de um filesystem e um dispostivo
+utilizando o seguinte comando :
+
+┌────
+│ mkfs -t et3 /dev/sdc2
+└────
+
+Podemos criar um sistema de arquivos ext3 adicionar um LABEL, ou seja um
+nome pelo qual a partição será identificada
+
+┌────
+│ mkfs.ext3 -L FS_EXT3 /dev/sdc2
+└────
+
+
+1 usage
+═══════
+
+  Antes de criar um sistema de arquivos devemos sempre listar as
+  partições disponiveis, para entender o ambiente atual e não acabar
+  apagando coisas importantes em alguma partição que permanece em uso
+
+  Quando um sistema de arquivos é aplicado/criado em alguma partição,
+  tal partição será formatada e perderá todos os dados presentes
+
+  *Verificar partições existentes* ->
+  ┌────
+  │ fdisk -l
+  └────
+
+
+  O comando `mkfs' é universal em diversas distros, utiliza-se o -t para
+  definir o tipo de sistema de arquivos que será criado
+
+  ‣ ext2
+  ‣ ext3
+  ‣ ext4
+
+  *aplicar sistema de arquivos* ->
+  ┌────
+  │ mkfs /dev/sdc
+  └────
+
+  *Verificar tipo de sistema de arquivos* ->
+  ┌────
+  │ file -s /dev/sdc
+  └────
+
+  *Criar um sistema de arquivos do tipo ext3* ->
+  ┌────
+  │ mkfs -t ext3 /dev/sdc5
+  └────

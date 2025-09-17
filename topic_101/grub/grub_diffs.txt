@@ -1,0 +1,65 @@
+                              ━━━━━━━━━━━━
+                               GRUB DIFFS
+
+                                  ilak
+                              ━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Arquivos de configuração
+2. Referência ao disk
+3. Principais parameters
+
+
+1 Arquivos de configuração
+══════════════════════════
+
+  *GRUB LEGACY*
+  ‣ /boot/grub/menu.lst
+  ‣ /boot/grub/grub.conf
+
+  *GRUB 2*
+  ‣ /etc/default/grub
+  ‣ /boot/grub/grub.cfg
+  ‣ /etc/grub.d/*
+
+
+2 Referência ao disk
+════════════════════
+
+  *GRUB LEGACY*
+  ‣ /dev/sda1 = hd0,0
+  ‣ /dev/sda2 = hd0,1
+  ‣ /dev/sdc1 = hd2,0
+  ‣ /dev/sdd2 = hd3,1
+
+  *GRUB 2*
+  ‣ /dev/sda1 = hd0,1 ou hd0,msdos1
+  ‣ /dev/sda2 = hd0,2 ou hd0,msdos2
+  ‣ /dev/sdc1 = hd2,1 ou hd2,msdos1
+  ‣ /dev/sdd2 = hd3,2 ou hd3,gpt2
+
+
+3 Principais parameters
+═══════════════════════
+
+  *GRUB LEGACY*
+  ┌────
+  │ title CentOS
+  │ root (hd0,0)
+  │ kernel /vmlinuz-2.6.32-71.el6lx86_64 ro
+  │ root=/dev/VolGroup/lv_root
+  │ initd /initramfs-2.6.32-71.el6lx86_64
+  └────
+
+  *GRUB 2*
+  ┌────
+  │ menuentry "CentOS" {
+  │     set root(hd0,1)
+  │     linux /vmlinuz-2.6.32-71.el6lx86_64 ro
+  │     root=/dev/VolGroup/lv_root
+  │     initrd /initramfs-2.6.32-71.el6lx86_64
+  │ }
+  └────

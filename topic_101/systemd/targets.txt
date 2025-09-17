@@ -1,0 +1,130 @@
+                               ━━━━━━━━━
+                                TARGETS
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Intro
+2. SystemD
+.. 1. Unidades
+.. 2. Tipos de unidades
+.. 3. Targets (= runlevels)
+.. 4. systemctl
+3. Systemctl +
+
+
+1 Intro
+═══════
+
+  O systemd não trabalha com o conecito de níveis de execução, mas com
+  unidades do tipo `target' que são usadas com a finalidade de agrupar
+  outras unidades do systemd, de forma que quando uma unidade target é
+  iniciada um gurpo de unidades também são carregadas.
+
+  *graphical.target* -> Inicia os serviços do sistema e a sessão
+  gráfica, ativa a unidade multi-user.target
+
+  *multi-user.target* -> Inicia os serviços do sistema essenciais ou não
+  para funcionamento do sistema, mas não carrega a interface gráfica.
+
+  *rescue.target* -> No target de recuperação o sistema tenta montar
+  todos os sitemas de arquivos e iniciar serviços importantes para o
+  sistema, mas não ativa interfaces de rede e nem permite que mais
+  usuários façam logon no sistema ao mesmo tempo.
+
+
+2 SystemD
+═════════
+
+  Padrão em distros modernas (RHEL7+, Ubuntu 16.04+, Debian 8+), focado
+  em paralelismo e unidades declarativas.
+
+  Processo systemd sempre PID 1.
+
+
+2.1 Unidades
+────────────
+
+  Arquivos localizados em:
+  ‣ /etc/systemd/system/ (admin, prioridade maior)
+  ‣ /usr/lib/systemd/system/ ou /lib/systemd/system/ (pacotes)
+  ‣ /run/systemd/system/ (temporários)
+
+
+2.2 Tipos de unidades
+─────────────────────
+
+  • .service → serviços
+  • .socket → comunicação
+  • .target → agrupamento de unidades
+  • .mount → pontos de montagem
+  • .timer → agendamento
+  • .device → dispositivos
+
+
+2.3 Targets (= runlevels)
+─────────────────────────
+
+  • poweroff.target ≃ 0
+  • rescue.target ≃ 1
+  • multi-user.target ≃ 3
+  • graphical.target ≃ 5
+  • reboot.target ≃ 6
+
+
+2.4 systemctl
+─────────────
+
+  • systemctl start serviço
+  • systemctl stop serviço
+  • systemctl restart serviço
+  • systemctl status serviço
+  • systemctl enable serviço
+  • systemctl disable serviço
+  • systemctl mask serviço
+  • systemctl unmask serviço
+  • systemctl get-default
+  • systemctl set-default alvo.target
+
+
+3 Systemctl +
+═════════════
+
+  To get the default target unit ->
+  ┌────
+  │ systemctl get-default
+  └────
+
+  To set a new dafault target unit ->
+  ┌────
+  │ systemctl set-default graphical.target
+  └────
+
+  To list units from target type ->
+  ┌────
+  │ systemctl list-units --type target
+  └────
+
+  To alternate the actual target unit ->
+  ┌────
+  │ systemctl isolate multi-user.target
+  └────
+
+  Alternate to rescue.target ->
+  ┌────
+  │ systemctl isolate rescue.target
+  └────
+
+  To reboot the system ->
+  ┌────
+  │ systemctl isolate reboot.target
+  └────
+
+  Verify is on target is running ->
+  ┌────
+  │ systemctl is-enable cron.service
+  └────

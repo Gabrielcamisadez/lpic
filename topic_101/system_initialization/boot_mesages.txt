@@ -1,0 +1,59 @@
+                          ━━━━━━━━━━━━━━━━━━━
+                           MENSAGENS DE BOOT
+
+                            Gabriel Ferreira
+                          ━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Boot messages
+2. arquivos importantes para a LPI
+..... 1. /var/log/messages
+..... 2. /var/log/dmesg
+
+
+1 Boot messages
+═══════════════
+
+  Em algumas distros GNU/Linux como o ubuntu, as mensagens de
+  inicialização são suprimidas por uma tela de abertura/animação, para
+  que este comportamento seja diferente basta remover o parameter
+  `quiet' e `splah' na linha que carrega o kernel do sistema
+
+  *Messages* As mensagens de carregamento do kernel e reconhecimento de
+  hardware são importantes pois exibem uma séria de informações úteis
+  como :
+
+  ‣ Última versão e data de atualização do kernel;
+  ‣ Tipo do processador, monitor, dispositivos USB
+  ‣ Quantidade de memória e detalhes sobre ela;
+  ‣ Informações gerais sobre o hardware
+
+
+2 arquivos importantes para a LPI
+═════════════════════════════════
+
+2.0.1 /var/log/messages
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  Armazena informações referentes ao kernel e serviços inicializados,
+  tanto durante o boot ou após a inicialização
+
+  ┌────
+  │ cat /var/log/messages
+  └────
+
+
+2.0.2 /var/log/dmesg
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  Armazena mensagens referentes a inicialização que o kernel registrou
+  no reconhecimento de hardware
+
+  ┌────
+  │ cat /var/log/dmesg
+  │ 
+  │ dmesg -> same result
+  └────

@@ -1,0 +1,93 @@
+                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                   SYSTEMD | INICIALIZAÇÃO DO SISTEMA
+
+                                Gabriel
+                  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. systemd
+2. units
+..... 1. service
+..... 2. socket
+..... 3. device
+..... 4. target
+..... 5. mount
+
+
+1 systemd
+═════════
+
+  É um gerenciador de sistema e serviços para sistemas operacionais
+  Linux. Podendo ser executado como um sistema init para inicializar o
+  sistema também.
+
+  Ele foi projetado para ser compatível com os scripts de incialização
+  SysVinit e fornece uma séria de recursos.
+
+  • Inialização paralela de serviços no sistema
+
+  • Ativação sob demanda de daemons
+
+  • O systemd monitora processos usando o `cgroups' do Linux, garantido
+    que ao parar um determinado serviço, todos os processos que tenham
+    sido iniciados por ele sejam finalizados
+
+  • Implementa uma lógica de controle de serviço baseado em
+    dependências.
+
+    Geralmente seu principal dir está em */lib/systemd/system*, em
+    distros red hat podem estar em */usr/lib/systemd/system*
+
+
+2 units
+═══════
+
+  O systemd inicializa e supervisiona todo o sistema e é baseado no
+  conceito de unidades. Uma unidade é composta por um nome e um tipo e
+  possui um arquivo de configuração correspondente.
+
+  `Tipos de unidades SystemD:'
+
+
+2.0.1 service
+╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  O tipo mais comum, onde serviços podem ser iniciados, interrompidos,
+  reiniciados e recarregados.
+
+
+2.0.2 socket
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  Esse tipo de unidade pode ser um socket no sistema de arquivos ou na
+  rede, cada unidade do tipo socket possui uma unidade do tipo service
+  correspondente, que é iniciada somente quando uma conexão chega à
+  unidade socket.
+
+
+2.0.3 device
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  Uma unidade para um dispositivo presente na árvore de dispositivos
+  Linux. Um dispositivo é exposto como unidade do systemd se houver uma
+  regra do udev com essa finalidade
+
+
+2.0.4 target
+╌╌╌╌╌╌╌╌╌╌╌╌
+
+  Unidade especial pois trata-se de um agrupamento de unidades, de forma
+  que sejam controladas em conjunto. Parecido com os níveis de execução
+  do SysVinit
+
+
+2.0.5 mount
+╌╌╌╌╌╌╌╌╌╌╌
+
+  Uma unidade que é responsável por um ponto de montagem no sistema de
+  arquivos
+
+  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――

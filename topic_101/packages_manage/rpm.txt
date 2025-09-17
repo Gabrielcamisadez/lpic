@@ -1,0 +1,125 @@
+                               ━━━━━━━━━
+                                  RPM
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Introdução
+2. Instalação e desintalação
+3. VErificação de pacotes
+
+
+1 Introdução
+════════════
+
+  O comando *RPM* é um gerenciador de pacotes de baixo nível assim como
+  o *dpkg* no debian. É um comando poderoso que pode ser utilizado para
+  construir, instalar, consultar, veriricar, atualizar e desinstalar
+  pacotes e softwares no sistema.
+
+  As principais opções utilizadas em operações com o *RPM* são ->
+
+  *Modo de instalação* -> rpm -i Modo de consulta* -> rpm -q Modo de
+  *desintalação* -> rpm -e Modo de verificação* -> rpm -V –verify
+
+
+2 Instalação e desintalação
+═══════════════════════════
+
+  Após realizar o download de um pacote *RPM* com o `yumdownloader' ,
+  apenas testar a instalaçoa do pacote com o parameter –test
+  ┌────
+  │ rpm -iv  --test epel-release-6-8.noarch.rpm
+  └────
+
+  Para verificar se o pacote foi instalado ->
+  ┌────
+  │ rpm -q epel-release
+  └────
+
+  Instalar de fato e ainda utilizar uma “barra de progressão com o -h”
+  ->
+  ┌────
+  │ rpm -ivh epel-release-6-8.noarch.rpm
+  └────
+
+  Forçar instalaçao de um pacote ->
+  ┌────
+  │ rpm -if epel-release-6-8.noarch.rpm
+  └────
+
+  Instalar um pacote novo, ou atualizar caso seja existente ->
+  ┌────
+  │ rpm -Uvh epel-release-6-8.noarch.rpm
+  └────
+
+  Desinstalação de um pacote ->
+  ┌────
+  │ rpm -ev epel-release
+  └────
+
+
+3 VErificação de pacotes
+════════════════════════
+
+  Checar um pacote ->
+  ┌────
+  │ rpm -K epel-release
+  └────
+
+  Consultar um pacote ->
+  ┌────
+  │ rpm -q gimp
+  └────
+
+  Todos os pacotes instalados sistema ->
+  ┌────
+  │ rpm -qa
+  └────
+
+  Listar os arquios que vieram com algum pacote já instalado no sistema
+  ->
+  ┌────
+  │ rpm -ql iptables
+  └────
+
+  Listar os arquivos de um pacote que não está instalado no sistema ->
+  ┌────
+  │ rpm -qpl nikto
+  └────
+
+  Listar arquivos de documentação de um pacote ->
+  ┌────
+  │ rpm -qd net-tools
+  └────
+
+  Listar arquivos de configuração de um pacote ->
+  ┌────
+  │ rpm -qc net-tools
+  └────
+
+  Para verificar arquivos de documentações de pacotes que ainda não
+  foram instalados, sempre utiliza-se o -p ->
+  ┌────
+  │ rpm -qpd gimp
+  └────
+
+  Para verificar arquivos de configurações de pacotes que ainda não
+  foram instalados, sempre utiliza-se o -p ->
+  ┌────
+  │ rpm -qpc gimp
+  └────
+
+  Saber qual pacote instalou algum arquivo/comando ->
+  ┌────
+  │ rpm -qf /bin/dd
+  └────
+
+  Modo de verificação em pacotes -> `-V'
+  ┌────
+  │ rpm -Vv bind-utils
+  └────
