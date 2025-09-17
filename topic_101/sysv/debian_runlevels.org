@@ -91,6 +91,18 @@ ls -l /etc/rc1.d/
 ls -l /etc/rc.d6/
 #+end_src
 
+*Adicionando o ssh* ->
+#+begin_src
+update-rc.d -f ssh start 20 1 .
+
+or
+
+ln -s /etc/init.d/ssh /etc/rc1.d/S20ssh
+#+end_src
+
+
+
+
 
 * INITTAB FILE
 
