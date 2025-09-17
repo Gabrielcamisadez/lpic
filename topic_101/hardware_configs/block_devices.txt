@@ -1,0 +1,106 @@
+                        ━━━━━━━━━━━━━━━━━━━━━━━━
+                             BLOCK DEVICES
+
+                         Material de Estudo LPI
+                        ━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. Introdução
+2. Discos IDE (antigos)
+.. 1. Partições
+3. Discos SCSI, SATA, USB (padrão moderno)
+.. 1. Partições
+4. Discos NVMe (mais novos)
+.. 1. Partições
+5. Discos virtuais (ambiente virtualizado)
+6. Resumo prático para LPIC-1
+7. Observações de prova
+
+
+1 Introdução
+════════════
+
+  No Linux, dispositivos de armazenamento são representados como
+  arquivos especiais em */dev/*. O nome indica o tipo de dispositivo,
+  sua ordem e partições.
+
+
+2 Discos IDE (antigos)
+══════════════════════
+
+  • /dev/hda → Primeiro disco IDE
+  • /dev/hdb → Segundo disco IDE
+  • /dev/hdc → Terceiro disco IDE
+  • /dev/hdd → Quarto disco IDE
+
+
+2.1 Partições
+─────────────
+
+  • /dev/hda1 até /dev/hda4 → Partições primárias ou estendida
+  • /dev/hda5 em diante → Partições lógicas dentro da estendida
+
+
+3 Discos SCSI, SATA, USB (padrão moderno)
+═════════════════════════════════════════
+
+  Todos reconhecidos como **sdX**:
+  • /dev/sda → Primeiro disco detectado
+  • /dev/sdb → Segundo disco
+  • /dev/sdc → Terceiro disco
+
+
+3.1 Partições
+─────────────
+
+  • /dev/sda1 até /dev/sda4 → Partições primárias/estendida
+  • /dev/sda5 em diante → Partições lógicas
+
+
+4 Discos NVMe (mais novos)
+══════════════════════════
+
+  Dispositivos NVMe seguem outro padrão:
+  • /dev/nvme0n1 → Primeiro dispositivo NVMe
+  • /dev/nvme0n2 → Segundo dispositivo no mesmo controlador
+  • /dev/nvme1n1 → Segundo controlador, primeiro dispositivo
+
+
+4.1 Partições
+─────────────
+
+  • /dev/nvme0n1p1 → Primeira partição
+  • /dev/nvme0n1p2 → Segunda partição
+
+
+5 Discos virtuais (ambiente virtualizado)
+═════════════════════════════════════════
+
+  • /dev/vda, /dev/vdb, … → Discos virtuais (VirtIO/KVM/QEMU)
+  • Partições seguem o mesmo padrão numérico (vda1, vda2, …)
+
+
+6 Resumo prático para LPIC-1
+════════════════════════════
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Tecnologia         Nome base     Exemplo de partição lógica 
+  ─────────────────────────────────────────────────────────────
+   IDE/PATA           /dev/hdX      /dev/hdb6                  
+   SCSI/SATA/USB      /dev/sdX      /dev/sda5                  
+   NVMe               /dev/nvmeXnY  /dev/nvme0n1p3             
+   VirtIO (KVM/QEMU)  /dev/vdX      /dev/vda2                  
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+7 Observações de prova
+══════════════════════
+
+  • Números 1–4 → primárias/estendida
+  • Números 5+ → lógicas
+  • IDE é cada vez mais raro, mas pode aparecer na prova (ex.:
+    /dev/hdb6)
+  • NVMe e VirtIO são comuns em ambientes modernos e virtualizados
