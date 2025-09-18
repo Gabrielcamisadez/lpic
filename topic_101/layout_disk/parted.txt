@@ -1,0 +1,57 @@
+                               ━━━━━━━━━
+                                 PARTED
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. acessando o parted cli
+2. some parted commands
+
+
+O comando `parted' é um utilitário GNU usado para manipular partições.
+Usando o comando `parted' podemos adicionar, deletar, editar,
+redimencionar e clonar partições, além de poder manipular os sistemas de
+arquivos dessas partições
+
+Quando se executa o utilitário parted sem nenhum argumento, ele
+seleciona por padrão o primeiro disco do sistema presente
+
+
+1 acessando o parted cli
+════════════════════════
+
+  Podemos já definir em qual disco trablhar ao abrir o parted ->
+  ┌────
+  │ parted /dev/hdd
+  └────
+
+  Neste exemplo o parted ja irá abrir com o disco */dev/hdd* para
+  trabalhar.
+
+
+2 some parted commands
+══════════════════════
+
+  Ao fim da execução do comando parted, entramos no cli que fica
+  aguardando comandos ao parted. Ao executar o comando `help' diversos
+  comandos que podem ser utilizados para manipulação de espaço em disco
+  são exibidos, alguns ->
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   comandos          descrição                                                                      
+   help              exibe a ajuda geral ou sobre algum comando                                     
+   check             faz um teste simples no sistema de arquivos                                    
+   cp                copia o sistema de arquivos para outra partição                                
+   mklabel, mktable  cria um novo rótulo de disco (tabela de partição)                              
+   mkfs              cria um sistema de arquivos FS-TYPE na partição selecionada                    
+   mkpart            cria uma nova partição                                                         
+   mkpartfs          cria um nova partição já contendo um sistema de arquivos                       
+   print             mostra a tabela de partição, dispositivos, espaço livre e partições existentes 
+   rm                apaaga uma partição do disco selecionado                                       
+   select            seleciona o dispositivo a editar/trabalhar                                     
+   resize            redimensiona o espaço de uma partição existente                                
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
