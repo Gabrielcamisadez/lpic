@@ -1,0 +1,30 @@
+#+title: Mke2fs
+#+author: gabriel
+#+description: 104.2
+
+O comando mke2fs utiliza configurações presentes no arquivo */etc/mke2fs.conf*
+
+* basic usage
+
+a feature *has_journal* pode ser habilitada com o seguinte paramêtro com o comando mke2fs ->
+#+begin_src sh
+mke2fs -j /dev/sdb1
+#+end_src
+
+*Selecionar o tipo do sistema de arquivos* ->
+#+begin_src sh
+mke2fs -j -t ext3 /dev/sdb2
+#+end_src
+
+*Definir feature, tipo e label* ->
+#+begin_src sh
+mke2fs -j -t ext4 -L "FIRST LABEL" /dev/sdb1
+#+end_src
+
+*Checking* ->
+#+begin_src sh
+root@debian9-lpic1:~# file -s /dev/sdb1
+/dev/sdb1: Linux rev 1.0 ext4 filesystem data, UUID=6bc6adae-c1d6-4ee9-95e4-7b788a0c95
+da, volume name "FIRST LABEL" (extents) (64bit) (large files) (huge files)
+root@debian9-lpic1:~#
+#+end_src

@@ -1,0 +1,77 @@
+#+title: Ext4
+#+author: gabriel
+#+description: ext4 filesystem on a partition
+
+* disk partition
+
+*COmando para desativa uma partição swap* ->
+: swapoff
+
+
+first step we need to define the partitions at work disk ->
+
+*List all disks*  ->
+#+begin_src sh
+fdisk -l
+
+root@debian9-lpic1:~# fdisk -l
+Disco /dev/sdb: 20 GiB, 21474836480 bytes, 41943040 setores
+Modelo de disco: VBOX HARDDISK
+Unidades: setor de 1 * 512 = 512 bytes
+Tamanho de setor (lógico/físico): 512 bytes / 512 bytes
+Tamanho E/S (mínimo/ótimo): 512 bytes / 512 bytes
+Tipo de rótulo do disco: dos
+Identificador do disco: 0x0c15bb89
+
+Dispositivo Inicializar   Início      Fim  Setores Tamanho Id Tipo
+/dev/sdb1                   2048 10487807 10485760      5G 83 Linux
+/dev/sdb2               10487808 23070719 12582912      6G 83 Linux
+/dev/sdb3               23070720 39847935 16777216      8G  7 HPFS/NTFS/exFAT
+
+
+Disco /dev/sdc: 15 GiB, 16106127360 bytes, 31457280 setores
+Modelo de disco: VBOX HARDDISK
+Unidades: setor de 1 * 512 = 512 bytes
+Tamanho de setor (lógico/físico): 512 bytes / 512 bytes
+Tamanho E/S (mínimo/ótimo): 512 bytes / 512 bytes
+
+
+Disco /dev/sda: 40 GiB, 42949672960 bytes, 83886080 setores
+Modelo de disco: VBOX HARDDISK
+Unidades: setor de 1 * 512 = 512 bytes
+Tamanho de setor (lógico/físico): 512 bytes / 512 bytes
+Tamanho E/S (mínimo/ótimo): 512 bytes / 512 bytes
+Tipo de rótulo do disco: dos
+Identificador do disco: 0x91958bd0
+
+Dispositivo Inicializar  Início      Fim  Setores Tamanho Id Tipo
+/dev/sda1   *              2048  2148351  2146304      1G 82 Linux swap / Solaris
+/dev/sda2               2150398 83884031 81733634     39G  5 Estendida
+/dev/sda5               2150400  3319807  1169408    571M 83 Linux
+/dev/sda6               3321856 83884031 80562176   38,4G 8e Linux LVM
+#+end_src
+
+the systemfile will be created at */dev/sdb* ->
+ #+begin_src sh
+fdisk /dev/sdb
+ #+end_src
+
+ *created partitions* ->
+
+ #+begin_src sh
+Comando (m para ajuda): p
+Disco /dev/sdb: 20 GiB, 21474836480 bytes, 41943040 setores
+Modelo de disco: VBOX HARDDISK
+Unidades: setor de 1 * 512 = 512 bytes
+Tamanho de setor (lógico/físico): 512 bytes / 512 bytes
+Tamanho E/S (mínimo/ótimo): 512 bytes / 512 bytes
+Tipo de rótulo do disco: dos
+Identificador do disco: 0x0c15bb89
+
+Dispositivo Inicializar   Início      Fim  Setores Tamanho Id Tipo
+/dev/sdb1                   2048 10487807 10485760      5G 83 Linux
+/dev/sdb2               10487808 23070719 12582912      6G 83 Linux
+/dev/sdb3               23070720 39847935 16777216      8G  7 HPFS/NTFS/exFAT
+
+Comando (m para ajuda):
+ #+end_src
