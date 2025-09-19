@@ -122,3 +122,44 @@ lpic1-debian5:~# file -s /dev/sdc2
 
 *apt-get install exfat-fuse exfatprogs forensics-samples-exfat*
 
+* Types
+
+#+begin_src sh
+Código hexadecimal ou apelido (digite L para listar todos): L
+
+00 Vazia            27 WinRE NTFS Esco  82 Linux swap / So  c1 DRDOS/sec (FAT1
+01 FAT12            39 Plan 9           83 Linux            c4 DRDOS/sec (FAT1
+02 root XENIX       3c PartitionMagic   84 OS/2 escondido   c6 DRDOS/sec (FAT1
+03 usr XENIX        40 Venix 80286      85 Estendida Linux  c7 Syrinx
+04 FAT16 <32M       41 Boot PReP PPC    86 Conjunto de vol  da Dados Não-FS
+05 Estendida        42 SFS              87 Conjunto de vol  db CP/M / CTOS / .
+06 FAT16            4d QNX4.x           88 Linux texto sim  de Utilitário Dell
+07 HPFS/NTFS/exFAT  4e QNX4.x 2ª parte  8e Linux LVM        df BootIt
+08 AIX              4f QNX4.x 3ª parte  93 Amoeba           e1 Acesso DOS
+09 AIX inicializáv  50 DM OnTrack       94 Amoeba BBT       e3 DOS R/O
+0a Gerenc. inici.   51 DM6 OnTrack Aux  9f BSD/OS           e4 SpeedStor
+0b FAT32 W95        52 CP/M             a0 Hibernação IBM   ea Linux estendida
+0c FAT32 W95 (LBA)  53 DM6 OnTrack Aux  a5 FreeBSD          eb sist. arq. BeOS
+0e FAT16 W95 (LBA)  54 DM6 OnTrack      a6 OpenBSD          ee GPT
+0f Estendida W95 (  55 EZ-Drive         a7 NeXTSTEP         ef EFI (FAT-12/16/
+10 OPUS             56 Golden Bow       a8 Darwin UFS       f0 inic. Linux/PA-
+11 FAT12 Escondida  5c Edisk Priam      a9 NetBSD           f1 SpeedStor
+12 Diagnóstico Com  61 SpeedStor        ab inic. Darwin     f4 SpeedStor
+14 FAT16 Escondida  63 GNU HURD ou Sys  af HFS / HFS+       f2 DOS secundário
+16 FAT16 Escondida  64 Novell Netware   b7 sist. arq. BSDI  f8 EBBR protective
+17 HPFS ou NTFS Es  65 Novell Netware   b8 BSDI swap        fb VMware VMFS
+18 AST SmartSleep   70 Multi-Boot Disk  bb Assist. Inici.   fc VMware VMKCORE
+1b FAT32 W95 Escon  75 PC/IX            bc FAT32 LBA Acron  fd Linux RAID auto
+1c FAT32 W95 Esc.   80 Minix antigo     be inicialização d  fe LANstep
+1e FAT16 W95 Esc.   81 Linux antigo/Mi  bf Solaris          ff BBT
+24 DOS NEC
+
+Apelidos:
+   linux          - 83
+   swap           - 82
+   extended       - 05
+   uefi           - EF
+   raid           - FD
+   lvm            - 8E
+   linuxex        - 85
+#+end_src
