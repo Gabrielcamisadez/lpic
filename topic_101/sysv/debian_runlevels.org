@@ -1,0 +1,137 @@
+#+author: Gabriel
+#+title: Runlevels Debian5
+
+* Debian5 runlevels
+
+#+begin_src shell
+ls /etc/rc2.d
+
+total 0
+lrwxrwxrwx 1 root root 17 dez 26  2024 K01apache2 -> ../init.d/apache2
+lrwxrwxrwx 1 root root 29 dez 26  2024 K01apache-htcacheclean -> ../init.d/apache-htcacheclean
+lrwxrwxrwx 1 root root 14 dez 22  2024 K01cups -> ../init.d/cups
+lrwxrwxrwx 1 root root 27 dez 22  2024 K01speech-dispatcher -> ../init.d/speech-dispatcher
+lrwxrwxrwx 1 root root 17 dez 22  2024 S01anacron -> ../init.d/anacron
+lrwxrwxrwx 1 root root 19 dez 22  2024 S01bluetooth -> ../init.d/bluetooth
+lrwxrwxrwx 1 root root 26 dez 22  2024 S01console-setup.sh -> ../init.d/console-setup.sh
+lrwxrwxrwx 1 root root 14 dez 22  2024 S01cron -> ../init.d/cron
+lrwxrwxrwx 1 root root 14 dez 22  2024 S01dbus -> ../init.d/dbus
+lrwxrwxrwx 1 root root 16 dez 28  2024 S01docker -> ../init.d/docker
+lrwxrwxrwx 1 root root 21 dez 22  2024 S01grub-common -> ../init.d/grub-common
+lrwxrwxrwx 1 root root 20 dez 22  2024 S01irqbalance -> ../init.d/irqbalance
+lrwxrwxrwx 1 root root 20 dez 22  2024 S01kerneloops -> ../init.d/kerneloops
+lrwxrwxrwx 1 root root 17 dez 22  2024 S01lightdm -> ../init.d/lightdm
+lrwxrwxrwx 1 root root 20 mai 17 11:37 S01mintsystem -> ../init.d/mintsystem
+lrwxrwxrwx 1 root root 17 fev 19  2025 S01openvpn -> ../init.d/openvpn
+lrwxrwxrwx 1 root root 18 dez 22  2024 S01plymouth -> ../init.d/plymouth
+lrwxrwxrwx 1 root root 17 ago 14 20:38 S01postfix -> ../init.d/postfix
+lrwxrwxrwx 1 root root 37 dez 22  2024 S01pulseaudio-enable-autospawn -> ../init.d/pulseaudio-enable-autospawn
+lrwxrwxrwx 1 root root 15 dez 22  2024 S01rsync -> ../init.d/rsync
+lrwxrwxrwx 1 root root 15 dez 22  2024 S01saned -> ../init.d/saned
+lrwxrwxrwx 1 root root 13 dez 24  2024 S01tor -> ../init.d/tor
+lrwxrwxrwx 1 root root 15 dez 22  2024 S01uuidd -> ../init.d/uuidd
+lrwxrwxrwx 1 root root 20 dez 22  2024 S01virtualbox -> ../init.d/virtualbox
+lrwxrwxrwx 1 root root 22 dez 22  2024 S01zfs-load-key -> ../init.d/zfs-load-key
+lrwxrwxrwx 1 root root 19 dez 22  2024 S01zfs-share -> ../init.d/zfs-share
+lrwxrwxrwx 1 root root 17 dez 22  2024 S01zfs-zed -> ../init.d/zfs-zed
+#+end_src
+
+ *K* -> Kill
+
+ *S* -> Start
+
+ * The lower the number, the higher its execution priority
+
+*** Debian Runlevels
+
+ * *0* -> shutdown
+
+ * *1,s,S* -> Single mode(recovery ?), only root can access
+
+ * *2 - 5* -> Multiuser, graphical and text modes
+
+ * *6* -> Reboot
+
+* update-rc.d
+
+Debian command to include or remove services at initialization in runlevels
+
+*To remove*
+
+#+begin_src sh
+update-rc.d -f gdm remove
+#+end_src
+
+*To add*
+
+#+begin_src sh
+update-rc.d -f gdm start 20
+#+end_src
+
+ * start with a good priority
+
+*Choose the runlevels to start*
+
+#+begin_src sh
+update-rc.d -f gdm start 20 5 . stop 20 0 1 2 3 4 6 .
+#+end_src
+
+*more specific usage*
+
+#+begin_src sh
+update-rc.d -f gdm start 4 2 5 . stop 4 0 1 3 4 6 .
+#+end_src
+
+*Switch runlevel to verify the changes*
+
+#+begin_src sh
+telinit s
+
+ls -l /etc/rc1.d/
+ls -l /etc/rc.d6/
+#+end_src
+
+*Adicionando o ssh* ->
+#+begin_src
+update-rc.d -f ssh start 20 1 .
+
+or
+
+ln -s /etc/init.d/ssh /etc/rc1.d/S20ssh
+#+end_src
+
+
+
+
+
+* INITTAB FILE
+
+ * Arquivo de configuração do init
+
+Define o runlevel default,
+
+#+begin_src shell
+# The default runlevel
+id:2:initdefault:
+#+end_src
+
+O nome da action é predefinido!!
+
+No /etc/inittab exite uma action chamada ~ctrlaltdel~ se referindo a CTRL + ALT + DEL , que pode ser utilizado para dar um shutdown no server. Desabilitar esta opção pode ser uma boa ideia para servidores em produção
+
+*From ->*
+
+#+begin_src sh
+cat /etc/inittab
+
+ca:12345:ctrlaltdel:/sbin/shutdown -t1 -a -r now
+#+end_src
+
+
+*To ->*
+
+#+begin_src sh
+vim /etc/inittab
+
+ca:12345:ctrlaltdel:/bin/echo "Func Disabled"
+#+end_src

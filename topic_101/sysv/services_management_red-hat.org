@@ -1,0 +1,65 @@
+#+title: Services Management Red Hat
+#+author: gabriel
+#+description: gereciamento de serviços com chkconfig em um CentOS 6
+
+
+* intro
+No Red Hat Enterprise Linux e derivados como CentOS 6, o gerenciamento de serviços é feito através do *SysVinit*.
+
+- Comando ~service~: gerencia a execução de serviços em tempo real.
+- Comando ~chkconfig~: define os runlevels em que serviços iniciam automaticamente.
+
+* runlevels
+Os runlevels definem o estado do sistema.
+
+- 0 :: Halt (desligar)
+- 1 :: Single-user (manutenção)
+- 2 :: Multi-user sem NFS
+- 3 :: Multi-user modo texto (rede habilitada)
+- 4 :: Não utilizado (reservado)
+- 5 :: Multi-user modo gráfico (X11)
+- 6 :: Reboot (reinicializar)
+
+  Na prática:
+
+- Servidores usam principalmente o runlevel 3.
+- Estações gráficas usam o runlevel 5.
+
+* gerenciamento de serviços com o =chkconfig=
+
+*Listar todos os serviços* ->
+: chkconfig --list
+
+*LIstar serviço específico* ->
+: chkconfig --list sshd
+
+*Habilitar serviço em todos runlevels* ->
+: chkconfig sshd on
+
+*Desabilitar serviço* ->
+: chkconfig sshd off
+
+*DEfinir serviços em runlevels manualmente* ->
+: chkconfig --level 2345 sshd on
+
+* gerenciamento de services com o =service=
+
+*Verificar status* ->
+: service sshd status
+
+*INiciar service* ->
+: service sshd start
+
+*Parar service* ->
+: service sshd stop
+
+*Reiniciar service* ->
+: service sshd restart
+
+*Recarregar configuração* ->
+: service sshd reload
+
+* end
+
+O gerenciamento de serviços no CentOS 6 é baseado no SysVinit, usando os comandos ~service~ e ~chkconfig~.
+Configurar corretamente serviços como o SSH garante disponibilidade, automação no boot e segurança no ambiente.

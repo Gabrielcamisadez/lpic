@@ -1,0 +1,82 @@
+#+title: exFat
+#+author:gabriel
+#+description: sistema de arquivos exFAT
+
+SIstema de arquivos usado para dispositivos flash como pendrives, cartões de memória, hds portáveis
+
+Suporta arquivos maiores que 4 Gigas
+
+* debian usage
+
+*search for required packages* ->
+#+begin_src sh
+apt search exfat | grep exfat
+#+end_src
+
+*installing the packages* ->
+#+begin_src sh
+apt-get install exfat-fuse exfatprogs forensics-samples-exfat
+#+end_src
+
+*verify the packages* ->
+#+begin_src sh
+dpkg -l exfat-fuse
+
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Nome           Versão              Arquitectura Descrição
++++-==============-===================-============-===========================>
+ii  exfat-fuse     1.3.0+git20220115-2 i386         read and write exFAT driver>
+#+end_src
+
+
+*partition to create an exfat system* ->
+#+begin_src sh
+fdisk /dev/sdc
+
+only one partition with all the storage
+#+end_src
+
+*transform the partition type to exfat hexadecimal code* ->
+#+begin_src sh
+L to list all codes
+
+00 Vazia            27 WinRE NTFS Esco  82 Linux swap / So  c1 DRDOS/sec (FAT1
+01 FAT12            39 Plan 9           83 Linux            c4 DRDOS/sec (FAT1
+02 root XENIX       3c PartitionMagic   84 OS/2 escondido   c6 DRDOS/sec (FAT1
+03 usr XENIX        40 Venix 80286      85 Estendida Linux  c7 Syrinx
+04 FAT16 <32M       41 Boot PReP PPC    86 Conjunto de vol  da Dados Não-FS
+05 Estendida        42 SFS              87 Conjunto de vol  db CP/M / CTOS / .
+06 FAT16            4d QNX4.x           88 Linux texto sim  de Utilitário Dell
+07 HPFS/NTFS/exFAT  4e QNX4.x 2ª parte  8e Linux LVM        df BootIt
+#+end_src
+
+*Creation of the exFAT system* ->
+: mkfs.exfat /dev/sdc1
+#+begin_src sh
+root@debian9-lpic1:~# mkfs.exfat /dev/sdc1
+exfatprogs version : 1.2.0
+Creating exFAT filesystem(/dev/sdc1, cluster size=131072)
+
+Writing volume boot record: done
+Writing backup volume boot record: done
+Fat table creation: done
+Allocation bitmap creation: done
+Upcase table creation: done
+Writing root directory entry: done
+Synchronizing...
+
+exFAT format complete!
+#+end_src
+
+
+*Can check with the blkid*
+#+begin_src sh
+blkid -o list /dev/sdc1
+
+root@debian9-lpic1:~# blkid -o list /dev/sdc1
+device     fs_type label    mount point    UUID
+-------------------------------------------------------------------------------
+/dev/sdc1  exfat            (não montado) 6AEF-AE6D
+#+end_src

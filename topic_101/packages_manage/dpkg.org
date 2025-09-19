@@ -1,0 +1,140 @@
+#+title: Utilização do sistema de pacotes Debian [dpkg]
+#+description: 102.4
+#+author: gabriel
+
+* Introducão
+Para realizar estes estudos vou apenas realizar o download de alguns pacotes com o comando ~apt-get~ ->
+
+A opção ~-d~ faz com que o apt-get apenas realize o download dos pacotes .deb, e a instalação não será de fato concluída.
+#+begin_src sh
+apt-get -d install rar unrar
+#+end_src
+
+Com o arquivo .deb no dir atual podemos realizar alguns estudos com o dpkg e suas diversas opções disponíveis para uso, como pegar informações, dependências etc...
+
+* comandos dpkg
+
+Responsável por gerenciar pacotes debian em baixo nível, ele trabalha por trás dos pacotes apt e apt-get quando utilizamos eles para instalar algo, remover, etc...
+
+Obter informações sobre um pacote .deb ->
+#+begin_src sh
+dpkg -I rar.deb
+
+[13:21][]~/sesei/lpic/topic_101/packages_manage:main ✗ ✮ dpkg -I rar_2%3a7.00-1build1_amd64.deb
+ new Debian package, version 2.0.
+ size 451668 bytes: control archive=1076 bytes.
+      18 bytes,     1 lines      conffiles
+     678 bytes,    17 lines      control
+     848 bytes,    14 lines      md5sums
+ Package: rar
+ Version: 2:7.00-1build1
+ Architecture: amd64
+ Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+ Installed-Size: 1619
+ Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libstdc++6 (>= 5.2)
+ Suggests: unrar
+ Section: non-free/utils
+ Priority: optional
+ Homepage: https://www.rarlabs.com/
+ Description: Archiver for .rar files
+  This is the RAR archiver from Eugene Roshal. It supports multiple volume
+  archives and damage protection. It can also create SFX-archives. There are
+  versions which run on DOS, Windows, FreeBSD, BSDI.
+#+end_src
+
+Descobrir quais arquivos serão instalados/criados com este pacote .deb ->
+#+begin_src sh
+dpkg -c rar.deb
+
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./etc/
+-rw-r--r-- root/root      1210 2024-04-01 04:26 ./etc/rarfiles.lst
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./usr/
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./usr/bin/
+-rwxr-xr-x root/root    774184 2024-04-01 04:26 ./usr/bin/rar
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./usr/lib/
+-rw-r--r-- root/root    248952 2024-04-01 04:26 ./usr/lib/default.sfx
+-rw-r--r-- root/root    441632 2024-04-01 04:26 ./usr/lib/unrar
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./usr/share/
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./usr/share/doc/
+drwxr-xr-x root/root         0 2024-04-01 04:26 ./usr/share/doc/rar/
+-rw-r--r-- root/root      2721 2024-02-26 06:05 ./usr/share/doc/rar/acknow.txt
+-rw-r--r-- root/root       867 2024-04-01 04:26 ./usr/share/doc/rar/changelog.Debian.gz
+-rw-r--r-- root/root      8913 2024-03-04 18:01 ./usr/share/doc/rar/copyright
+-rw-r--r-- root/root      6753 2024-02-26 06:05 ./usr/share/doc/rar/license.txt
+-rw-r--r-- root/root       428 2024-02-26 06:05 ./usr/share/doc/rar/makefile
+-rw-r--r-- root/root      3326 2024-02-26 06:05 ./usr/share/doc/rar/order.htm
+#+end_src
+
+Obter lista de arquivos presentes em pacotes já instalados no sistema ->
+#+begin_src sh
+dpkg -L iptables
+
+/.
+/usr
+/usr/bin
+/usr/bin/nmap
+/usr/bin/nping
+/usr/share
+/usr/share/doc
+/usr/share/doc/nmap
+/usr/share/doc/nmap/changelog.Debian.gz
+/usr/share/doc/nmap/copyright
+/usr/share/lintian
+/usr/share/lintian/overrides
+/usr/share/lintian/overrides/nmap
+/usr/share/man
+/usr/share/man/de
+/usr/share/man/de/man1
+/usr/share/man/de/man1/nmap.1.gz
+/usr/share/man/es
+#+end_src
+
+Para instalar um arquivo .deb que está no dir atual por exemplo ->
+#+begin_src sh
+dpkg -i /home/ilak/Downloads/rar.deb
+#+end_src
+
+Para remover um arquivo .deb já instalado no sistema ->
+#+begin_src sh
+dpkg -r rar
+#+end_src
+
+Obter informações sobre qual pacote instalou algum arquivo ->
+#+begin_src sh
+dpkg -S /bin/dd
+#+end_src
+
+Obter status e informações de pacote já instalado ->
+#+begin_src sh
+dpkg -s nmap
+
+Package: nmap
+Status: install ok installed
+Priority: optional
+Section: net
+Installed-Size: 4071
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Architecture: amd64
+Version: 7.94+git20230807.3be01efb1+dfsg-3build2
+Depends: nmap-common (= 7.94+git20230807.3be01efb1+dfsg-3build2), libc6 (>= 2.38), libgcc-s1 (>= 3
+.3.1), liblinear4 (>= 2.01+dfsg), liblua5.4-0 (>= 5.4.6), libpcap0.8t64 (>= 1.5.1), libpcre2-8-0 (
+>= 10.32), libssh2-1t64 (>= 1.2.9), libssl3t64 (>= 3.0.0), libstdc++6 (>= 11), zlib1g (>= 1:1.1.4)
+Suggests: ncat, ndiff, zenmap
+Description: The Network Mapper
+#+end_src
+
+Para remover completamente um arquivo com o dpkg purge ->
+#+begin_src
+dpkg -P rar
+#+end_src
+
+Reconfigurar um pacote já instalado no sistema ->
+#+begin_src sh
+dpkg-reconfigure keyboard-layout
+#+end_src
+
+Listar todos os pacotes instalados no sistema ->
+#+begin_src sh
+dpkg -l
+#+end_src

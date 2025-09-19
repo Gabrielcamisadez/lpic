@@ -1,0 +1,32 @@
+#+title: Mensagens de boot
+#+author: Gabriel Ferreira
+
+* Boot messages
+
+Em algumas distros GNU/Linux como o ubuntu, as mensagens de inicialização são suprimidas por uma tela de abertura/animação, para que este comportamento seja diferente basta remover o parameter ~quiet~ e ~splah~ na linha que carrega o kernel do sistema
+
+*Messages*
+As mensagens de carregamento do kernel e reconhecimento de hardware são importantes pois exibem uma séria de informações úteis como :
+
+ * Última versão e data de atualização do kernel;
+ * Tipo do processador, monitor, dispositivos USB
+ * Quantidade de memória e detalhes sobre ela;
+ * Informações gerais sobre o hardware
+
+* arquivos importantes para a LPI
+
+*** /var/log/messages
+Armazena informações referentes ao kernel e serviços inicializados, tanto durante o boot ou após a inicialização
+
+#+begin_src sh
+cat /var/log/messages
+#+end_src
+
+*** /var/log/dmesg
+Armazena mensagens referentes a inicialização que o kernel registrou no reconhecimento de hardware
+
+#+begin_src sh
+cat /var/log/dmesg
+
+dmesg -> same result
+#+end_src

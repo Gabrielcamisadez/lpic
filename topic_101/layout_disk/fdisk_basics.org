@@ -1,0 +1,88 @@
+#+title: Fdisk Basics
+#+description: 102.1 (fdisk basic)
+#+author: gabriel
+
+Os discos rígidos que utilizam a tabela de partições do tipo msdos, podem ter no máximo 4 partições primárias, ou, 3 partições primárias e uma do tipo estendida, que por sua vez dividida em mais partições lógicas
+
+* fdisk
+
+O fdisk é o programa padrão para manipular partições em uma distribuição GNU/Linux. Com a opção ~-l~ será listada as partições existentes.
+
+Para manipular as partições, o fdisk deve ser iniciado tendo como argumento o disco rígido que irá particionar ->
+
+: fdisk -l /dev/sdc
+
+Cada partição possui um número hexadecimal que identifica como apropriada a um determinado sistema operacional. O ~fdisk~ cria novas partições identificadas como natrivas de Linux, cujo o código hexadecimal é 83 *(0x83)*.
+
+Partições do tipo swap possuem o código 82 *(0x82)*
+
+*Selecionar o disco a ser trabalhado* ->
+#+begin_src sh
+fdisk /dev/sda
+#+end_src
+
+A linha de comando do fdisk será aberta, para visualizar comandos possíveis ->
+: ? ou h
+#+begin_src sh
+Command (m for help): ?
+?: unknown command
+Command action
+   a   toggle a bootable flag
+   b   edit bsd disklabel
+   c   toggle the dos compatibility flag
+   d   delete a partition
+   l   list known partition types
+   m   print this menu
+   n   add a new partition
+   o   create a new empty DOS partition table
+   p   print the partition table
+   q   quit without saving changes
+   s   create a new empty Sun disklabel
+   t   change a partition's system id
+   u   change display/entry units
+   v   verify the partition table
+   w   write table to disk and exit
+   x   extra functionality (experts only)
+#+end_src
+
+*Print das partições atuais* ->
+: p
+#+begin_src sh
+Command (m for help): p
+
+Disk /dev/sda: 32.2 GB, 32212254720 bytes
+255 heads, 63 sectors/track, 3916 cylinders
+Units = cylinders of 16065 * 512 = 8225280 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x000cd7be
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           1          77      614400   83  Linux
+Partition 1 does not end on cylinder boundary.
+/dev/sda2              77         208     1048576   82  Linux swap / Solaris
+Partition 2 does not end on cylinder boundary.
+/dev/sda3             208        1513    10485760   83  Linux
+/dev/sda4            1513        3917    19307520    5  Extended
+/dev/sda5            1513        3917    19306496   83  Linux
+#+end_src
+
+*Criar uma nova tabela de partições do tipo DOS* ->
+: o
+
+*Criar nova partição* ->
+: n
+
+*Verificar cógidos hexadecimais disponíveis* ->
+: l
+
+*83* -> Linux
+*82* -> swap
+*-8E* -> lvm
+*-EF* -> uefi
+
+*Para alterar o tipo de uma partição* ->
+: t
+
+Definir como tipo swap ->
+: 82

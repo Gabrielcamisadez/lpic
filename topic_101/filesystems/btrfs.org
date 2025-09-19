@@ -1,0 +1,21 @@
+#+title: Criar partições e sistema de arquivos
+#+author: gabriel
+#+description: Sistema de arquivos BTRFS
+
+É um sistema de arquivos moderno para distribuições Linux que tem como principal objetivo implementar recursos avançados, mas com tolerância a falhas, reparo e fácil administração
+
+* principais recursos
+
+*Sistema de arquivos multi dispositivos / RAID* -> Vários dispositivos(HDs, SSDs) podem ser usados para criar um RAID, sem precisar de outros softwares, somente usando o btrfs.
+
+Os níveis RAID suportados incluem RAID 0, RAID 1, RAID 10, os níveis RAID 5 e RAID 6 ainda estão em desenvolvimento
+
+
+*Compressão* -> btrfs suporte compressão automática. Isso reduz o tamanho dos arquivos e também pode melhorar o desempenho.
+
+Melhor desempenho geralmente é alcançado com os algoritmos de compactação mais rápidos, zstd e lzo
+
+
+*Subvolumes* -> é um volume dentro de outro volume, qualquer sistema de arquivos btrfs possui um subvolume padrão, que inicialmente é configurado para ser o subvolume de nível superior
+
+Subvolumes podem ser criados em qualquer lugar dentro da hierarquia do sistema de arquivos, e eles também podem ser aninhados. O subvolume aninhado aparece como subdiretório em seu subvolume pai, de forma semelhante à forma como um subvolume de nível superior apresenta seus subvolumes e dirs.

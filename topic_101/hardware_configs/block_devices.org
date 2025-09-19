@@ -1,0 +1,55 @@
+#+title: Block Devices
+#+AUTHOR: Material de Estudo LPI
+
+* Introdução
+No Linux, dispositivos de armazenamento são representados como arquivos especiais
+em */dev/*.
+O nome indica o tipo de dispositivo, sua ordem e partições.
+
+* Discos IDE (antigos)
+- /dev/hda → Primeiro disco IDE
+- /dev/hdb → Segundo disco IDE
+- /dev/hdc → Terceiro disco IDE
+- /dev/hdd → Quarto disco IDE
+
+** Partições
+- /dev/hda1 até /dev/hda4 → Partições primárias ou estendida
+- /dev/hda5 em diante → Partições lógicas dentro da estendida
+
+* Discos SCSI, SATA, USB (padrão moderno)
+Todos reconhecidos como **sdX**:
+- /dev/sda → Primeiro disco detectado
+- /dev/sdb → Segundo disco
+- /dev/sdc → Terceiro disco
+
+** Partições
+- /dev/sda1 até /dev/sda4 → Partições primárias/estendida
+- /dev/sda5 em diante → Partições lógicas
+
+* Discos NVMe (mais novos)
+Dispositivos NVMe seguem outro padrão:
+- /dev/nvme0n1 → Primeiro dispositivo NVMe
+- /dev/nvme0n2 → Segundo dispositivo no mesmo controlador
+- /dev/nvme1n1 → Segundo controlador, primeiro dispositivo
+
+** Partições
+- /dev/nvme0n1p1 → Primeira partição
+- /dev/nvme0n1p2 → Segunda partição
+
+* Discos virtuais (ambiente virtualizado)
+- /dev/vda, /dev/vdb, ... → Discos virtuais (VirtIO/KVM/QEMU)
+- Partições seguem o mesmo padrão numérico (vda1, vda2, ...)
+
+* Resumo prático para LPIC-1
+| Tecnologia      | Nome base    | Exemplo de partição lógica |
+|-----------------+--------------+----------------------------|
+| IDE/PATA        | /dev/hdX     | /dev/hdb6                  |
+| SCSI/SATA/USB   | /dev/sdX     | /dev/sda5                  |
+| NVMe            | /dev/nvmeXnY | /dev/nvme0n1p3             |
+| VirtIO (KVM/QEMU)| /dev/vdX    | /dev/vda2                  |
+
+* Observações de prova
+- Números 1–4 → primárias/estendida
+- Números 5+ → lógicas
+- IDE é cada vez mais raro, mas pode aparecer na prova (ex.: /dev/hdb6)
+- NVMe e VirtIO são comuns em ambientes modernos e virtualizados

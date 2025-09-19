@@ -1,0 +1,106 @@
+#+title: Gdisk Basics
+#+author: gabrie
+#+description: gerenciar partições com o gdisk
+
+O comando gdisk é similar ao comando fdisk, a diferença é que o comando gdisk manipula (tabela de partições) partições do tipo GPT
+
+O gdisk também tem a capacidade de transformar partições MBR em partições GPT. E assim como o comando fdisk as alterações só são gravadas quando são salvas executando o comando "w"
+
+*Principais cmandos do gdisk*
+
+| comando | Finalidade
+|      p       |   Lista a tabela de partições, lista as partições do disco rígido
+|      n       |  Cria uma nova partição interativamente
+|      t       |   Muda o código de identificação da partição
+|      d       |   Apaga/Deleta uma partição
+|      q       |    Sai do fdisk sem gravar as alterações
+|      w      |    Sai do fdisk e grava as alterações
+|      m      |     Mostra a ajuda de comandos
+
+* selecionar o disco
+
+*Selecionar o disco rígido*
+: gdisk /dev/sdb
+
+Após realizar alterações no disco com o comando ~gdisk~ é necessário reiniciar o sistema operacional para que alterações vigorem, onde nem sempre é possível que isto acontece, especialmente em servidores de produção.
+
+Nestas situações podemos utilizar o comando ~partprobe~, para forçar a escrita das alterações na tabela de partições.
+
+*install* ->
+: apt-get install parted
+
+* some basic operations with gdisk
+
+*selecionar o disco* ->
+#+begin_src
+gdisk /dev/sdb
+#+end_src
+
+*Criar nova tabela de partições* ->
+: o
+
+O gdisk pergunta se deseja prosseguir com risco de apagar todas partiçoes existentes, porém vale lembrar que as alterações primeiro ficam salvas em memórias, apenas se comitar que é realizada de fato
+
+*Nova partição* ->
+: n
+
+1 - numero da partição
+2 - primeiro setor, onde a partição inicia
+3 - last sector, tamanho da partição -> +5G
+
+#+begin_src sh
+Command (? for help): n
+Partition number (1-128, default 1):
+First sector (34-41943006, default = 2048) or {+-}size{KMGTP}:
+Last sector (2048-41943006, default = 41940991) or {+-}size{KMGTP}: +5G
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300):
+Changed type of partition to 'Linux filesystem'
+#+end_src
+
+*Printar as partições atuais* ->
+: p
+
+#+begin_src sh
+Command (? for help): p
+Disk /dev/sdb: 41943040 sectors, 20.0 GiB
+Model: VBOX HARDDISK
+Sector size (logical/physical): 512/512 bytes
+Disk identifier (GUID): F77BBCB1-9FBE-476C-8B1C-0C22BB93BE98
+Partition table holds up to 128 entries
+Main partition table begins at sector 2 and ends at sector 33
+First usable sector is 34, last usable sector is 41943006
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 10485693 sectors (5.0 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048        10487807   5.0 GiB     8300  Linux filesystem
+   2        10487808        31459327   10.0 GiB    8300  Linux filesystem
+#+end_src
+
+*Alterar o tipo de partição* ->
+: t
+
+1 - selecionar numero da partição
+2 -  digitar codigo hexadecimal desejado (L para listar)
+
+*Sair do gdisk sem salvar* ->
+: q
+
+*Para salvar e sair* ->
+: w
+
+
+* mais codigos hexadecimais
+
+8300 -> Linux filesystem
+
+8302 -> Linux /home
+
+8304 -> x86-64 root (/)
+
+8306 -> Linux /srv
+
+8308 -> Linux dm-crypt
+
+830a Linux IA-64 root
