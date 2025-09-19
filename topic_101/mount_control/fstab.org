@@ -1,0 +1,56 @@
+#+title: Fstab
+#+author: gabriel
+#+description: 104.3
+
+* intro
+Durante a inicialização do sistema a tabela de sistemas de arquivos é consultada para realizar a montagem dos sistemas de arquivos que devem ser montados. Esta tabela fica no arquivo */etc/fstab*, um arquivo de texto que determina os pontos de montagem para os dispositivos essenciais
+
+Cada linha no arquivo */etc/fstab* corresponde a um dispositivo ou compartilhamento de rede, contendo os seguintes campos separados por tabulaçao ->
+
+| dispositivo | ponto de montagem | sistema de arquivos | opções | dump | fsck
+
+Exemplo ->
+#+begin_src sh
+vim /etc/fstab
+
+# Please run 'systemctl daemon-reload' after making changes here.
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+/dev/mapper/system-raiz /               ext4    errors=remount-ro 0       1
+# /boot was on /dev/sda5 during installation
+UUID=69f458c5-d9e1-4298-a743-d3790f43eb79 /boot           ext4    defaults        0       2
+/dev/mapper/system-home /home           ext4    defaults        0       2
+/dev/mapper/system-var /var            ext4    defaults        0       2
+# swap was on /dev/sda1 during installation
+UUID=f8fc2a09-d2a9-4a42-9496-417f58496fe8 none            swap    sw              0       0
+/dev/sr0        /media/cdrom0   udf,iso9660 user,noauto     0
+#+end_src
+
+
+* mount points do /etc/fstab
+
+ * *rv* -> O sistema de arquivos da partição ou compartillhamento será montado para leitura/escrita
+
+ * *ro* -> O sistema de arquivos da partição ou compartilhamento não será montado automaticamente
+
+ * *noauto* -> O sistema de arquivos da partição ou compartilhamento não será montado automaticamente
+
+ * *auto* -> o sistema de arquivos da partição ou compartilhamento poderá ser montado automaticamente
+
+ * *users* -> o sistema de arquivos da partição ou compartilhamento poderá ser montado e desmontado por users comuns
+
+ * *user* -> o sistema de arquivos da partição ou compartillhamento poderá ser montado por usuários comuns, mas somente o owner ou root pra desmontar
+
+ * *noexec* -> não permita a execução direta de nenhum binário no sistema de arquivos montado
+
+ * *exec* -> permite a execução direta de um binário, script no sistema de arquivos montado
+
+ *  *suid* -> o bit SUID irá ter efeito no sistema de arquivos
+
+ * *defaults* -> equivale o uso das opções: rw, suid, dev, exec, auto, nouser e async
+
+* montar uma partição /dev/sdb2 com o sistema ext4 no fstab
+
+#+begin_src sh
+/dev/sdb2            /backup ext4         defaults1               2
+#+end_src
