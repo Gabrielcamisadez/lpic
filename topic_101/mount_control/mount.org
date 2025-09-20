@@ -1,0 +1,7 @@
+#+title: Mount
+#+author: gabriel
+#+description: 104.3
+
+O comando ~mount~ tem a finalidade de anexar um sistema de arquivos encontrado em uma árvore de arquivos, no diretório selecionado.
+
+*-t*  -> define the filesystem type

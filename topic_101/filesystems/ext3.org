@@ -3,9 +3,7 @@
 #+description:
 
 
-
-
-
+*make the partition in code 7*
 
 #+begin_src sh
 Comando (m para ajuda): n
@@ -30,7 +28,10 @@ Comando (m para ajuda): w
 A tabela de partição foi alterada.
 Chamando ioctl() para reler tabela de partição.
 Sincronizando discos.
+#+end_src
 
+*ext3 create with mkfs*
+#+begin_src sh
 root@debian9-lpic1:~# mkfs.ext3 -L FSXT3 /dev/sdb2
 mke2fs 1.47.0 (5-Feb-2023)
 Creating filesystem with 1572864 4k blocks and 393216 inodes

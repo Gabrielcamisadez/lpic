@@ -81,7 +81,7 @@ tune2fs 1.47.0 (5-Feb-2023)
 Setting maximal mount count to 20
 #+end_src
 
-*ajuste do reserved block count, reserva para privileges* ->
+*ajuste do reserved block content, reserva para privileges* ->
 #+begin_src sh
 tune2fs -m 10 /dev/sdb2
 #+end_src

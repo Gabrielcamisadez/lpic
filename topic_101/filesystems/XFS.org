@@ -3,6 +3,7 @@
 #+description: 104.2
 
 
+* xfs
 *apt-get install xfsprogs* at Debian 9
 
 #+begin_src sh
@@ -37,7 +38,6 @@ root@debian9-lpic1:~# file -s /dev/sdb3
 root@debian9-lpic1:~#
 #+end_src
 
-
 *montar o sistema de arquivos antes dos estudos/testes* ->
 
 #+begin_src sh
@@ -54,12 +54,17 @@ Sist. Arq.      Tam. Usado Disp. Uso% Montado em
 root@debian9-lpic1:~#
 #+end_src
 
+
 * xfs_db
+
+*xfs_db* é utilizado para examinar sistemas de arquivos XFS. Dentre as circunstâncias também pode ser utilizado para modificar sistemas de arquivos XFS, mas esse trabalho geralmente é deixado para o *xfs_repair* ou para scripts como o *xfs_admin*.
 
 Funciona apenas em filesystems que estão desmontados!
 
+*xfs_db -x* -> Modo expert do xfs_db
+*xfs_db -r* -> modo de leitura
 #+begin_src sh
-xfs_db -x /dev/sdb1
+xfs_db /dev/sdb1
 
 root@debian9-lpic1:~# xfs_db -x /dev/sdb1
 xfs_db> help
@@ -127,13 +132,43 @@ Use 'help commandname' for extended help.
 xfs_db>
 #+end_src
 
-
-*xfs_db -x*
+*definir um label para o filesystem* ->
 #+begin_src sh
-root@debian9-lpic1:~# xfs_db -x /dev/sdb1
+xfs_db> label "test"
+writing all SBs
+new label = ""test""
 xfs_db> label
-label = ""sites""
+label = ""test""
 xfs_db>
+#+end_src
+
+*get the uuid* ->
+#+begin_src sh
+xfs_db> uuid
+UUID = 0e685754-ac87-4eb3-b106-7113dea082b0
+xfs_db>
+#+end_src
+
+
+* xfs_fsr
+
+*xfs_fsr* melhora a organização de sistemas de arquivos montados. A reorganização do algoritmo opera com um arquivo de cada vez, compactando ou de qualquer maneira melhorando o layout das extensões de arquivos
+
+*xfs_bmap* -> demonstrar arquivos fragmentados dentro do sistema de arquivos
+#+begin_src sh
+root@debian9-lpic1:~# xfs_bmap -v /mnt/xfs/imagem1.iso
+/mnt/xfs/imagem1.iso:
+ EXT: FILE-OFFSET         BLOCK-RANGE      AG AG-OFFSET          TOTAL
+   0: [0..2071807]:       192..2071999      0 (192..2071999)   2071808
+   1: [2071808..4177023]: 2621520..4726735  1 (80..2105295)    2105216
+   2: [4177024..4194303]: 7864400..7881679  3 (80..17359)        17280
+root@debian9-lpic1:~#
+#+end_src
+
+*desfragmentar o arquivo* ->
+#+begin_src sh
+xfs_fsr /mnt/xfs/imagem1.iso
+
 #+end_src
 
 *frag* ->
@@ -144,3 +179,9 @@ Note, this number is largely meaningless.
 Files on this filesystem average -nan extents per file
 xfs_db>
 #+end_src
+
+* xfs_repair
+
+*xfs_repair* -> repara sistemas de arquivos XFS corrompidos ou danificados.
+
+*xsf_repair -L* -> log format, deve ser utilizada somente em ultimo caso!
