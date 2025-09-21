@@ -13,7 +13,7 @@ mkfs -t tipo device
 Pode-se exemplificar a criação de um filesystem e um dispostivo utilizando o seguinte comando :
 
 #+begin_src sh
-mkfs -t et3 /dev/sdc2
+mkfs -t ext3 /dev/sdc2
 #+end_src
 
 Podemos criar um sistema de arquivos ext3 adicionar um LABEL, ou seja um nome pelo qual a partição será identificada

@@ -33,6 +33,8 @@ Sist. Arq.              Tipo  Tam. Usado Disp. Uso% Montado em
 
 * du basic usage
 
+Summarize device usage of the set of files, recursively for directories
+
 *Verificar o espaço utilizado em um dir* ->
 #+begin_src sh
 du -h /projects
