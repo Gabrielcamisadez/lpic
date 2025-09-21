@@ -1,12 +1,12 @@
-[01;34m.[0m
+.
 ├── README.org
-├── [01;34msimulations[0m
+├── simulations
 │   ├── 102.3.org
 │   └── 102.3.pdf
-├── [01;34mtopic_101[0m
-│   ├── [01;34mfiles_edit[0m
+├── topic_101
+│   ├── files_edit
 │   │   └── definir_editor_default.org
-│   ├── [01;34mfilesystems[0m
+│   ├── filesystems
 │   │   ├── btrfs.org
 │   │   ├── btrfs.txt
 │   │   ├── exFAT.org
@@ -17,7 +17,7 @@
 │   │   ├── mkfs_mkswap.org
 │   │   ├── mkfs_mkswap.txt
 │   │   └── XFS.org
-│   ├── [01;34mgrub[0m
+│   ├── grub
 │   │   ├── grb2.org
 │   │   ├── grb2.txt
 │   │   ├── GRUB_2.org
@@ -26,12 +26,12 @@
 │   │   ├── grub_diffs.txt
 │   │   ├── GRUB_Legacy.org
 │   │   └── GRUB_Legacy.txt
-│   ├── [01;34mhardware_configs[0m
+│   ├── hardware_configs
 │   │   ├── block_devices.org
 │   │   ├── block_devices.txt
 │   │   ├── determinar_configurações_de_hardware.org
 │   │   └── determinar_configurações_de_hardware.txt
-│   ├── [01;34mlayout_disk[0m
+│   ├── layout_disk
 │   │   ├── fdisk_basics.org
 │   │   ├── fdisk_basics.txt
 │   │   ├── gdisk_basics.org
@@ -48,14 +48,14 @@
 │   │   ├── particoes.txt
 │   │   ├── tabela_mbr.org
 │   │   └── tabela_mbr.txt
-│   ├── [01;34mmaintenance_filesystem[0m
+│   ├── maintenance_filesystem
 │   │   ├── du_df.org
 │   │   ├── fsck_e2fsck.org
 │   │   └── tune2fs.org
-│   ├── [01;34mmount_control[0m
+│   ├── mount_control
 │   │   ├── fstab.org
 │   │   └── mount.org
-│   ├── [01;34mpackages_manage[0m
+│   ├── packages_manage
 │   │   ├── dnf.org
 │   │   ├── dpkg.org
 │   │   ├── dpkg.txt
@@ -65,14 +65,14 @@
 │   │   ├── yum.txt
 │   │   ├── zypper.org
 │   │   └── zypper.txt
-│   ├── [01;34mpartitions[0m
+│   ├── partitions
 │   │   ├── EFI.org
 │   │   ├── parted.org
 │   │   └── setup_parts_fs.org
-│   ├── [01;34mshared_libs[0m
+│   ├── shared_libs
 │   │   ├── control_libs.org
 │   │   └── control_libs.txt
-│   ├── [01;34msystemd[0m
+│   ├── systemd
 │   │   ├── logs.org
 │   │   ├── logs.txt
 │   │   ├── rocky.org
@@ -83,7 +83,7 @@
 │   │   ├── targets.txt
 │   │   ├── units.org
 │   │   └── units.txt
-│   ├── [01;34msystem_initialization[0m
+│   ├── system_initialization
 │   │   ├── boot_mesages.org
 │   │   ├── boot_mesages.txt
 │   │   ├── identify_sysinit.org
@@ -94,7 +94,7 @@
 │   │   ├── runlevels_switch.org
 │   │   ├── uefi.org
 │   │   └── uefi.txt
-│   └── [01;34msysv[0m
+│   └── sysv
 │       ├── alternate_runlevels.org
 │       ├── alternate_runlevels.txt
 │       ├── debian_runlevels.org
@@ -106,6 +106,7 @@
 │       ├── services_management_red-hat.org
 │       ├── services_management_red-hat.txt
 │       └── sysvinit.org
-└── tree.md
+├── tree.md
+└── tree.txt
 
-16 directories, 93 files
+16 directories, 94 files
