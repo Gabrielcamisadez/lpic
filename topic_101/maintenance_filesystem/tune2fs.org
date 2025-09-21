@@ -105,6 +105,7 @@ root@debian9-lpic1:~# tune2fs -l /dev/sdb2 | grep -i features
 Filesystem features:      ext_attr resize_inode dir_index filetype sparse_super large_file
 #+end_src
 
+* ext2 to ext3 with has_journal
 *Adicionando feature has_journal, onde converte ext2 para ext3* ->
 #+begin_src sh
 tune2fs -j /dev/sdb1
