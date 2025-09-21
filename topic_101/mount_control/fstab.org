@@ -52,5 +52,5 @@ UUID=f8fc2a09-d2a9-4a42-9496-417f58496fe8 none            swap    sw            
 * montar uma partição /dev/sdb2 com o sistema ext4 no fstab
 
 #+begin_src sh
-/dev/sdb2            /backup ext4         defaults1               2
+/dev/sdb3 /mnt/ext2 ext2 0 2
 #+end_src
