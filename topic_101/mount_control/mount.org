@@ -2,6 +2,15 @@
 #+author: gabriel
 #+description: 104.3
 
+A montagem manual de sistemas de arquivos é importante quando não for configurada uma entrada em */etc/fstab* para uma determinada partição ou quando for utilizado um meio de boot alternativo.
+
+O comando ~mount~ é utilizado para montagem de sistemas de arquivos manualmente de dispositivos ou de compartilhamentos nfs, smb, cifs.
+
+*Listar todos os sistemas de arquivos montados* ->
+Quando utilizado sem argumentos, o ~mount~ exibe os sistemas de arquivos de dispositivos ou redes montados ou então o conteúdo de */proc/mounts*
+
 O comando ~mount~ tem a finalidade de anexar um sistema de arquivos encontrado em uma árvore de arquivos, no diretório selecionado.
 
 *-t*  -> define the filesystem type
+
+* usage

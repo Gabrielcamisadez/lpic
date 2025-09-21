@@ -54,3 +54,9 @@ UUID=f8fc2a09-d2a9-4a42-9496-417f58496fe8 none            swap    sw            
 #+begin_src sh
 /dev/sdb3 /mnt/ext2 ext2 0 2
 #+end_src
+
+*filesystem with the ~noexec~ option* ->
+#+begin_src sh
+
+
+#+end_src
