@@ -1,0 +1,5 @@
+#+title: Symbolical Links
+#+author: gabriel
+#+description: 104.6
+
+É possível criar links simbólicos de arquivos ou diretórios mesmo que estejam em partições diferentes, já que o número de inodes do arquivo original e do link simbólico são diferentes
