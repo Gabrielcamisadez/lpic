@@ -1,0 +1,11 @@
+#+title: Umask
+#+author:gabriel
+
+Existe um comando interno do shell que é responsável por definir as permissões padrões para novos arquivos e diretórios criados por um usuário, este comando é o ~umask~
+
+Para visualizar as permissões aplicadas pelo umask ->
+#+begin_src sh
+umask -S
+#+end_src
+
+Este comando pode ser definido nos arquivos profiles, ou seja, */etc/profile* que é utilizado por todos os usuários do sistema.
