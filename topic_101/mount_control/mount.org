@@ -21,6 +21,8 @@ O comando ~mount~ tem a finalidade de anexar um sistema de arquivos encontrado e
 
 * usage
 
+
+
 * 3 different ways to verify mount devices
 
 *Mount command only* ->
