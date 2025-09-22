@@ -1,0 +1,67 @@
+#+title: Gerenciar Access Perm
+#+author: gabriel
+#+description: 104.5
+
+O comando para trocar permissões é o chmod. Há dois modos de uso possíveis: literal e octal
+
+*Literal* -> as permissões são representadas por letras
+
+ * *u* -> owner user
+ * *g* -> group
+ * *o* -> others
+
+ * *=* -> deixar permissões iguais ao desejado
+ * *-* -> para retirar permissão desejada
+ * *+* -> atribuir permissão desejada
+
+*Removendo permissões de escrita e leitura do dono de um arquivo* ->
+#+begin_src sh
+chmod u-rw /tmp/arquivo
+#+end_src
+
+* study users creation
+
+*user gabriel* ->
+#+begin_src sh
+useradd -m -s /bin/bash gabriel
+#+end_src
+
+*user suzana* ->
+#+begin_src sh
+useradd -m -s /bin/bash suzana
+#+end_src
+
+*sysadmins group creation*  ->
+#+begin_src sh
+groupadd sysadmins
+#+end_src
+
+*created dirs to study* ->
+#+begin_src sh
+root@debian9-lpic1:/tmp# ls -l
+total 36
+drwxr-xr-x 2 gabriel gabriel 4096 set 22 13:35 gabriel
+drwx------ 2 suporte suporte 4096 set 22 12:42 ssh-XXXXXXgfitTH
+drwxr-xr-x 2 root    root    4096 set 22 13:35 suzana
+drwxr-xr-x 2 root    root    4096 set 22 13:35 sysadmins
+#+end_src
+
+
+* owner edit
+
+*alterando o owner e o grupo do dir gabriel* ->
+#+begin_src sh
+chown -v gabriel.sysadmins /mnt/gabriel
+#+end_src
+
+ * Se deixar apenas o *.* o chown define o grupo padrão do user em questão
+
+*Adicionar um user a outro grupo* ->
+#+begin_src sh
+gpasswd -a gabriel sysadmins
+#+end_src
+
+*Pegar users presentes em um grupo* ->
+#+begin_src sh
+getent group sysadmins
+#+end_src

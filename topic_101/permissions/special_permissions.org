@@ -1,0 +1,27 @@
+#+title: Special Permissions
+#+author: gabriel
+#+description: 104.5
+
+
+Há um conjunto especial de permissões também conhecidos como bits especiais, sendo eles ->
+
+*SUID* -> Set User ID Bit -> octal 4
+
+*SGID* -> Set Group ID Bit -> octal 2
+
+*STICKY BIT* -> STICKY BIT > octal 1
+
+* SUID bit
+
+É atribuído a um arquivo binário com permissão de execução, quando desejamos que um usuário qualquer execute o comando com as permissões do user owner do comando (Root)
+
+Quando o comando pertence ao usuário root, um usuário qualquer irá executá-lo com as permissões de root desde que tenha permissões para executá-lo.
+
+
+* SGID bit
+
+É geralmente atribuível a diretórios. Quando um arquivo é criado dentro de um diretório com o *SGID bit* ativado, o conteúdo gravado dentro do diretório irá herdar o grupo do diretório.
+
+* Sticky bit
+
+Pode ser bastante utilizado para realizar otimizações de acesso a conteúdos, entretanto, a partir da série 2.6 do kernel Linux essa tarefa é realizada diretamente pelo kernel
