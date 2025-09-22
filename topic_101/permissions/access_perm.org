@@ -1,0 +1,36 @@
+#+title: Access Permissions
+#+author: gabriel
+#+description: 104.5
+
+* permissões de acesso
+
+As permissões são as informações que indicam que tipo de acesso pode ser realizado em determinado diretório ou arquivo.
+
+No GNU/Linux cada arquivo ou diretório tem definido seu controle de acesso em permissões atribuídas para ->
+
+*User* -> Usuário que criou o arquivo ou o diretório. O nome do owner do arquivo ou dir é o mesmo do user utilizado para entrar logar no sistema.
+- Somente o owner ou o root podem modificar as permissões de acesso.
+
+*Group* -> permissão atribuída a um grupo, permitindo vários users membros do grupo tenham acesso a um mesmo arquivo ou dir.
+- Cada user pode fazer parte de 1 ou mais grupos no sistema.
+
+*Other* -> Todos os users que não são owner e nem pertecem a um grupo com permissões no arquivo ou dir
+
+As permissões que cada um destes podem receber são ->
+
+*Read* -> r
+
+*Write* -> w
+
+*Exec* -> x
+
+*Special* -> s
+
+Arquivo de exemplo e suas respectivas permissions ->
+#+begin_src sh
+l tree.txt
+-rw-rw-r-- 1 ilak ilak 4,2K set 20 23:09 tree.txt
+#+end_src
+
+
+As permissões em arquivos e dirs são sequências de 12 bits, bits de atributo e proteção no formato rwx rwx rwx, sendo que os três bit iniciais são utilizados para permissões especiais e os nove restantes para bits file mode
