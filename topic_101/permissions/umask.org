@@ -48,8 +48,9 @@ Para calcular as permissões para novos arquivos e diretórios utilizando a umas
 
 * exemplos
 
-Default perm binary for files 110 110 110 (666 octal)
-Default Perm binary for dir 111 111 111 (777 octal)
+*Default perm binary for files 110 110 110 (666 octal)*
+*Default Perm binary for dir 111 111 111 (777 octal)*
+
 
 *1 for dirs* ->
 umask = 021 (octal umask)
@@ -93,3 +94,10 @@ umask = 034(octal umask)
 111 100 011(not umask)
 
 [[./imgs/3_file.png]]
+
+* pulo do gato
+
+O pulo do gato para acelar o calculo, é sempre tirar das permissões padrões para diretórios 777 e arquivos 666, somente as permissões definidas na umask e que estão presentes nas permissões padrões para diretórios e arquivos
+
+*example 1* ->
+[[./imgs/pulo_gato.png]]
