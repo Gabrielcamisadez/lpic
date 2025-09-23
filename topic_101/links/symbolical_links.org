@@ -2,4 +2,43 @@
 #+author: gabriel
 #+description: 104.6
 
-É possível criar links simbólicos de arquivos ou diretórios mesmo que estejam em partições diferentes, já que o número de inodes do arquivo original e do link simbólico são diferentes
+É possível criar links simbólicos de arquivos ou diretórios mesmo que estejam em partições diferentes, já que o número de inodes do arquivo original e do link simbólico são diferentes, mas se o arquivo original for apagado o link é quebrado.
+
+*test file* ->
+#+begin_src sh
+echo 'teste file ""' > /tmp/arquivo
+#+end_src
+
+*olhar o inode do arquivo com o ls*
+#+begin_src sh
+ls -i /tmp/arquivo
+
+[16:21][]~ ✮ ls -i /tmp/arquivo
+7340251 /tmp/arquivo
+#+end_src
+
+*view inodes and permissions* ->
+#+begin_src sh
+ls -il /tmp/simbolico
+#+end_src
+
+*criando um link do /tmp/arquivo para /tmp/simbolico* ->
+#+begin_src sh
+ln -sf /tmp/arquivo /tmp/simbolico
+#+end_src
+
+* hard links
+
+Não é possível criar Hard Links de arquivos ou diretórios que estejam em partições diferentes, pois o range de números de inodes mudam de uma partição para outra, ou seja, os Hard links não terão o mesmo número de inode, e também não é possível criar HardLinks de diretórios da mesma partição
+
+O hardlink é criado usando o comando ~ln~, como usado para criação de um link simbolico, mas não é necessário passar opções para o comando ~ln~
+
+*Hard link creation* ->
+#+begin_src sh
+ln /tmp/arquivo /tmp/arq.hard
+#+end_src
+
+*view of inode number* ->
+#+begin_src sh
+ls -1 -i /tmp/arq.hard
+#+end_src
