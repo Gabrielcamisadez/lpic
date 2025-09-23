@@ -1,0 +1,45 @@
+#+title: Hard links and Symbolical Links
+#+author: gabriel
+#+description: 104.6 topic about links
+
+* some questions
+
+Após criar um link simbólico chamado /tmp/shadow do arquivo /etc/shadow. informe a seguir quais as permissões no modo octal do link simbólico.
+
+777
+
+Se a permissão de acesso de um link simbólico for alterada, a alteração da permissão é aplicada no arquivo linkado. verdadeiro ou falso ?
+
+Falso
+
+A opção _____ do comando ln é usado para criar links simbólicos.
+
+-s
+
+você executou os comandos a seguir:
+
+cp -v /etc/services /tmp ; cd /tmp
+
+mkdir -v link ; ln -s services serviços
+
+cp -v serviços link/
+
+
+
+É correto afirmar que:
+
+
+
+A. O conteúdo do link simbólico /tmp/serviços será copiado e será gravado dentro do arquivo /tmp/link/serviços.
+
+B. O link simbólico /tmp/link/serviços continua funcionando
+
+C. Após a copia do link simbólico foi gerado um hardlink dentro do diretório /tmp/link
+
+D. Não é possível criar uma copia de link simbólico.
+
+B
+
+O link físico nada mais é que um link para o inode de um arquivo. então o link físico e o arquivo alvo contém o mesmo conteúdo. verdadeiro ou falso.
+
+Verdadeiro

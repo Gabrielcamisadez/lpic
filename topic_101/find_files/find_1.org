@@ -1,0 +1,20 @@
+#+title: Find files and commands at Linux
+#+author: gabriel
+#+description: 104.7
+
+
+O comando type mostra se cada nome de comando é um comando do UNIX, um comando interno, um alias, uma palavra-chave do shell ou uma função de shell definida
+
+Para saber se o comando alias é um comando interno, comando UNIX ->
+#+begin_src sh
+type alias
+#+end_src
+
+Outro comando que a LPI costuma cobrar no exame 101 é o comando ~file~ que determina o tipo do arquivo analisando o seu conteúdo. O exemplo abaixo mostra um pouco seu uso ->
+
+#+begin_src sh
+file /bin/cat
+file /dev/sda1
+file /etc/passwd
+file /usr/sbin/adduser
+#+end_src
