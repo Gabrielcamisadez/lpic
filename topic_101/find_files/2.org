@@ -1,0 +1,30 @@
+#+title: Find with updatedb and locale
+#+author:gabriel
+#+description: 104.7
+
+O comando ~locate~ é um comando rápido de busca de arquivos, porém não usa busca recursiva na sua árvore de diretórios. Ele utiliza uma base de dados que é criada pelo comando ~updatedb~, para que a busca seja mais rápida
+
+Para utilizar o comando ~locate~, primeiro é necessário criar a sua base de dados ->
+#+begin_src sh
+updatedb
+#+end_src
+
+O arquivo */etc/updatedb.conf* é o arquivo de configuração para o comando ~updatedb~. Para ativar as atualizações diárias, o usuário root precisa editar */etc/updatedb.conf* e definir DAILY_UPDATE = yes
+
+Quando o comando ~updatedb~ é executado pela primeira vez costuma demorar um pouco. Isso deve-se a primeira varredura do disco para a criação da primeira base de dados.
+#+begin_src sh
+locate howto
+
+[root@centos6-lpic1 ~]# locate howto
+/usr/share/doc/initscripts-9.03.58/ipv6-6to4.howto
+/usr/share/doc/initscripts-9.03.58/ipv6-tunnel.howto
+/usr/share/doc/kexec-tools-2.0.0/kexec-kdump-howto.txt
+/usr/share/doc/python-lxml-2.2.3/doc/lxml-source-howto.txt
+/usr/share/doc/python-lxml-2.2.3/doc/html/lxml-source-howto.html
+/usr/share/vim/vim74/doc/howto.txt.gz
+#+end_src
+
+Para mostrar estatísticas do comando ~locate~ usa a opção -S, isso pode mostrar várias informações, entre elas a localizaçãoo do banco de dados utilizado pelo locate
+#+begin_src sh
+locate -S
+#+end_src
