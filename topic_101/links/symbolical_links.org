@@ -24,7 +24,12 @@ ls -il /tmp/simbolico
 
 *criando um link do /tmp/arquivo para /tmp/simbolico* ->
 #+begin_src sh
-ln -sf /tmp/arquivo /tmp/simbolico
+ln -sf /tmp/simbolico /tmp/arquivo
+#+end_src
+
+*another symbolical link* ->
+#+begin_src sh
+ln -s /tmp/simbolico /tmp/arquivo
 #+end_src
 
 * hard links
@@ -33,12 +38,19 @@ Não é possível criar Hard Links de arquivos ou diretórios que estejam em par
 
 O hardlink é criado usando o comando ~ln~, como usado para criação de um link simbolico, mas não é necessário passar opções para o comando ~ln~
 
-*Hard link creation* ->
+*test file creation* ->
 #+begin_src sh
-ln /tmp/arquivo /tmp/arq.hard
+touch /tmp/hard-link
 #+end_src
 
-*view of inode number* ->
+*view of the inode* ->
 #+begin_src sh
-ls -1 -i /tmp/arq.hard
+ls -i /tmp/hard-link
 #+end_src
+
+*hard link creation* ->
+#+begin_src sh
+ln /tmp/hard-link /tmp/hard
+#+end_src
+
+Ao apagar o arquivo original do hard link, o arquivo destino do link não será apagado, seu inode e seu content continuarão iguais ao arquivo original
