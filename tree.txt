@@ -2,7 +2,8 @@
 ├── README.org
 ├── simulations
 │   ├── 102.3.org
-│   └── 102.3.pdf
+│   ├── 102.3.pdf
+│   └── 104.3.org
 ├── topic_101
 │   ├── files_edit
 │   │   └── definir_editor_default.org
@@ -16,7 +17,8 @@
 │   │   ├── mke2fs.org
 │   │   ├── mkfs_mkswap.org
 │   │   ├── mkfs_mkswap.txt
-│   │   └── XFS.org
+│   │   ├── XFS.org
+│   │   └── XFS.txt
 │   ├── grub
 │   │   ├── grb2.org
 │   │   ├── grb2.txt
@@ -48,10 +50,15 @@
 │   │   ├── particoes.txt
 │   │   ├── tabela_mbr.org
 │   │   └── tabela_mbr.txt
+│   ├── links
+│   │   └── symbolical_links.org
 │   ├── maintenance_filesystem
 │   │   ├── du_df.org
+│   │   ├── du_df.txt
 │   │   ├── fsck_e2fsck.org
-│   │   └── tune2fs.org
+│   │   ├── fsck_e2fsck.txt
+│   │   ├── tune2fs.org
+│   │   └── tune2fs.txt
 │   ├── mount_control
 │   │   ├── fstab.org
 │   │   └── mount.org
@@ -67,8 +74,24 @@
 │   │   └── zypper.txt
 │   ├── partitions
 │   │   ├── EFI.org
+│   │   ├── EFI.txt
 │   │   ├── parted.org
-│   │   └── setup_parts_fs.org
+│   │   ├── parted.txt
+│   │   ├── setup_parts_fs.org
+│   │   └── setup_parts_fs.txt
+│   ├── permissions
+│   │   ├── access_perm.org
+│   │   ├── gerenciar_access_perm.org
+│   │   ├── imgs
+│   │   │   ├── 1_dir.png
+│   │   │   ├── 1_file.png
+│   │   │   ├── 2_dir.png
+│   │   │   ├── 2_file.png
+│   │   │   ├── 3_dir.png
+│   │   │   ├── 3_file.png
+│   │   │   └── pulo_gato.png
+│   │   ├── special_permissions.org
+│   │   └── umask.org
 │   ├── shared_libs
 │   │   ├── control_libs.org
 │   │   └── control_libs.txt
@@ -106,7 +129,6 @@
 │       ├── services_management_red-hat.org
 │       ├── services_management_red-hat.txt
 │       └── sysvinit.org
-├── tree.md
 └── tree.txt
 
-16 directories, 94 files
+19 directories, 113 files
