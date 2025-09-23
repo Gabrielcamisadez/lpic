@@ -1,0 +1,178 @@
+                            ━━━━━━━━━━━━━━━━
+                             SETUP PARTS FS
+
+                                gabriel
+                            ━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. partition setup
+2. Types
+
+
+1 partition setup
+═════════════════
+
+  *List all disks on the current system* ->
+
+  ┌────
+  │ fdisk -l
+  │ 
+  │ Disk /dev/hda: 21.4 GB, 21474836480 bytes
+  │ 255 heads, 63 sectors/track, 2610 cylinders
+  │ Units = cilindros of 16065 * 512 = 8225280 bytes
+  │ Disk identifier: 0x000c9c7c
+  │ 
+  │ Dispositivo Boot      Start         End      Blocks   Id  System
+  │ /dev/hda1               1         182     1461883+  82  Linux swap / Solaris
+  │ /dev/hda2             183         243      489982+  83  Linux
+  │ /dev/hda3             244        1276     8297572+  83  Linux
+  │ /dev/hda4            1277        2610    10715355   83  Linux
+  │ 
+  │ Disk /dev/hdc: 21.4 GB, 21474836480 bytes
+  │ 255 heads, 63 sectors/track, 2610 cylinders
+  │ Units = cilindros of 16065 * 512 = 8225280 bytes
+  │ Disk identifier: 0x00036e64
+  │ 
+  │ Dispositivo Boot      Start         End      Blocks   Id  System
+  │ /dev/hdc1               1        2610    20964793+  8e  Linux LVM
+  │ 
+  │ Disk /dev/hdd: 10.7 GB, 10737418240 bytes
+  │ 16 heads, 63 sectors/track, 20805 cylinders
+  │ Units = cilindros of 1008 * 512 = 516096 bytes
+  │ Disk identifier: 0x9782dc4a
+  │ 
+  │ Dispositivo Boot      Start         End      Blocks   Id  System
+  │ /dev/hdd1               1        9689     4883224+  83  Linux
+  │ /dev/hdd2            9690       19378     4883256   83  Linux
+  │ /dev/hdd3           19379       20805      719208    5  Estendida
+  │ 
+  │ Disk /dev/sda: 21.4 GB, 21474836480 bytes
+  │ 255 heads, 63 sectors/track, 2610 cylinders
+  │ Units = cilindros of 16065 * 512 = 8225280 bytes
+  │ Disk identifier: 0x00000000
+  │ 
+  │ O disco /dev/sda não contém uma tabela de partições válida
+  │ 
+  │ Disk /dev/sdb: 16.1 GB, 16106127360 bytes
+  │ 255 heads, 63 sectors/track, 1958 cylinders
+  │ Units = cilindros of 16065 * 512 = 8225280 bytes
+  │ Disk identifier: 0x5ea31c53
+  └────
+
+  *in this case i will modfy the disk /dev/sdc* ->
+
+  ┌────
+  │ fdisk /dev/sdc
+  │ 
+  │ Comando (m para ajuda): p
+  │ 
+  │ Disk /dev/sdc: 10.7 GB, 10737418240 bytes
+  │ 255 heads, 63 sectors/track, 1305 cylinders
+  │ Units = cilindros of 16065 * 512 = 8225280 bytes
+  │ Disk identifier: 0xf7d70a7d
+  │ 
+  │ Dispositivo Boot      Start         End      Blocks   Id  System
+  │ /dev/sdc1               1         609     4891761   83  Linux
+  │ /dev/sdc2             610        1305     5590620    7  HPFS ou NTFS
+  │ 
+  │ Comando (m para ajuda):
+  └────
+
+  *Once the partition iis created, change its type*
+  ‣ 7 to *HPFS/NTFS/exFAT*
+  ┌────
+  │ Comando (m para ajuda): t
+  │ Selecionou a partição 1
+  │ Código hexadecimal ou apelido (digite L para listar todos): 7
+  │ O tipo da partição "HPFS/NTFS/exFAT" foi alterado para "HPFS/NTFS/exFAT".
+  │ 
+  │ Comando (m para ajuda): p
+  │ Disco /dev/sdc: 15 GiB, 16106127360 bytes, 31457280 setores
+  │ Modelo de disco: VBOX HARDDISK
+  │ Unidades: setor de 1 * 512 = 512 bytes
+  │ Tamanho de setor (lógico/físico): 512 bytes / 512 bytes
+  │ Tamanho E/S (mínimo/ótimo): 512 bytes / 512 bytes
+  │ Tipo de rótulo do disco: dos
+  │ Identificador do disco: 0x098ef078
+  │ 
+  │ Dispositivo Inicializar Início      Fim  Setores Tamanho Id Tipo
+  │ /dev/sdc1                 2048 31457279 31455232     15G  7 HPFS/NTFS/exFAT
+  │ 
+  │ Comando (m para ajuda):
+  └────
+
+  *creating a filesystem* ->
+  ┌────
+  │ root@debian9-lpic1:~# mkfs.ext4 -L test /dev/sdc1
+  │ mke2fs 1.47.0 (5-Feb-2023)
+  │ /dev/sdc1 contains a exfat file system
+  │ Proceed anyway? (y,N) y
+  │ Creating filesystem with 3931904 4k blocks and 983040 inodes
+  │ Filesystem UUID: ebf15ece-f392-4fe9-b8ef-213ecee363ad
+  │ Superblock backups stored on blocks:
+  │         32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208
+  │ 
+  │ Allocating group tables: done
+  │ Writing inode tables: done
+  │ Creating journal (16384 blocks): done
+  │ Writing superblocks and filesystem accounting information: done
+  └────
+
+  *verify* ->
+  ┌────
+  │ file -s /dev/sdc1
+  │ 
+  │ lpic1-debian5:~# file -s /dev/sdc2
+  │ /dev/sdc2: Linux rev 1.0 ext4 filesystem data, UUID=d50727b4-d3f6-4416-a67b-2a48
+  │ 04f7de4c (large files)
+  └────
+
+
+  *apt-get install exfat-fuse exfatprogs forensics-samples-exfat*
+
+
+2 Types
+═══════
+
+  ┌────
+  │ Código hexadecimal ou apelido (digite L para listar todos): L
+  │ 
+  │ 00 Vazia            27 WinRE NTFS Esco  82 Linux swap / So  c1 DRDOS/sec (FAT1
+  │ 01 FAT12            39 Plan 9           83 Linux            c4 DRDOS/sec (FAT1
+  │ 02 root XENIX       3c PartitionMagic   84 OS/2 escondido   c6 DRDOS/sec (FAT1
+  │ 03 usr XENIX        40 Venix 80286      85 Estendida Linux  c7 Syrinx
+  │ 04 FAT16 <32M       41 Boot PReP PPC    86 Conjunto de vol  da Dados Não-FS
+  │ 05 Estendida        42 SFS              87 Conjunto de vol  db CP/M / CTOS / .
+  │ 06 FAT16            4d QNX4.x           88 Linux texto sim  de Utilitário Dell
+  │ 07 HPFS/NTFS/exFAT  4e QNX4.x 2ª parte  8e Linux LVM        df BootIt
+  │ 08 AIX              4f QNX4.x 3ª parte  93 Amoeba           e1 Acesso DOS
+  │ 09 AIX inicializáv  50 DM OnTrack       94 Amoeba BBT       e3 DOS R/O
+  │ 0a Gerenc. inici.   51 DM6 OnTrack Aux  9f BSD/OS           e4 SpeedStor
+  │ 0b FAT32 W95        52 CP/M             a0 Hibernação IBM   ea Linux estendida
+  │ 0c FAT32 W95 (LBA)  53 DM6 OnTrack Aux  a5 FreeBSD          eb sist. arq. BeOS
+  │ 0e FAT16 W95 (LBA)  54 DM6 OnTrack      a6 OpenBSD          ee GPT
+  │ 0f Estendida W95 (  55 EZ-Drive         a7 NeXTSTEP         ef EFI (FAT-12/16/
+  │ 10 OPUS             56 Golden Bow       a8 Darwin UFS       f0 inic. Linux/PA-
+  │ 11 FAT12 Escondida  5c Edisk Priam      a9 NetBSD           f1 SpeedStor
+  │ 12 Diagnóstico Com  61 SpeedStor        ab inic. Darwin     f4 SpeedStor
+  │ 14 FAT16 Escondida  63 GNU HURD ou Sys  af HFS / HFS+       f2 DOS secundário
+  │ 16 FAT16 Escondida  64 Novell Netware   b7 sist. arq. BSDI  f8 EBBR protective
+  │ 17 HPFS ou NTFS Es  65 Novell Netware   b8 BSDI swap        fb VMware VMFS
+  │ 18 AST SmartSleep   70 Multi-Boot Disk  bb Assist. Inici.   fc VMware VMKCORE
+  │ 1b FAT32 W95 Escon  75 PC/IX            bc FAT32 LBA Acron  fd Linux RAID auto
+  │ 1c FAT32 W95 Esc.   80 Minix antigo     be inicialização d  fe LANstep
+  │ 1e FAT16 W95 Esc.   81 Linux antigo/Mi  bf Solaris          ff BBT
+  │ 24 DOS NEC
+  │ 
+  │ Apelidos:
+  │    linux          - 83
+  │    swap           - 82
+  │    extended       - 05
+  │    uefi           - EF
+  │    raid           - FD
+  │    lvm            - 8E
+  │    linuxex        - 85
+  └────

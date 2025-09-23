@@ -1,0 +1,104 @@
+                             ━━━━━━━━━━━━━
+                              FSCK E2FSCK
+
+                                gabriel
+                             ━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. fsck intro
+2. fsck basic usage
+3. e2fsck basic usage
+
+
+1 fsck intro
+════════════
+
+  Ambientes onde há muita atividade de leitura e escrita de dados podem
+  eventualmente apresentar falhas, principalmente no caso de falhas de
+  hardware ou desligamento abrupto.
+
+  É recomendável fazer a checagem e eventual correção esporádica das
+  partições
+
+  O comando *fsck* checa e repara um sistema de arquivos. Quando este
+  comando é usado sem especificar nenhum sistema de arquivos e a opção
+  *-A* também não for especificada, o *fsck* usará as informações
+  contidas no arquivo */etc/fstab* para tomar as devidas providências.
+
+  A saída retornada pelo comando fsck pode ser uma destas possibilidades
+  ->
+
+  ‣ 0: Nenhum erro
+
+  ‣ 1: Erros no sistema de arquivos foram corrigidos
+
+  ‣ 2: O sistema deverá ser reiniciado
+
+  ‣ 4: Erros no sistema de arquivos não foram corrigidos
+
+  ‣ 8: Erro operacional
+
+  ‣ 16: Uso ou syntax errada
+
+
+2 fsck basic usage
+══════════════════
+
+  *Reparar um sistema de arquivos do tpo ext3* ->
+  ┌────
+  │ fsck -t ext3 /dev/sdb2
+  │ 
+  │ root@debian9-lpic1:~# fsck -t ext3 /dev/sdb2
+  │ fsck de util-linux 2.38.1
+  │ e2fsck 1.47.0 (5-Feb-2023)
+  │ /dev/sdb2: clean, 11/393216 files, 44159/1572864 blocks
+  └────
+
+  *Equivalente ao comando* ->
+  ┌────
+  │ fsck.ext3 /dev/sdb2
+  └────
+
+
+  O comando fsck busca no dir */usr/sbin/fsck* por qual tipo de
+  filesystem ele deve realizar o test ->
+  ┌────
+  │ root@debian9-lpic1:~# ls -l /usr/sbin/fsck*
+  │ -rwxr-xr-x 1 root root  58932 mar 23  2023 /usr/sbin/fsck
+  │ -rwxr-xr-x 1 root root  46656 mar 23  2023 /usr/sbin/fsck.cramfs
+  │ -rwxr-xr-x 1 root root  63660 out 28  2022 /usr/sbin/fsck.exfat
+  │ lrwxrwxrwx 1 root root      6 mar  5  2023 /usr/sbin/fsck.ext2 -> e2fsck
+  │ lrwxrwxrwx 1 root root      6 mar  5  2023 /usr/sbin/fsck.ext3 -> e2fsck
+  │ lrwxrwxrwx 1 root root      6 mar  5  2023 /usr/sbin/fsck.ext4 -> e2fsck
+  │ -rwxr-xr-x 1 root root  91688 fev  7  2021 /usr/sbin/fsck.fat
+  │ -rwxr-xr-x 1 root root 140852 mar 23  2023 /usr/sbin/fsck.minix
+  │ lrwxrwxrwx 1 root root      8 fev  7  2021 /usr/sbin/fsck.msdos -> fsck.fat
+  │ lrwxrwxrwx 1 root root      8 fev  7  2021 /usr/sbin/fsck.vfat -> fsck.fat
+  └────
+
+
+3 e2fsck basic usage
+════════════════════
+
+  O comando *e2fsck* é utilizado para checar/reparar somenter
+  filesystems do tipo ext2, ext3, ext4.
+
+  Common options ->
+
+  ‣ *-f* força a checagem do sistema de arquivos, mesmo que esteja
+      marcado como limp
+
+  ‣ *-n* abre o sistema de arquivos como leitura e não repara o sistema
+      de arquivos, faz a verificação sem alterar
+
+  ‣ *-p* repara automaticamente o sistema de arquivos
+
+  ‣ *-y* assume como afirmativo todas as questões
+
+  *Reparando um ext4 com o e2fsck* ->
+  ┌────
+  │ e2fsck -y -f /dev/sdb1
+  └────

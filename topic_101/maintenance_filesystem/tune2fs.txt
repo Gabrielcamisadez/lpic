@@ -1,0 +1,149 @@
+                               ━━━━━━━━━
+                                TUNE2FS
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. intro
+2. convertendo ext2 para ext3
+3. ext2 to ext3 with has_journal
+
+
+1 intro
+═══════
+
+  O comando *tune2fs* permite ao administrador do sistema ajustar vários
+  parâmetros do sistema de arquivos ajustáveis nos sistemas de arquivos
+  ext2, ext3, ext4.
+
+  Os valores atuais destes sistemas de arquivos podem ser exibidos com a
+  opção *-l*
+
+  A feature *has_journal* é utilizada para a recuperação do sistema de
+  arquivos
+
+  *listando params de um sistema de arquivos com o -l* ->
+  ┌────
+  │ tune2fs -l /dev/sdd2
+  │ 
+  │ root@debian9-lpic1:~# tune2fs -l /dev/sdb1
+  │ tune2fs 1.47.0 (5-Feb-2023)
+  │ Filesystem volume name:   <none>
+  │ Last mounted on:          <not available>
+  │ Filesystem UUID:          3cc168e2-1967-4b92-9378-0f9da1812525
+  │ Filesystem magic number:  0xEF53
+  │ Filesystem revision #:    1 (dynamic)
+  │ Filesystem features:      has_journal ext_attr resize_inode dir_index filetype extent 64bit
+  │  flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+  │ Filesystem flags:         signed_directory_hash
+  │ Default mount options:    user_xattr acl
+  │ Filesystem state:         clean
+  │ Errors behavior:          Continue
+  │ Filesystem OS type:       Linux
+  │ Inode count:              327680
+  │ Block count:              1310720
+  │ Reserved block count:     65536
+  │ Overhead clusters:        42072
+  │ Free blocks:              1268642
+  │ Free inodes:              327669
+  │ First block:              0
+  │ Block size:               4096
+  │ Fragment size:            4096
+  │ Group descriptor size:    64
+  │ Reserved GDT blocks:      639
+  │ Blocks per group:         32768
+  │ Fragments per group:      32768
+  │ Inodes per group:         8192
+  │ Inode blocks per group:   512
+  │ Flex block group size:    16
+  │ Filesystem created:       Fri Sep 19 14:35:49 2025
+  │ Last mount time:          n/a
+  │ Last write time:          Fri Sep 19 14:53:49 2025
+  │ Mount count:              0
+  │ Maximum mount count:      -1
+  │ Last checked:             Fri Sep 19 14:53:49 2025
+  │ Check interval:           0 (<none>)
+  │ Lifetime writes:          2601 kB
+  │ Reserved blocks uid:      0 (user root)
+  │ Reserved blocks gid:      0 (group root)
+  │ First inode:              11
+  │ Inode size:               256
+  │ Required extra isize:     32
+  │ Desired extra isize:      32
+  │ Journal inode:            8
+  │ Default directory hash:   half_md4
+  │ Directory Hash Seed:      3fdf5184-2adf-4e8c-a3ab-9dba7406c0e5
+  │ Journal backup:           inode blocks
+  │ Checksum type:            crc32c
+  │ Checksum:                 0xe83dc493
+  └────
+
+  *Adicionar uma label a um sistema de arquivos* ->
+  ┌────
+  │ tune2fs -L "TEST" /dev/sdb2
+  └────
+
+
+  *Definir o maximum mount count* ->
+  ┌────
+  │ tune2fs -c 20
+  │ 
+  │ root@debian9-lpic1:~# tune2fs -c 20 /dev/sdb1
+  │ tune2fs 1.47.0 (5-Feb-2023)
+  │ Setting maximal mount count to 20
+  └────
+
+  *ajuste do reserved block content, reserva para privileges* ->
+  ┌────
+  │ tune2fs -m 10 /dev/sdb2
+  └────
+
+
+2 convertendo ext2 para ext3
+════════════════════════════
+
+  *Verify the type* ->
+  ┌────
+  │ file -s /dev/sdb2
+  │ 
+  │ root@debian9-lpic1:~# file -s /dev/sdb2
+  │ /dev/sdb2: Linux rev 1.0 ext2 filesystem data, UUID=0e3f006b-573d-49d6-9cac-77287ec6d880 (l
+  │ arge files)
+  └────
+
+  *Verificar as features presentes* ->
+  ┌────
+  │ tune2fs -l /dev/sdb2 | grep -i features
+  │ 
+  │ root@debian9-lpic1:~# tune2fs -l /dev/sdb2 | grep -i features
+  │ Filesystem features:      ext_attr resize_inode dir_index filetype sparse_super large_file
+  └────
+
+
+3 ext2 to ext3 with has_journal
+═══════════════════════════════
+
+  *Adicionando feature has_journal, onde converte ext2 para ext3* ->
+  ┌────
+  │ tune2fs -j /dev/sdb1
+  │ 
+  │ root@debian9-lpic1:~# tune2fs -j /dev/sdb2
+  │ tune2fs 1.47.0 (5-Feb-2023)
+  │ Creating journal inode: done
+  │ root@debian9-lpic1:~#
+  └────
+
+
+  *Verify again, after the has_journal feature is added* ->
+  ┌────
+  │ file -s /dev/sdb2
+  │ 
+  │ root@debian9-lpic1:~# file -s /dev/sdb2
+  │ /dev/sdb2: Linux rev 1.0 ext3 filesystem data, UUID=0e3f006b-573d-49d6-9cac-77287ec6d880 (l
+  │ arge files)
+  │ root@debian9-lpic1:~#
+  └────

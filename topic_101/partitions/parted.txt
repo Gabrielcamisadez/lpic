@@ -1,0 +1,61 @@
+                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                 CRIAR PARTIÇÕES E SISTEMAS DE ARQUIVOS
+
+                                gabriel
+                ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. parted options
+
+
+O comando `parted' é um utilitário GNU usado para manipular partições.
+Usando o comando `parted' podemos acidionar, deletar, editar,
+redimencionar e clonar partições, além de poder manipular os sistemas de
+arquivos dessas partições.
+
+Quando se executado o utilitário parted sem nenhum argumento, ele
+seleciona por padrão oprimeiro disco disponível no sistema.
+
+O `parted' diferente do gdisk e fdisk, as alterações são aplicadas
+imediatamente.
+
+
+1 parted options
+════════════════
+
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   comandos  finalidade                                                  
+   help      exibe a ajuda geral ou sobre algum comando                  
+   check     faz um teste simples no sistema de arquivos                 
+   cp        copia o sistema de arquivos para outra partição             
+   mktable   cria um novo rótulo de disco (tabela de partição)           
+   mkfs      cria um sistema de arquivos FS-TYPE na partição selecionada 
+   mkpart    cria uma partição                                           
+   mkpartfs  cria uma partição com um sistema de arquivos                
+   print     mostra a tabela de partição, dispositivos disponíveis       
+   rm        apaga uma partição do disco selecionado                     
+   select    seleciona o dispositivo a editar                            
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  *Entrar no parted* ->
+  ┌────
+  │ parted
+  └────
+
+  *Printar partições do disco atual* ->
+  ┌────
+  │ print
+  └────
+
+  *Alterar o disco selecionado* ->
+  ┌────
+  │ select /dev/sdb
+  └────
+
+  *Criar tabela de partições* ->
+  ┌────
+  │ mklabel
+  └────

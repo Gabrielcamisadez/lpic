@@ -1,0 +1,212 @@
+                               ━━━━━━━━━
+                                  XFS
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. xfs
+2. xfs_db
+3. xfs_fsr
+4. xfs_repair
+
+
+1 xfs
+═════
+
+  *apt-get install xfsprogs* at Debian 9
+
+  ┌────
+  │ root@debian9-lpic1:~# apt-get install xfsprogs
+  │ Lendo listas de pacotes... Pronto
+  │ Construindo árvore de dependências... Pronto
+  │ Lendo informação de estado... Pronto
+  │ xfsprogs is already the newest version (6.1.0-1).
+  │ 0 pacotes atualizados, 0 pacotes novos instalados, 0 a serem removidos e 361 não atualizado
+  └────
+
+  *Verify with the mkfs.ext command* ->
+
+  *Format the partition* ->
+  ┌────
+  │ mkfs.xfs -f /dev/sdb3
+  │ 
+  │ root@debian9-lpic1:~# mkfs.xfs -f /dev/sdb3
+  │ meta-data=/dev/sdb3
+  │ isize=512    agcount=4, agsize=524288 blks
+  │          =                       sectsz=512   attr=2, projid32bit=1
+  │          =                       crc=1        finobt=1, sparse=1, rmapbt=0
+  │          =                       reflink=1    bigtime=1 inobtcount=1 nrext64=0
+  │ data     =                       bsize=4096   blocks=2097152, imaxpct=25
+  │          =                       sunit=0      swidth=0 blks
+  │ naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+  │ log      =internal log           bsize=4096   blocks=16384, version=2
+  │          =                       sectsz=512   sunit=0 blks, lazy-count=1
+  │ realtime =none                   extsz=4096   blocks=0, rtextents=0
+  │ root@debian9-lpic1:~# file -s /dev/sdb3
+  │ /dev/sdb3: SGI XFS filesystem data (blksz 4096, inosz 512, v2 dirs)
+  │ root@debian9-lpic1:~#
+  └────
+
+  *montar o sistema de arquivos antes dos estudos/testes* ->
+
+  ┌────
+  │ mount /dev/sdb1 /mnt/xfs
+  └────
+
+  *verify the xfs filesystems* ->
+  ┌────
+  │ df -ht xfs
+  │ 
+  │ root@debian9-lpic1:~# df -ht xfs
+  │ Sist. Arq.      Tam. Usado Disp. Uso% Montado em
+  │ /dev/sdb3       8,0G   89M  7,9G   2% /mnt/xfs
+  │ root@debian9-lpic1:~#
+  └────
+
+
+2 xfs_db
+════════
+
+  *xfs_db* é utilizado para examinar sistemas de arquivos XFS. Dentre as
+   circunstâncias também pode ser utilizado para modificar sistemas de
+   arquivos XFS, mas esse trabalho geralmente é deixado para o
+   *xfs_repair* ou para scripts como o *xfs_admin*.
+
+  Funciona apenas em filesystems que estão desmontados!
+
+  *xfs_db -x* -> Modo expert do xfs_db xfs_db -r* -> modo de leitura
+  ┌────
+  │ xfs_db /dev/sdb1
+  │ 
+  │ root@debian9-lpic1:~# xfs_db -x /dev/sdb1
+  │ xfs_db> help
+  │ ablock filoff -- set address to file offset (attr fork)
+  │ addr [field-expression] -- set current address
+  │ agf [agno] -- set address to agf header
+  │ agfl [agno] -- set address to agfl block
+  │ agi [agno] -- set address to agi header
+  │ agresv -- print AG reservation stats
+  │ attr_remove [-r|-s|-u] [-n] name -- remove the named attribute from the current inode
+  │ attr_set [-r|-s|-u] [-n] [-R|-C] [-v n] name -- set the named attribute on the current inod
+  │ e
+  │ back -- move to the previous location in the position ring
+  │ blockfree -- free block usage information
+  │ blockget [-s|-v] [-n] [-t] [-b bno]... [-i ino] ... -- get block usage and check consistenc
+  │ y
+  │ blocktrash [-n count] [-x minlen] [-y maxlen] [-s seed] [-0123] [-t type] ... -- trash rand
+  │ omly selected block(s)
+  │ blockuse [-n] [-c blockcount] -- print usage for current block(s)
+  │ bmap [-ad] [block [len]] -- show block map for current file
+  │ btdump [-a] [-i] -- dump btree
+  │ btheight [-b blksz] [-n recs] [-w max|-w min] btree types... -- compute btree heights
+  │ convert type num [type num]... type -- convert from one address form to another
+  │ crc [-i|-r|-v] -- manipulate crc values for V5 filesystem structures
+  │ daddr [d] -- set address to daddr value
+  │ dblock filoff -- set address to file offset (data fork)
+  │ debug [flagbits] -- set debug option bits
+  │ dquot [-g|-p|-u] id -- set current address to a group, project or user quota block for give
+  │ n ID
+  │ echo [args]... -- echo arguments
+  │ forward -- move forward to next entry in the position ring
+  │ frag [-a] [-d] [-f] [-l] [-q] [-R] [-r] [-v] -- get file fragmentation data
+  │ freesp [-bcdfs] [-A alignment] [-a agno]... [-e binsize] [-h h1]... [-m binmult] -- summari
+  │ ze free space for filesystem
+  │ fsblock [fsb] -- set address to fsblock value
+  │ fsmap [start_fsb] [end_fsb] -- display reverse mapping(s)
+  │ fuzz [-c] [-d] field fuzzcmd... -- fuzz values on disk
+  │ hash string -- calculate hash value
+  │ help [command] -- help for one or all commands
+  │ info -- pretty-print superblock info
+  │ inode [inode#] -- set current inode
+  │ label [label] -- write/print FS label
+  │ log [stop|start <filename>] -- start or stop logging to a file
+  │ logformat [-c cycle] [-s sunit] -- reformat the log
+  │ logres -- dump log reservations
+  │ ls [-i] [paths...] -- list directory contents
+  │ metadump [-a] [-e] [-g] [-m max_extent] [-w] [-o] filename -- dump metadata to a file
+  │ ncheck [-s] [-i ino] ... -- print inode-name pairs
+  │ path  -- navigate to an inode by path
+  │ pop -- pop location from the stack
+  │ print [value]... -- print field values
+  │ push [command] -- push location to the stack
+  │ quit -- exit xfs_db
+  │ ring -- show position ring or move to a specific entry
+  │ sb [agno] -- set current address to sb header
+  │ source source-file -- get commands from source-file
+  │ stack -- view the location stack
+  │ timelimit [--classic|--bigtime] [--pretty] -- display timestamp limits
+  │ type [newtype] -- set/show current data type
+  │ uuid [uuid] -- write/print FS uuid
+  │ version [feature | [vnum fnum]] -- set feature bit(s) in the sb version field
+  │ write [-c|-d] [field or value]... -- write value to disk
+  │ 
+  │ Use 'help commandname' for extended help.
+  │ xfs_db>
+  └────
+
+  *definir um label para o filesystem* ->
+  ┌────
+  │ xfs_db> label "test"
+  │ writing all SBs
+  │ new label = ""test""
+  │ xfs_db> label
+  │ label = ""test""
+  │ xfs_db>
+  └────
+
+  *get the uuid* ->
+  ┌────
+  │ xfs_db> uuid
+  │ UUID = 0e685754-ac87-4eb3-b106-7113dea082b0
+  │ xfs_db>
+  └────
+
+
+3 xfs_fsr
+═════════
+
+  *xfs_fsr* melhora a organização de sistemas de arquivos montados. A
+   reorganização do algoritmo opera com um arquivo de cada vez,
+   compactando ou de qualquer maneira melhorando o layout das extensões
+   de arquivos
+
+  *xfs_bmap* -> demonstrar arquivos fragmentados dentro do sistema de
+   arquivos
+  ┌────
+  │ root@debian9-lpic1:~# xfs_bmap -v /mnt/xfs/imagem1.iso
+  │ /mnt/xfs/imagem1.iso:
+  │  EXT: FILE-OFFSET         BLOCK-RANGE      AG AG-OFFSET          TOTAL
+  │    0: [0..2071807]:       192..2071999      0 (192..2071999)   2071808
+  │    1: [2071808..4177023]: 2621520..4726735  1 (80..2105295)    2105216
+  │    2: [4177024..4194303]: 7864400..7881679  3 (80..17359)        17280
+  │ root@debian9-lpic1:~#
+  └────
+
+  *desfragmentar o arquivo* ->
+  ┌────
+  │ xfs_fsr /mnt/xfs/imagem1.iso
+  │ 
+  └────
+
+  *frag* ->
+  ┌────
+  │ xfs_db> frag
+  │ actual 0, ideal 0, fragmentation factor 0,00%
+  │ Note, this number is largely meaningless.
+  │ Files on this filesystem average -nan extents per file
+  │ xfs_db>
+  └────
+
+
+4 xfs_repair
+════════════
+
+  *xfs_repair* -> repara sistemas de arquivos XFS corrompidos ou
+   danificados.
+
+  *xsf_repair -L* -> log format, deve ser utilizada somente em ultimo
+   caso!

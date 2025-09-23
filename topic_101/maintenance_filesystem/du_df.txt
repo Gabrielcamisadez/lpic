@@ -1,0 +1,74 @@
+                               ━━━━━━━━━
+                                DU , DF
+
+                                gabriel
+                               ━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. df basic usage
+2. du basic usage
+
+
+O comando responsável por exibir o espaço total e o espaço utilizado de
+todas as partições montadas chama-se *df*, e uma de suas características
+é que o cálculo dos espaços é sempre uma aproximação para a unidade de
+medida mais próxima.
+
+Não é incomum precisar determinar o tamanho de um arquivo, de uma
+partição inteira ou de um diretório com todo o seu conteúdo. O comando
+`ls -l' é capaz de exibir o tamanho de arquivos, mas não de partições
+inteiras.
+
+
+1 df basic usage
+════════════════
+
+  ‣ A opção *-h* exibe o espaço total de forma mais “human”, em
+    megabytes ou gigabytes
+  ‣ A opção *-T* informa qual o sistema de arquivos do dispositivo que
+    está montado e em uso.
+  ‣ A opçao *-i* exibe a quantidade de inodes total, usado e disponível
+    por sistema de arquivos montados
+
+  *Verificando tipo e espaço de uma partição* ->
+  ┌────
+  │ df -hT /dev/sdb1
+  └────
+
+
+  *Buscar em todo o sistema por filesystems do tipo ext4* ->
+  ┌────
+  │ df -hT -t ext4
+  │ 
+  │ root@debian9-lpic1:~# df -hT -t ext4
+  │ Sist. Arq.              Tipo  Tam. Usado Disp. Uso% Montado em
+  │ /dev/mapper/system-raiz ext4   20G  3,9G   15G  21% /
+  │ /dev/sda5               ext4  546M  113M  416M  22% /boot
+  │ /dev/mapper/system-home ext4  9,1G  424K  8,6G   1% /home
+  │ /dev/mapper/system-var  ext4  9,1G  341M  8,3G   4% /var
+  └────
+
+
+2 du basic usage
+════════════════
+
+  Summarize device usage of the set of files, recursively for
+  directories
+
+  *Verificar o espaço utilizado em um dir* ->
+  ┌────
+  │ du -h /projects
+  └────
+
+  *exibir somente o resumo do espaço total em uso* ->
+  ┌────
+  │ du -hs /lib/modules
+  └────
+
+  *ajuste do reserved block count, reserva para privileges* ->
+  ┌────
+  │ tune2fs -m 10 /dev/sdb2
+  └────
