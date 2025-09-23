@@ -100,4 +100,5 @@ umask = 034(octal umask)
 O pulo do gato para acelar o calculo, é sempre tirar das permissões padrões para diretórios 777 e arquivos 666, somente as permissões definidas na umask e que estão presentes nas permissões padrões para diretórios e arquivos
 
 *example 1* ->
+
 [[./imgs/pulo_gato.png]]
