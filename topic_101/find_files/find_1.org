@@ -3,6 +3,8 @@
 #+description: 104.7
 
 
+
+* type and file
 O comando type mostra se cada nome de comando é um comando do UNIX, um comando interno, um alias, uma palavra-chave do shell ou uma função de shell definida
 
 Para saber se o comando alias é um comando interno, comando UNIX ->
@@ -17,4 +19,19 @@ file /bin/cat
 file /dev/sda1
 file /etc/passwd
 file /usr/sbin/adduser
+#+end_src
+
+
+* whereis and which
+
+O comando ~whereis~ é utilizado para mostrar a localização do binário do comando, do arquivo de configuração(caso exista), e a localização das páginas de manuais de determinado comando ou arquivo.
+
+Mostrar a localização do binário do comando, docs, etc do vim ->
+#+begin_src sh
+whereis vim
+#+end_src
+
+O comando ~which~ é bem semelhante ao comando ~whereis~, entretanto este só mostra a localização do binário do comando, buscando variável PATH
+#+begin_src sh
+which vim
 #+end_src
