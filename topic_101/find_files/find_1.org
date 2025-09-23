@@ -10,6 +10,9 @@ O comando type mostra se cada nome de comando é um comando do UNIX, um comando 
 Para saber se o comando alias é um comando interno, comando UNIX ->
 #+begin_src sh
 type alias
+
+[root@centos6-lpic1 ~]# type alias
+alias is a shell builtin
 #+end_src
 
 Outro comando que a LPI costuma cobrar no exame 101 é o comando ~file~ que determina o tipo do arquivo analisando o seu conteúdo. O exemplo abaixo mostra um pouco seu uso ->
