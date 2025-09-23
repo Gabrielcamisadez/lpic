@@ -114,3 +114,24 @@ O pulo do gato para acelar o calculo, é sempre tirar das permissões padrões p
 *example 1* ->
 
 [[./imgs/pulo_gato.png]]
+
+
+* resumo visual
+
+| Tipo         | Base padrão | Permissão final | Subtração       | umask |
+| ---------------- | ----------- | --------------- | --------------- | ----- |
+| 🗎 Arquivo   | 666         | 644 (rw-r--r--) | 6-6 / 6-4 / 6-4 | 022   |
+| 📂 Diretório | 777         | 750 (rwxr-x---) | 7-7 / 7-5 / 7-0 | 027   |
+| 🗎 Arquivo   | 666         | 642 (rw-r---w-) | 6-6 / 6-4 / 6-2 | 024   |
+
+⚡ Resumindo o Fluxo
+
+🗎 Arquivo → base 666 | 📂 Diretório → base 777
+Converter permissão final para octal.
+Calcular coluna a coluna:
+
+ * 👤 umask_user = base_user - final_user
+ * 👥 umask_group = base_group - final_group
+ * 🌍 umask_others = base_others - final_others
+
+Juntar os três resultados → umask final.
