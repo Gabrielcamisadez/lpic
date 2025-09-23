@@ -54,35 +54,45 @@ Para calcular as permissões para novos arquivos e diretórios utilizando a umas
 
 *1 for dirs* ->
 umask = 021 (octal umask)
+
 000 010 001 (binary umask)
+
 111 101 110 (not umask)
 
 [[./imgs/1_dir.png]]
 
 *1 for files* ->
 umask = 021(octal umask)
+
 000 010 001(binary umask)
+
 111 101 110(not umask)
 
 [[./imgs/1_file.png]]
 
 *2 for dirs* ->
 umask = 023(octal umask)
+
 000 010 011(binary umask)
+
 111 101 100(not umask)
 
 [[./imgs/2_dir.png]]
 
 *2 for files* ->
 umask = 023(octal umask)
+
 000 010 011(binary umask)
+
 111 101 100(not umask)
 
 [[./imgs/2_file.png]]
 
 *3 for dirs* ->
 umask = 034(octal umask)
+
 000 011 100(binary umask)
+
 111 100 011(not umask)
 
 [[./imgs/3_dir.png]]
@@ -90,7 +100,9 @@ umask = 034(octal umask)
 
 *3 for file* ->
 umask = 034(octal umask)
+
 000 011 100(binary umask)
+
 111 100 011(not umask)
 
 [[./imgs/3_file.png]]
