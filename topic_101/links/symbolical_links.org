@@ -9,7 +9,7 @@
 echo 'teste file ""' > /tmp/arquivo
 #+end_src
 
-*olhar o inode do arquivo com o ls*
+*olhar o inode do arquivo com o ls* ->
 #+begin_src sh
 ls -i /tmp/arquivo
 
