@@ -1,7 +1,17 @@
 #+title: Umask
 #+author:gabriel
+#+description: 104.5
 
 Existe um comando interno do shell que é responsável por definir as permissões padrões para novos arquivos e diretórios criados por um usuário, este comando é o ~umask~
+
+*Certs only work with perm 600(octal)*
+
+#+begin_src sh
+umask
+
+[13:48][]~ ✮ umask
+002
+#+end_src
 
 Para visualizar as permissões aplicadas pelo umask ->
 #+begin_src sh
@@ -9,3 +19,77 @@ umask -S
 #+end_src
 
 Este comando pode ser definido nos arquivos profiles, ou seja, */etc/profile* que é utilizado por todos os usuários do sistema.
+
+Para calcular as permissões para novos arquivos e diretórios utilizando a umask, as seguintes permissões devem ser levadas em consideração para o calculo
+
+*"Default" Permissions* ->
+| Arquivos | 666 | rw-rw-rw |
+| Diretórios | 777 | rwx-rwx-rwx |
+
+
+*Permissions* ->
+| Leitura | 4 | r |
+| Escrita | 2 | w |
+| Execução | 1 | x |
+| Leitura , Escrita e Execução | 7 | rwx |
+| Leitura e Escrita | 6 | rw |
+| Leitura e Execução | 5 | rx |
+| Escrita e Execução | 3 | wx |
+
+*Binary representation* ->
+| 0 | 000 |
+| 1 | 001 |
+| 2 | 010 |
+| 3 | 011 |
+| 4 | 100 |
+| 5 | 101 |
+| 6 | 110 |
+| 7 | 111 |
+
+* exemplos
+
+Default perm binary for files 110 110 110 (666 octal)
+Default Perm binary for dir 111 111 111 (777 octal)
+
+*1 for dirs* ->
+umask = 021 (octal umask)
+000 010 001 (binary umask)
+111 101 110 (not umask)
+
+[[./imgs/1_dir.png]]
+
+*1 for files* ->
+umask = 021(octal umask)
+000 010 001(binary umask)
+111 101 110(not umask)
+
+[[./imgs/1_file.png]]
+
+*2 for dirs* ->
+umask = 023(octal umask)
+000 010 011(binary umask)
+111 101 100(not umask)
+
+[[./imgs/2_dir.png]]
+
+*2 for files* ->
+umask = 023(octal umask)
+000 010 011(binary umask)
+111 101 100(not umask)
+
+[[./imgs/2_file.png]]
+
+*3 for dirs* ->
+umask = 034(octal umask)
+000 011 100(binary umask)
+111 100 011(not umask)
+
+[[./imgs/3_dir.png]]
+
+
+*3 for file* ->
+umask = 034(octal umask)
+000 011 100(binary umask)
+111 100 011(not umask)
+
+[[./imgs/3_file.png]]
