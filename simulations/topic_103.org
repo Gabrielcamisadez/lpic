@@ -1,0 +1,98 @@
+#+title: Topic 103
+#+author: gabriel
+
+
+*Question 1:*
+A maneira correta de definir uma variável no BASH é:
+
+- NOME="gabriel ferreira""
+
+*Question 2:*
+No Bash, uma variável exportada estará disponível:
+
+- somente nas sessões criadas a partir da sessão em que a variable foi exportada
+
+*Question 3:*
+A linha de comando ifconfig || grep eth0 significa que:
+
+- o comando ~grep~ será executado apenas se o ~ifconfig~ falhar
+
+*Question 4:*
+Qual comando exibe continuamente(de forma interrupta) os dados do final do arquivo à medida que são acrescentados ?
+
+- tail -f
+
+*Question 5:*
+O comando paste é utilizado para:
+
+- exibir o conteudo de dois arquivos lado a lado
+
+*Question 6:*
+Qual opção do comando tar é usada para comprimir um arquivo tar usando gzip ?
+
+- z
+
+*Question 7:*
+O comando ________ redireciona sua entrada padrão para um arquivo e para a saída padrão ao mesmo tempo.
+
+- tee
+
+*Question 8:*
+Quais comandos podem alterar a prioridade de um processo em execução ?
+
+- renice e top
+
+*Question 9:*
+Numa expressão regular, qual caractere indica o final da linha ?
+
+- $
+
+*Question 10:*
+No modo de comando do editor Vi, a Letra O(maiúscula) tem finalidade de:
+
+- inserir uma nova linha acima da linha atual
+
+*Question 11:*
+Qual dos seguintes comandos é usado para converter todos os caracteres de um arquivo para maiúsculo ?
+
+- cat /etc/passwd | tr 'a-z' 'A-Z'
+
+*Question 12:*
+Qual dos seguintes comandos faz uma cópia completa do diretório do usuário smith o qual também tem subdiretórios para o diretório bkp em /opt ?
+
+- cp -vdpR /home/smith /opt/bkp
+
+*Question 13:*
+Qual dos seguintes comandos cria o diretório bkp em /opt alocando permissão total(777) ?
+
+- mkdir -v -m 777 /opt/bkp
+
+*Question 14:*
+Qual dos seguintes comandos é usado para saber os usuários das tty/pts e o que foi aberto por eles ?
+
+- ps -au | egrep "tty|pts"
+
+*Question 15:*
+O comando kill -HUP $(pgrep httpd) é uma forma de reiniciar o processo (daemon) do servidor Apache em uma distribuição Red Hat ?
+
+- verdadeiro
+
+*Question 16:*
+Qual comando no modo de navegação do editor VI é responsável por colar o conteúdo do buffer ?
+
+- p
+
+*Question 17:*
+Você comprimiu um arquivo chamado daemon.log usando o comando xz, gerando o arquivo daemon.log.xz. qual comando você pode usar para ler o conteúdo do arquivo daemon.log.xz sem precisar descomprimir o mesmo ?
+
+- xzcat
+
+*Question 18:*
+Você precisa editar o arquivo de configuração do samba smb.conf. dos editores de texto abaixo, quais você pode usar para editar esse arquivo smb.conf ?
+
+- vi, nano, emacs
+
+*Question 19:*
+Qual variável é usada para configurar o editor de texto padrão usado no sistema ?
+
+- EDITOR
