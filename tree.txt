@@ -1,9 +1,11 @@
 .
 ├── README.org
 ├── simulations
-│   ├── 102.3.org
-│   ├── 102.3.pdf
-│   └── 104.3.org
+│   ├── octal_perms.png
+│   ├── topic_101.org
+│   ├── topic_102.org
+│   ├── topic_103.org
+│   └── topic_104.org
 ├── topic_101
 │   ├── files_edit
 │   │   └── definir_editor_default.org
@@ -19,6 +21,9 @@
 │   │   ├── mkfs_mkswap.txt
 │   │   ├── XFS.org
 │   │   └── XFS.txt
+│   ├── find_files
+│   │   ├── 2.org
+│   │   └── find_1.org
 │   ├── grub
 │   │   ├── grb2.org
 │   │   ├── grb2.txt
@@ -42,8 +47,6 @@
 │   │   ├── GPT.txt
 │   │   ├── LVM_Concepts.org
 │   │   ├── LVM_Concepts.txt
-│   │   ├── mount_points.org
-│   │   ├── mount_points.txt
 │   │   ├── parted.org
 │   │   ├── parted.txt
 │   │   ├── particoes.org
@@ -61,7 +64,9 @@
 │   │   └── tune2fs.txt
 │   ├── mount_control
 │   │   ├── fstab.org
-│   │   └── mount.org
+│   │   ├── mount.org
+│   │   ├── mount_points.org
+│   │   └── mount_points.txt
 │   ├── packages_manage
 │   │   ├── dnf.org
 │   │   ├── dpkg.org
@@ -75,6 +80,7 @@
 │   ├── partitions
 │   │   ├── EFI.org
 │   │   ├── EFI.txt
+│   │   ├── hexacodes.org
 │   │   ├── parted.org
 │   │   ├── parted.txt
 │   │   ├── setup_parts_fs.org
@@ -90,6 +96,7 @@
 │   │   │   ├── 3_dir.png
 │   │   │   ├── 3_file.png
 │   │   │   └── pulo_gato.png
+│   │   ├── perms.org
 │   │   ├── special_permissions.org
 │   │   └── umask.org
 │   ├── shared_libs
@@ -131,4 +138,4 @@
 │       └── sysvinit.org
 └── tree.txt
 
-19 directories, 113 files
+20 directories, 119 files
