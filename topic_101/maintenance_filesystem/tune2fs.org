@@ -86,7 +86,7 @@ Setting maximal mount count to 20
 tune2fs -m 10 /dev/sdb2
 #+end_src
 
-* convertendo ext2 para ext3
+* convertendo ext2 para ext3 with mke2fs
 
 *Verify the type* ->
 #+begin_src sh
@@ -106,6 +106,15 @@ Filesystem features:      ext_attr resize_inode dir_index filetype sparse_super 
 #+end_src
 
 * ext2 to ext3 with has_journal
+O ~mke2fs~ cria um sistema de arquivos em um partição desejada, ele lê suas configurações do arquivo -> */etc/mke2fs.conf*
+
+: mke2fs /dev/sdb1
+
+Se utilizado sem nenhum param, ele criará por padrão com o systemfile *ext2*, o ext2 vem sem a feature *has_journal*, já no *ext3* por default esta feature ja está habilitada
+
+: mke2fs -j /dev/sdb1
+*ext3* será criado
+
 *Adicionando feature has_journal, onde converte ext2 para ext3* ->
 #+begin_src sh
 tune2fs -j /dev/sdb1
