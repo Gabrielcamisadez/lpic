@@ -49,7 +49,7 @@ Shell scripts have a structure similar to other programming languages and includ
 - Functions: Groups repeated code blocks functionally.
 - Control Flow Structures: Includes structures like if..then..else, case, and loops.
 
-#+begin_src sh simple example
+#+begin_src bash simple example
 #!/bin/bash
 
 # comment
@@ -66,7 +66,7 @@ This line is a comment, and comment lines start with the # symbol. Comments are 
 *** Multi-Line comments
 In some cases, your explanation may need to span multiple lines. Multi-line comments are used for such situations. In shell scripting, multi-line comments start with : ' and end with '.
 
-#+begin_src sh
+#+begin_src bash
 : '
 This is a multi-line comment
 Each line will be treated as a comment
@@ -86,7 +86,7 @@ These variables are created by the user writing the script and only exist for th
 
 To define a variable, write the variable name and assign it a value using the = sign. To access a variable, prefix the variable name with the $ sign.
 
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 # Accessing an Environment Variable
@@ -125,7 +125,7 @@ Remember that when using < and > operators, these characters may be specially re
 Conditional statements allow you to execute specific code blocks if certain conditions are met. Shell scripting supports such conditional statements and allows you to check conditions through comparison operators.
 
 *IF* ->
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 a=10
@@ -156,7 +156,7 @@ done
 
 *For Loop* ->
 A for loop allows a variable to iterate over a list of values or a range of values.
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 for number in 4 8 12 20 25 30
@@ -200,12 +200,12 @@ Used when you wish to save the output of a command to a file and replace all exi
 *<* is used for standard input.
 
 Running the following command will redirect the output that should appear on the screen to the "output.txt" file. This is standard output redirection.
-#+begin_src sh
+#+begin_src bash
 echo "standard output redirection" > output.txt
 #+end_src
 
 Equivalen t
-#+begin_src sh
+#+begin_src bash
 cat output.txt
 
 cat < output.txt
@@ -223,7 +223,7 @@ Appends standard output to the file while preserving the existing content.
  A here-document is used to provide input interactively in a script without user intervention. This allows scripts to run programs without user interaction.
 
 The general format for here-document is as follows:
-#+begin_src sh
+#+begin_src bash
 command << end
 > text
 end
@@ -232,7 +232,7 @@ end
 [[./imgs/append.png]]
 
 Append to an existent document ->
-#+begin_src sh
+#+begin_src bash
 echo "test" >> output.txt
 #+end_src
 
@@ -243,13 +243,13 @@ A variable is a structure used to store values. Variables can hold any type of i
 - A variable name can include letters (a-z, A-Z), numbers (0-9), and the underscore (_) character.
 - A variable name must start with a letter or an underscore; it cannot start with a number.
 
-#+begin_src sh valid names
+#+begin_src bash valid names
 variable
 _variable2
 variable123
 #+end_src
 
-#+begin_src sh invalid names
+#+begin_src bash invalid names
 2_var  # cannot start with a number
 !VAR1  # contains a special character
 $VAR2  # contains a special character
@@ -257,14 +257,14 @@ $VAR2  # contains a special character
 #+end_src
 
 *** Defining Variables
-#+begin_src sh
+#+begin_src bash
 number="10"
 name="lucy"
 #+end_src
 
 *** Accessing Variables
 A variable is accessed by prefixing the variable name with the $ symbol.
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 name="jacky"
@@ -276,7 +276,7 @@ echo "Animal: $animal"
 
 *** Deleting a Variables
 The ~unset~ command removes a variable and its value from the list of variables.
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 name="jacky"
@@ -290,7 +290,7 @@ echo "Name: $name"
 
 *** Read-Only Variables
 While writing scripts, you may want some variables' values to remain constant. These variables cannot be changed later and are marked as "readonly."
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 pi=3.14
@@ -309,7 +309,7 @@ Local variables are valid only within the shell session or script in which they 
 
 *Environment Variables* ->
 Environment variables can affect the behavior of programs initiated by the shell. They are globally accessible across the system and are often used to share information between the shell and applications.
-#+begin_src sh
+#+begin_src bash
 export PATH=/usr/local/bin:$PATH
 #+end_src
 
@@ -328,7 +328,7 @@ String operations involve performing actions on text to achieve various results.
 *Assigning Content to a Variable and Printing it* ->
 In Bash, the $ sign is used to print the value of a variable. In the shell, this is called parameter expansion, which automatically replaces the variable with its value. In shell scripting, the type of variables is irrelevant; they can hold strings, integers, or decimal numbers.
 
-#+begin_src sh
+#+begin_src bash
 variable_name='value'
 echo $variable_name
 # or
@@ -343,7 +343,7 @@ Note: When assigning a value to a variable, there should be no space around the 
 
 *Finding the Length of a String* ->
 To determine the length of a string, use the # symbol.
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 title='cybersecurity'
@@ -356,7 +356,7 @@ echo ${#title}
 *Concatenating Strings* ->
 In Bash, you can concatenate strings to combine them into a new string.
 
-#+begin_src sh
+#+begin_src bash
 var=${var1}${var2}${var3}
 or
 var=$var1$var2$var3
@@ -369,11 +369,11 @@ Note: Avoid using var="$var1 $var2 $var3" for concatenating strings with spaces.
 *Extracting a Substring from a String* ->
 Bash offers useful features to extract specific sections (substrings) from a string.
 
-#+begin_src sh
+#+begin_src bash
 ${string_variable:position}
 #+end_src
 
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 title="Introduction to Bash Scripting"
@@ -388,12 +388,12 @@ If we need to store and manipulate 5000 pieces of data, defining 5000 separate v
 
 An array is a data structure used to store multiple values of the same or different types together. Array indices start from 0. Thus, we can access the first element of the array with an index of 0.
 
-#+begin_src sh
+#+begin_src bash
 array_name[index]=value
 #+end_src
 
 There are multiple ways to print array elements. Below is an example demonstrating how to print array elements using various methods in an array_example.sh script.
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 # Array definition
@@ -648,7 +648,7 @@ echo "PID of current shell is: $$"
 ** Examples
 *Log Analysis* ->
 Let's create a simple script to analyze Apache web logs.
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 LOG_FILE="/var/log/apache2/access.log"
@@ -661,7 +661,7 @@ awk '{print $1}' $LOG_FILE | sort | uniq -c | sort -nr | head -5
 #+end_src
 
 *Backup* ->
-#+begin_src sh
+#+begin_src bash
 #!/bin/bash
 
 # Simple Backup Script
