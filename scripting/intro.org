@@ -1,0 +1,83 @@
+#+title: intro
+#+author: gabriel
+
+The shell, a fundamental part of Linux operating systems, allows users to manage their systems through the terminal on various distributions such as Ubuntu, Debian, CentoOS, SUSE...
+
+** Kernel ->
+The kernel is like the brain of a computer; it resides at the heart of the operating system and is responsible for managing all activities within the system.
+
+ The kernel manages a set of critical resources that are the building blocks of the Linux operating system:
+
+- Organization and accessibility of files,
+- Initialization, management, and termination of processes,
+- Handling of input and output operations,
+- Efficient use of memory,
+- Communication between various devices.
+
+  Like an orchestra conductor, these tasks ensure the system works in harmony and that the computer performs many complex functions in an organized manner.
+
+** Shell ->
+  The shell is an important tool that allows a user to interact with the operating system. It serves as a bridge between you and the computer's kernel, understanding your language and converting your instructions into a format the computer can understand.
+
+   Commands entered from the keyboard or instructions taken from files are made comprehensible to the operating system through the shell.
+
+   It automatically comes into action when a user opens a terminal or logs into their computer.
+
+[[./imgs/kr.png]]
+
+*** Command-Line Shell
+This type of shell allows users to interact with the operating system using text-based commands. Commands are entered via the keyboard and enable the execution of various tasks and operations.
+
+Commands are given through a "Terminal" application on Linux or macOS, and through the "Command Prompt" on Windows. Users can list files (ls), view file contents (cat), and perform many other tasks
+
+**** Terminal
+The terminal opens a window to use the shell in your computer's operating system and is a powerful program that allows direct dialogue with the system.
+
+Essentially, it enables users to enter written commands and see the results of these commands through a text-based interface.
+
+The difference between a terminal and a shell; the shell is the background engine that processes commands, while the terminal is the interface that allows you to interact with this engine.
+
+** Shell Scripting
+Shell scripts are sequences of shell commands collected in a file and executed with a single command. This is particularly useful for automating repetitive tasks and simplifying processes.
+
+Instead of writing the same command sequence repeatedly, you can easily manage the entire process with a shell script.
+
+Shell scripts have a structure similar to other programming languages and include the following elements:
+
+- Shell Keywords: Includes structures like if, else, break.
+- Shell Commands: Uses basic Unix/Linux commands like cd, ls, echo, pwd, touch.
+- Functions: Groups repeated code blocks functionally.
+- Control Flow Structures: Includes structures like if..then..else, case, and loops.
+
+#+begin_src sh simple example
+#!/bin/bash
+
+# comment
+
+echo "Hello, World!"
+#+end_src
+
+*#!/bin/bash* ->
+This is the shebang line. It specifies which shell interpreter should be used to run the script. It tells the system that this script should be executed with bash.
+
+
+*# comment* ->
+This line is a comment, and comment lines start with the # symbol. Comments are ignored by the bash interpreter and are used to explain what the script or code does.
+
+*** Multi-Line comments
+In some cases, your explanation may need to span multiple lines. Multi-line comments are used for such situations. In shell scripting, multi-line comments start with : ' and end with '.
+
+#+begin_src sh
+: '
+This is a multi-line comment
+Each line will be treated as a comment
+'
+#+end_src
+
+*** Variables
+In shell scripting, we use variable structures to store and manage data. Unlike some programming languages, you do not need to specify the type of a variable before using it
+
+*System-Defined Variables* ->
+These variables are defined by the system itself and are usually written in uppercase letters. They are also known as environment variables and contain important information about the system.
+
+ For example, you can view all available environment variables using the ~printenv~ command.
