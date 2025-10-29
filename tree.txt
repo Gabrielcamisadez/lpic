@@ -1,5 +1,12 @@
 .
 ├── README.org
+├── scripting
+│   ├── imgs
+│   │   ├── append.png
+│   │   ├── cut.png
+│   │   ├── hashtag.png
+│   │   └── kr.png
+│   └── scripting.org
 ├── simulations
 │   ├── octal_perms.png
 │   ├── topic_101.org
@@ -138,4 +145,4 @@
 │       └── sysvinit.org
 └── tree.txt
 
-20 directories, 119 files
+22 directories, 124 files
