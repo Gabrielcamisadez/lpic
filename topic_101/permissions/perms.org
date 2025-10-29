@@ -1,0 +1,36 @@
+#+title: Perms
+#+author: gabriel
+#+description: octal and umask
+* Octal Permissions
+No Linux, as permissões de arquivos e diretórios são representadas numericamente por valores octais (0–7).
+Cada dígito representa as permissões de um grupo específico de usuários:
+- Primeiro dígito: dono (user)
+- Segundo dígito: grupo (group)
+- Terceiro dígito: outros (others)
+
+Valores possíveis:
+- 0: sem permissão
+- 1: execução (x)
+- 2: escrita (w)
+- 3: escrita + execução (w+x)
+- 4: leitura (r)
+- 5: leitura + execução (r+x)
+- 6: leitura + escrita (r+w)
+- 7: leitura + escrita + execução (r+w+x)
+
+Exemplo:
+- 755 → dono com rwx, grupo e outros com r+x
+- 644 → dono com rw, grupo e outros com r
+
+* Umask
+Umask (User Mask) define as permissões padrão removidas ao criar arquivos e diretórios.
+A máscara é subtraída das permissões base:
+- Arquivos → base 666 (rw-rw-rw-)
+- Diretórios → base 777 (rwxrwxrwx)
+
+Exemplo:
+- Umask 022 → arquivos 644, diretórios 755
+- Umask 077 → arquivos 600, diretórios 700
+
+Configuração temporária: `umask <valor>`
+Configuração persistente: em shells como bash, editar `~/.bashrc` ou `/etc/profile`.

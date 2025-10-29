@@ -3,6 +3,8 @@
 
 * Partições
 
+Este documento tem como objetivo revisar os conceitos fundamentais de identificação de discos e partições no Linux, especialmente voltados para a certificação **LPIC-1**.
+
 *Partições Primárias* ->
 Este tipo de partição pode ser formatada para receber um sistema de arquivos. Em um disco deve haver no mínimo uma e no máximo quatro partições primárias. Caso já existam quatro partições primárias, nenhuma outra partição poderá existir neste disco
 
@@ -15,9 +17,6 @@ Partição estendida é um tipo especial de partição que não pode conter um s
 =As partições lógicas residem dentro da partição estendida.=
 =As partições lógicas são numeradas a partir de 5 e podem receber sistema de arquivos=
 
-------
-
-Este documento tem como objetivo revisar os conceitos fundamentais de identificação de discos e partições no Linux, especialmente voltados para a certificação **LPIC-1**.
 
 ** Introdução
 No Linux, os dispositivos de armazenamento são representados como arquivos especiais dentro do diretório */dev/*. Cada tipo de tecnologia de disco (IDE, SCSI, SATA, NVMe) possui convenções diferentes de nomenclatura. Entender essas diferenças é essencial para interpretar corretamente questões de prova e administrar sistemas Linux.
@@ -77,13 +76,16 @@ No Linux, os dispositivos de armazenamento são representados como arquivos espe
    - Três primeiras partições: /dev/hda1, /dev/hda2, /dev/hda3
    - A quarta, /dev/hda4, é a estendida
 
-** Resumo Visual
-- IDE:
+* Resumo Visual
+
+*IDE*:
   - Disco: /dev/hd[a-d]
   - Partições: /dev/hda1, /dev/hda2, ...
-- SCSI/SATA:
+
+  *SCSI/SATA:*
   - Disco: /dev/sd[a-z]
   - Partições: /dev/sda1, /dev/sda2, ...
-- NVMe:
+
+  *NVMe:*
   - Disco: /dev/nvme0n1
   - Partições: /dev/nvme0n1p1, /dev/nvme0n1p2, ...

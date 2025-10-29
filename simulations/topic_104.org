@@ -1,0 +1,129 @@
+#+title: Topic 104
+#+author: gabriel
+
+* simulado
+
+*Question 2:*
+O comando ___________________ converte o sistema de arquivos ext2 em /dev/sda3 para ext3 sem perda de dados(mesmo sendo recomendado fazer backup antes da converção)?
+
+- tune2fs -j /dev/sd3
+
+*Question 3:*
+O comando __________ ativa o espaço de troca swap em uma partição.
+
+- swapon
+
+*Question 4:*
+Qual o nome do comando que altera o grupo proprietário de um arquivo ou diretório ?
+
+- chgrp
+
+*Question 5:*
+Como administrador de sistemas você iniciou o servidor no modo de manutenção para fazer reparos. Após executar a sequência de comandos:
+
+# fsck /dev/sdb2
+# echo $?
+# 1
+
+- O comando executou corretamente
+
+*Question 6:*
+Qual comando mostra o espaço livre de uma partição montada ?
+
+- df
+
+*Question 7:*
+O terceiro campo do arquivo /etc/fstab determina:
+
+- type
+
+*Question 8:*
+Como administrador de um servidor de arquivos você precisou executar o seguinte comando:
+
+# chmod 2756 /mnt/samba
+
+Quais as permissões efetivas para o grupo proprietário do diretório /mnt/samba:
+
+[[./octal_perms.png]]
+
+2 -> SGID Bit
+u7 -> All
+g5 -> Read and executa
+o6 -> Read Write
+
+- SGID BIt, leitura e execução/acesso
+
+*Question 9:*
+Num sistema em que o valor de umask é 002, a permissão padrão de criação de arquivos será:
+
+  666
+  002
+
+- rw-rw-r
+
+*Question 10:*
+Links simbólicos deixarão de funcionar quando:
+
+- Quando o destino de um link simbólico é removido, renomeado ou movido o link fica quebrado
+
+*Question 11:*
+O comando _________ /usr/lib -type f mostrará todas as ocorrências de arquivos comuns sob o diretório /usr/lib.
+
+- find
+
+*Question 12:*
+você adicionou a seguinte entrada no arquivo /etc/fstab referente a partição /dev/sda1:
+
+: LABEL="Systems" /mnt/new_system xfs noauto,user,ro 0 2
+
+Sobre essa entrada é correto afirmar que:
+
+- Todos os users podem montar a partição, mas somente o user que montou ou o root podem desmonta-la
+
+*Question 13:*
+Você executou o seguinte comando:
+
+# umask 033
+
+Qual será a permissão efetiva para novos arquivos e diretórios criados ?
+
+- 644 → rw-r--r-- 744 → rwxr--r--
+
+*Question 15:*
+Maria precisa mudar as permissões do arquivo “chope” (que atualmente é 700), sendo que o grupo tenha permissão de leitura e escrita e outros tenham somente permissão de leitura. Qual comando permite a ela realizar esta mudança?
+
+- chmod g+rw,o+r
+
+*Question 16:*
+O sistema de arquivos ___________ tem como principais recursos:
+
+Subvolumes
+
+Snapshot
+
+Compressão
+
+Sistema de Arquivos Multi Dispositivos / RAID
+
+- btrfs
+
+*Question 17:*
+Os comandos a seguir:
+
+# mkfs -t ext3
+# mkfs.ext3
+Se equivalem, verdeiro ou falso ?
+
+- verdadeiro
+
+*Question 18:*
+Analisando a sequência de comandos:
+
+# cp -v /etc/services /tmp ; ln /tmp/services /tmp/serviços
+
+# ls -i /tmp/services /tmp/serviços
+
+# rm -vf /tmp/services
+É correto afirmar que:
+
+- o conteudo do arquivo /tmp/services podera ser visualizado no arquivo /tmp/servicos, mesmo inode

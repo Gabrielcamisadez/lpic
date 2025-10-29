@@ -17,7 +17,6 @@ Não é incomum precisar determinar o tamanho de um arquivo, de uma partição i
 df -hT /dev/sdb1
 #+end_src
 
-
 *Buscar em todo o sistema por filesystems do tipo ext4* ->
 #+begin_src sh
 df -hT -t ext4

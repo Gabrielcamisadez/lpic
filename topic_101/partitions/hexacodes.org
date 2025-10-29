@@ -1,0 +1,11 @@
+#+title: Hexacodes
+#+author: gabriel
+
+* Apelidos
+   linux          - 83
+   swap           - 82
+   extended       - 05
+   uefi           - EF
+   raid           - FD
+   lvm            - 8E
+   linuxex        - 85

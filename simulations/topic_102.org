@@ -1,0 +1,105 @@
+#+title: Topic 102
+#+author: gabriel
+
+
+*Question 1:*
+Qual comando permite saber quais bibliotecas serão usadas por um binário (executável) no sistema Linux?
+
+- ldd
+
+*Question 2:*
+Através de qual comando o sysadmin pode exibir a lista de todos os pacotes instalados no sistema red hat ?
+
+- rpm -qa
+
+*Question 3:*
+você acabou de ser nomeado sysadmin e terá que administrar um servidor de arquivos. ao executar o comando: cat /proc/partitions o seguinte resultado é exibido:
+#+begin_src sh
+major minor  #blocks  name
+
+  11        0    1048575    sr0
+   8        0  488386584   sda
+   8        1     256000      sda1
+   8        2     409600      sda2
+   8        3  486491136   sda4
+   8        4  976762584   sda5
+   8       17  976760832  sda6
+
+ 252        0  976756736 dm-0
+ 252        1    8388608   dm-1
+#+end_src
+
+Sabendo que o disco sda possui duas partições primárias, informe qual das partições é a partição extendida
+
+- sda4
+
+*Question 4:*
+Os diretórios: /etc, /lib, /sbin podem ser usados como ponto de montagem em outras partições.
+
+- falso
+
+*Question 5:*
+O sysadmin quando trabalha com LVM pode formatar um VG (volume group) para usar-lo como ponto de montagem e armazenar arquivos.
+
+- falso
+- quando se utiliza o LVM o único elemento que deve ser formatado com um sistema de arquivos é o LV (Logica Volume)
+
+*Question 6:*
+A entrada chainloader +1 no arquivo /boo/grub/menu.lst do Grub Legacy define que:
+
+- o grub passa o controle para outro carregador de boot, o grub deve carregar o primeiro setor do dispositivo ou partição especificada
+
+*Question 7:*
+O comando _____________ é usado para reinstalar o grub.
+
+- grub-install
+
+*Question 8:*
+Dentro do arquivo /etc/default/grub é definido a opção ____________ que informa ao grub2 qual sistema será carregado por padrão.
+
+- GRUB_DEFAULT
+
+*Question 10:*
+A opção __________ do GRUB2 definida no arquivo /boot/grub/grub.cfg informa qual kernel deve ser carregado
+
+- linux
+
+*Question 11:*
+Escolha qual dos comandos é usado para remover o pacote 'pacote.deb' e seus arquivos de configuração
+
+- dpkg -P
+
+*Question 12:*
+Qual a variável de ambiente usada para informar caminhos para bibliotecas.
+
+- LD_LIBRARY_PATH
+
+*Question 13:*
+Qual comando RPM mostraria para você informações detalhadas sobre um pacote nomeado openssh-3.6.i386.rpm?
+
+- rpm -qpi openssh-3.6.i386.rpm
+
+*Question 14:*
+O comando ______________ exibe uma lista de repositórios disponíveis no sistema e configurados
+
+- yum repolist
+
+*Question 15:*
+O comando yum _________ pacote.rpm realiza a instalação local de pacotes .rpm resolvendo sua dependências.
+
+- localinstall
+
+*Question 16:*
+O Comando zypper ______ squid vai exibir informações do pacote squid, como por exemplo: versão, descrição, status e tamanho do pacote.
+
+- info
+
+*Question 17:*
+Qual comando é usado para reconfigurar um pacote já instalado em um sistema debian ?
+
+- dpkg-reconfigure
+
+*Question 18:*
+Em um sistema linux red hat ou fedora, qual dos comandos abaixo pode ser usado para instalar ou atualizar pacotes a partir dos repositórios ?
+
+- dnf

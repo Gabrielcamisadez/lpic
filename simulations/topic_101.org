@@ -1,0 +1,93 @@
+#+title: Topic 101
+#+author: gabriel
+
+
+*Question 1:*
+Qual dos comandos a seguir nos permite saber a quantidade e quais são os dispositivos SCSI presentes no sistema
+
+- cat /proc/scsi/scsi
+
+*Question 2:*
+O que representa o dispositivo /dev/hdb6? Escolha uma.
+
+- PArtição lógica de um disco IDE
+
+*Question 3:*
+Qual arquivo contém informações sobre os canais de IRQ em uso?
+
+- /proc/interrupts
+
+*Question 4:*
+Quantos dispositivos, excluindo-se a controladora, podem estar presentes em uma placa SCSI de 8 bits?
+
+- 7
+
+*Question 5:*
+Identifique o dispositivo apropriado para a terceira partição, do segundo disco na primeira controladora IDE no computador.
+
+- /dev/hdb3
+
+*Question 6:*
+Qual comando é usado para encontrar o último runlevel (nível de execução) do sistema?
+
+- runlevel
+
+*Question 7:*
+Qual diretório armazena os links dos scripts que iniciam os serviços do runlevel 5 do sistema no padrão debian ?
+
+- /etc/rc5.d
+
+*Question 8:*
+O diretório recomendado para o sysadmin adicionar uma unidade de serviço do systemd é o ___________________.
+
+- /etc/systemd/system
+
+*Question 9:*
+Qual das opções abaixo pode ser utilizada para o trocar seu sistema pra runlevel 3 (nível de execução 3)?
+
+- init 3
+
+*Question 10:*
+Qual runlevel (nível de execução) representa o modo administrativo, também conhecido como modo de manutenção ?
+
+- 1
+
+*Question 11:*
+A unidade de serviço target é usada pelo SystemD para iniciar um grupo de unidades de serviços e é semelhante aos runlevels do SysVinit.
+
+- verdadeiro
+
+*Question 12:*
+Como Sysadmin você deseja ver quais mensagens durante a inicialização estão sendo impressas na tela pelo kernel. qual dos parâmetros do kernel a seguir você deve remove para conseguir ver as mensagens de reconhecimento de hardware ?
+
+- quiet
+
+*Question 13:*
+Qual arquivo de log armazena mensagens do kernel e de serviços inicializados durante o boot ?
+
+- /var/log/messages
+
+*Question 14:*
+Qual o PID do init? Escolha uma das opções:
+
+- 1
+
+*Question 15:*
+O administrador precisa cancelar um shutdown programado para as 23:00. Qual dos comandos a seguir deverá ser executado?
+
+- shutdown -c
+
+*Question 16:*
+O comando systemctl __________ <nome_do_target> deve ser usado para definir a unidade target padrão para o SystemD.
+
+- set-default
+
+*Question 17:*
+O UEFI faz uma verificação para garantir que o código iniciado pelo firmware seja confiável. exigindo que cada binário carregado na inicialização Incluindo drivers sejam assinados e validados com chaves conhecidas localizadas no firmware. que mecanismo / recurso é esse ?
+
+- secure boot
+
+*Question 18:*
+Qual comando é usado para visualizar os logs do sistema coletados e armazenados pelo serviço systemd-journald do SystemD ?
+
+- journalctl
