@@ -1,0 +1,21 @@
+#+title: ps, pstree, top
+#+author: gabriel
+
+* Intro
+diversos comandos podem ser usados para inspecionar processos e são especialmente úteis para localizar e finalizar processos dispensáveis ou suspeitos
+
+o comando ~ps~ exibe os processos ativos de maneira detalhada,
+
+- *-a* -> mostra todos os processos existentes e ligados a terminais
+
+- *-e* -> mostra as variáveis de ambiente relacionadas aos processos
+
+- *-f* -> mostra a árvore de execução dos processos
+
+- *-l* -> mostra mais campos no resultado
+
+- *-x* -> mostra os processos que não estão associados a terminais
+
+- *-u* -> mostra o nome do usuário que iniciou determinado processos e a hora em que isso ocorreu
+
+- *-m* -> mostra a quantidade de memória ocupada por cada processo
