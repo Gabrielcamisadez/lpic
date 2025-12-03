@@ -1,0 +1,79 @@
+#+title: Ps basics
+#+author: gabriel
+
+* ps man
+*NAME*
+       ps - report a snapshot of the current processes.
+
+*SYNOPSIS*
+       ps [options]
+
+*DESCRIPTION*
+       ps displays information about a selection of the active processes.  If you want a repetitive update
+       of the selection and the displayed information, use top instead.
+
+       This version of ps accepts several kinds of options:
+
+O comando ~ps~ exibe os processos ativos de maneira detalhada,
+
+- *-a* -> mostra todos os processos existentes e ligados a terminais
+
+- *-e* -> mostra as variáveis de ambiente relacionadas aos processos
+
+- *-f* -> mostra a árvore de execução dos processos
+
+- *-l* -> mostra mais campos no resultado
+
+- *-x* -> mostra os processos que não estão associados a terminais
+
+- *-u* -> mostra o nome do usuário que iniciou determinado processos e a hora em que isso ocorreu
+
+- *-m* -> mostra a quantidade de memória ocupada por cada processo
+
+* 1
+VErificando processos de apenas 1 usuário ->
+#+begin_src bash
+[21:33][]~ ✮ ps -u root
+    PID TTY          TIME CMD
+      1 ?        00:00:03 systemd
+      2 ?        00:00:00 kthreadd
+      3 ?        00:00:00 pool_workqueue_release
+      4 ?        00:00:00 kworker/R-rcu_g
+      5 ?        00:00:00 kworker/R-rcu_p
+      6 ?        00:00:00 kworker/R-slub_
+      7 ?        00:00:00 kworker/R-netns
+      9 ?        00:00:00 kworker/0:0H-events_highpri
+     12 ?        00:00:00 kworker/R-mm_pe
+#+end_src
+
+Mais informações para apenas 1 usuário ->
+#+begin_src bash
+[21:35][]~ ✮ ps -u root u
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0  23264 14132 ?        Ss   19:06   0:03 /sbin/init splash
+root           2  0.0  0.0      0     0 ?        S    19:06   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        S    19:06   0:00 [pool_workqueue_release]
+root           4  0.0  0.0      0     0 ?        I<   19:06   0:00 [kworker/R-rcu_g]
+root           5  0.0  0.0      0     0 ?        I<   19:06   0:00 [kworker/R-rcu_p]
+root           6  0.0  0.0      0     0 ?        I<   19:06   0:00 [kworker/R-slub_]
+root           7  0.0  0.0      0     0 ?        I<   19:06   0:00 [kworker/R-netns]
+root           9  0.0  0.0      0     0 ?        I<   19:06   0:00 [kworker/0:0H-events_highpri]
+root          12  0.0  0.0      0     0 ?        I<   19:06   0:00 [kworker/R-mm_pe]
+#+end_src
+
+Verificando processos atribuidos a terminais virtuais ->
+#+begin_src bash
+[22:12][]~ ✮ ps ua
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root        1224  2.5  0.8 585264 130828 tty7    Ssl+ 19:06   4:42 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/ro
+root        1237  0.0  0.0   8712  1920 tty1     Ss+  19:06   0:00 /sbin/agetty -o -p -- \u --noclear - linux
+ilak        5639  0.0  0.0  18912 10368 pts/1    Ss   19:13   0:01 /usr/bin/zsh
+ilak        8752  0.0  0.0  18724  9604 pts/0    Ss   19:43   0:00 /usr/bin/zsh
+root        9053  0.0  0.0  21316  7808 pts/0    SN   19:44   0:00 sudo openvpn lab_Gabrielcamisadez.ovpn
+root        9057  0.0  0.0  21316  2680 pts/2    SNs+ 19:44   0:00 sudo openvpn lab_Gabrielcamisadez.ovpn
+root        9058  0.0  0.0  14508  9600 pts/2    SN   19:44   0:00 openvpn lab_Gabrielcamisadez.ovpn
+ilak       12370  0.0  0.0  19552 10868 pts/4    Ss   20:58   0:02 /usr/bin/zsh
+ilak       17133  0.1  0.0  17980  9344 pts/0    S+   21:56   0:01 ssh faker@192.168.122.72
+ilak       17794  0.4  0.0  15828  6528 pts/1    S+   22:08   0:00 top
+ilak       18067  200  0.0  15080  5376 pts/4    R+   22:12   0:00 ps ua
+#+end_src
