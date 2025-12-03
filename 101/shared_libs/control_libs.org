@@ -1,4 +1,5 @@
-#+title: Controle de bibiliotecas compartilhadas
+
+ de bibiliotecas compartilhadas
 #+description: Topic 102.3
 
 ld.so = Linker
