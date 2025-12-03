@@ -77,3 +77,47 @@ ilak       17133  0.1  0.0  17980  9344 pts/0    S+   21:56   0:01 ssh faker@192
 ilak       17794  0.4  0.0  15828  6528 pts/1    S+   22:08   0:00 top
 ilak       18067  200  0.0  15080  5376 pts/4    R+   22:12   0:00 ps ua
 #+end_src
+
+Visualização no formato árvore ->
+#+begin_src bash
+[22:14][]~/lpic:main ✓ ✮ ps fu
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+ilak       12370  0.0  0.0  19552 11248 pts/4    Ss   20:58   0:02 /usr/bin/zsh
+ilak       18598  300  0.0  15080  5376 pts/4    R+   22:15   0:00  \_ ps fu
+ilak        8752  0.0  0.0  18724  9604 pts/0    Ss   19:43   0:00 /usr/bin/zsh
+ilak       17133  0.1  0.0  17980  9344 pts/0    S+   21:56   0:01  \_ ssh faker@192.168.122.72
+ilak        5639  0.0  0.0  18912 10368 pts/1    Ss   19:13   0:01 /usr/bin/zsh
+ilak       17794  0.4  0.0  15828  6528 pts/1    S+   22:08   0:01  \_ top
+
+
+[22:17][]~/lpic:main ✗ ✮ ps uaf
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+ilak       12370  0.0  0.0  19552 11248 pts/4    Ss   20:58   0:02 /usr/bin/zsh
+ilak       18795  0.0  0.0  15080  5376 pts/4    R+   22:17   0:00  \_ ps uaf
+ilak        8752  0.0  0.0  18724  9604 pts/0    Ss   19:43   0:00 /usr/bin/zsh
+root        9053  0.0  0.0  21316  7808 pts/0    SN   19:44   0:00  \_ sudo openvpn lab_Gabrielcamisadez.ovpn
+root        9057  0.0  0.0  21316  2680 pts/2    SNs+ 19:44   0:00  |   \_ sudo openvpn lab_Gabrielcamisadez.ovpn
+root        9058  0.0  0.0  14508  9600 pts/2    SN   19:44   0:00  |       \_ openvpn lab_Gabrielcamisadez.ovpn
+ilak       17133  0.1  0.0  17980  9344 pts/0    S+   21:56   0:01  \_ ssh faker@192.168.122.72
+ilak        5639  0.0  0.0  18912 10368 pts/1    Ss   19:13   0:01 /usr/bin/zsh
+ilak       17794  0.4  0.0  15828  6528 pts/1    S+   22:08   0:02  \_ top
+root        1224  2.5  0.8 586724 130828 tty7    Ssl+ 19:06   4:50 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/lightdm/roo
+root        1237  0.0  0.0   8712  1920 tty1     Ss+  19:06   0:00 /sbin/agetty -o -p -- \u --noclear - linux
+#+end_src
+
+Verificando parent process  id's ->
+#+begin_src bash
+[22:17][]~/lpic:main ✗ ✮ ps fal
+F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
+0  1000   12370    5539  20   0  19552 11248 sigsus Ss   pts/4      0:02 /usr/bin/zsh
+4  1000   18829   12370  20   0  13796  4480 -      R+   pts/4      0:00  \_ ps fal
+0  1000    8752    5539  20   0  18724  9604 sigsus Ss   pts/0      0:00 /usr/bin/zsh
+4     0    9053    8752  25   5  21316  7808 -      SN   pts/0      0:00  \_ sudo openvpn lab_Gabrielcamisadez.ovpn
+1     0    9057    9053  25   5  21316  2680 -      SNs+ pts/2      0:00  |   \_ sudo openvpn lab_Gabrielcamisadez.ovpn
+4     0    9058    9057  25   5  14508  9600 -      SN   pts/2      0:00  |       \_ openvpn lab_Gabrielcamisadez.ovpn
+0  1000   17133    8752  20   0  17980  9344 do_pol S+   pts/0      0:01  \_ ssh faker@192.168.122.72
+0  1000    5639    5539  20   0  18912 10368 sigsus Ss   pts/1      0:01 /usr/bin/zsh
+4  1000   17794    5639  20   0  15828  6528 do_sel S+   pts/1      0:02  \_ top
+4     0    1224    1199  20   0 586436 130828 -     Ssl+ tty7       4:51 /usr/lib/xorg/Xorg -core :0 -seat seat0 -auth /var/run/light
+4     0    1237       1  20   0   8712  1920 -      Ss+  tty1       0:00 /sbin/agetty -o -p -- \u --noclear - linux
+#+end_src
