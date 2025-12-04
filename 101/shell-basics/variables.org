@@ -1,0 +1,21 @@
+#+title: Variables
+#+author: gabriel
+
+* intro
+a diferença entre variáveis locais e variáveis globais/de ambiente  é que as locais tem visibilidade restrita, apenas a sessão do shell em que ela foi definida, e uma variável global tem visibilidade não só na sessão do shell em que foi definida mas também em ambientes derivados, ou seja, subshells
+
+a forma para definir as variáveis também é diferente, onde para definir uma variável local é necessário apenas um valor a um node de variável, mas para uma variável global/de ambiente é necessário o uso do comando *export*
+
+definindo uma variável local ->
+#+begin_src bash
+[13:55][]~ ✮ name=Biel
+[13:55][]~ ✮ echo $name
+Biel
+#+end_src
+
+definindo uma variável global/de ambiente ->
+#+begin_src bash
+[13:56][]~ ✮ export nome=gabriel
+[13:56][]~ ✮ echo $nome
+gabriel
+#+end_src
