@@ -1,0 +1,75 @@
+#+title: Grep
+#+Author:gabriel
+
+* intro
+** caracteres especiais
+*?* - é usado para representar uma ou nenhuma letra/numero
+
+*+* - é usado para que a ocorrência apareça uma ou mais vezes
+
+*^* - início da linha
+
+*$* - fim da linha
+
+*.* - representa qualquer caractere
+
+~*~ - usado para representar um ou mais caracteres
+
+*[]* - a lista representa um grupo de caracteres a serem procurados no texto
+
+*[^]* - pode ser chamado de lista negada, o oposo da lista *[]*
+
+*{}* - usamos para informar o numero de vezes do caractere
+
+
+* grep
+verificando linha anterior e linha após o encontrado com o grep ->
+
+- A = After
+
+- B = Before
+
+#+begin_src sh
+[14:51][]~ ✮ grep -i estagiario /etc/passwd -A 1 -B 1
+colord:x:120:124:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+estagiario:x:1000:1000:estagiario,,,:/home/estagiario:/usr/bin/zsh
+sssd:x:121:126:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
+#+end_src
+
+o comando grep pode executar busca usando expressões regulares extendidas, para buscar todas as linhas que terminam com a palavra bash e que podem ser repetidas uma ou mais vezes
+
+#+begin_src sh
+grep -iE "bash$+" /etc/passwd
+#+end_src
+
+para uma busca mais avançada utiliza-se o ~egrep~, comando que é equivalente ao comando grep -E. exemplos ->
+
+* egrep
+procurar por root ou suporte ->
+#+begin_src sh
+egrep "root|suporte" /etc/passwd
+#+end_src
+
+procurar por linhas que contenham a palavra mail ou Mail ->
+#+begin_src sh
+egrep "[mM]ail" /etc/passwd
+#+end_src
+
+procurar por linhas que terminam com a palavra false ->
+#+begin_src sh
+egrep "false$" /etc/passwd
+#+end_src
+
+procurar por linhas que começam com a letra a ->
+#+begin_src sh
+egrep "^b" /etc/passwd
+#+end_src
+
+
+* fgrep
+ao utilizar o ~fgrep~ toda operação de expressão regular será ignorada, o comando fgrep equivale ao executar o comando grep -F
+
+visualiza apenas as linhas que contenham o caracter $
+#+begin_src sh
+fgrep $ /etc/shadow
+#+end_src

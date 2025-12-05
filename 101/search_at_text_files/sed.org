@@ -27,8 +27,16 @@ as expressões regulares são elementos de texto, palavras-chave e modificadores
 ** sed
 o comando sed é mais utilizado para procurar e substituir padrões em textos, mostrando o resultado em stdout.
 
+*-E -> sintaxe moderna para expressões regulares sem precisar dos escapes*
+
 descomentando as linhas comentadas no arquivo /tmp/fstab
 
 #+begin_src sh
-sed '/^#/d' /tmp/fstab
+sed '/^#/@/d' /tmp/fstab
+#+end_src
+
+para substituir uma string, utilize a opção -s
+
+#+begin_src sh
+sed -E s'/#/@/g' /tmp/fstab
 #+end_src
