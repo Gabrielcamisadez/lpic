@@ -17,6 +17,8 @@ por padrão todos os processos executados tem prioridade 0, o user root pode mud
 
 é possível iniciar um processo com uma prioridade diferente da padrão por meio do comando nice.
 
+*o ~nice~ altera a permissão do programa somente em sua execução*
+
 #+begin_src sh
 nice -n 15 less /etc/group
 #+end_src
@@ -43,4 +45,23 @@ com o comando *top* também é possível alterar a prioridade de algum processo 
 top
 
 r , e entao indicar o numero do PID e em seguida a prioridade desejada.
+#+end_src
+
+* alterando a prioridade de processos em execução
+
+de exemplo abri o less no /etc/passwd
+#+begin_src sh
+   PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+  16373 estagia+  20   0    8684   2432   2176 S   0,0   0,0   0:00.00 less
+#+end_src
+
+diminuindo a permissão do less com ele ainda em execução ->
+#+begin_src sh
+[14:28][]~ ✮ renice -n 5 16373
+16373 (process ID) old priority 0, new priority 5
+#+end_src
+
+após o ~renice~ ->
+#+begin_src sh
+  16373 estagia+  25   5    8684   2432   2176 S   0,0   0,0   0:00.00 less
 #+end_src
