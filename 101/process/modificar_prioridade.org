@@ -1,0 +1,46 @@
+#+title: Modificar Prioridade
+#+author:gabriel
+
+* executar um programa com maior ou menor prioridade do que o padrão
+a prioriade é definida conforme o programa, por exemplo um programa que depende de I/O tem maior prioridade, quem faz esse cálculo é o próprio sistema.
+
+quanto menor o número da prioridade, maior será o uso de processamento com este processo para executa-lo mais rápido
+
+range prioridade ->
+- *-20 --- +19*
+
+*quanto menor o número maior a prioridade*
+
+*quanto maior o número menor a prioridade*
+
+por padrão todos os processos executados tem prioridade 0, o user root pode mudar entre -20 e +19, enquanto que o usuário comum pode mudar esta prioridade entre 0 e +19.
+
+é possível iniciar um processo com uma prioridade diferente da padrão por meio do comando nice.
+
+#+begin_src sh
+nice -n 15 less /etc/group
+#+end_src
+
+para alterar a prioridade de um processo em andamento, o comando usado é o ~renice~, a opção -p indica o PID do processo a ser alterado.
+
+#+begin_src sh
+renice -10 -p 2245
+#+end_src
+
+existem outras duas opções do comando renice que são -g e -u que permitem alterar a prioridade de todos os processos do grupo ou usuário.
+
+alterar a prioridade para +5 de todos os processos de um user especifíco.
+
+#+begin_src sh
+renice +5 -u estagiario
+
+renice 5 -u estagiario
+#+end_src
+
+com o comando *top* também é possível alterar a prioridade de algum processo em execução.
+
+#+begin_src sh
+top
+
+r , e entao indicar o numero do PID e em seguida a prioridade desejada.
+#+end_src
