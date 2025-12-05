@@ -1,0 +1,34 @@
+#+title: Sed
+#+author: gabriel
+
+* intro
+as expressões regulares são elementos de texto, palavras-chave e modificadores que formam um padrão, usado para encontrar e opcionalmente alterar um padrão correspondente.
+
+** caracteres especiais
+*?* - é usado para representar uma ou nenhuma letra/numero
+
+*+* - é usado para que a ocorrência apareça uma ou mais vezes
+
+*^* - início da linha
+
+*$* - fim da linha
+
+*.* - representa qualquer caractere
+
+~*~ - usado para representar um ou mais caracteres
+
+*[]* - a lista representa um grupo de caracteres a serem procurados no texto
+
+*[^]* - pode ser chamado de lista negada, o oposo da lista *[]*
+
+*{}* - usamos para informar o numero de vezes do caractere
+
+
+** sed
+o comando sed é mais utilizado para procurar e substituir padrões em textos, mostrando o resultado em stdout.
+
+descomentando as linhas comentadas no arquivo /tmp/fstab
+
+#+begin_src sh
+sed '/^#/d' /tmp/fstab
+#+end_src
