@@ -19,3 +19,48 @@ definindo uma variável global/de ambiente ->
 [13:56][]~ ✮ echo $nome
 gabriel
 #+end_src
+
+para apagar uma variável ->
+#+begin_src bash
+unset nome
+
+unset name
+#+end_src
+
+* set , env
+o comando set e env geralmente são utilizados para visualizar variáveis, mas também podem ser usados para definir variáveis dependendo do shell atual
+
+O comando *env* exibe apenas variáveis globais e não locais
+
+O comando *set* demonstra as variáveis locais também
+
+* aspas ' vs "
+as aspas utilizadas para exibição de variáveis interfer diretamente no resultado a ser obtido, quando utilizamos aspas duplas *"* a variável é interpretada, e seu valor exibido, porem com aspas simples *'*, o valor da variável não é interpretado
+
+com aspas duplas ->
+#+begin_src sh
+[14:37][]~ ✮ echo "ola $name"
+ola gabriel
+#+end_src
+
+com aspas simples ->
+#+begin_src sh
+[14:37][]~ ✮ echo 'ola $name'
+ola $name
+#+end_src
+
+* variáveis especiais do shell
+
+- $! - Variável armazena o PID do último processo executado em segundo plano(background).
+
+- $$ - Variável armazena o PID do shell atual.
+
+- $? - Variável armazena o código de retorno do ultimo comando executado
+
+#+begin_src sh
+0(zero) - é para um comando bem sucedido.
+1 - para a maioria dos erros de comandos.
+126 - Comando não é executável.
+127 - Comando não encontrado.
+130 - Quando o comando é interrompido com a combinação de teclas: ctrl + c (control c).
+#+end_src

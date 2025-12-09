@@ -1,0 +1,50 @@
+#+title: Proc Sys Dev
+#+author: gabriel
+
+a partir do  kernel 2.6 o linux apresenta o sistema de arquivo ~sysfs~, este file system é descrito como a união dos sistemas de arquivo ~proc~, ~devpty~ e ~devpty~.
+
+o system file ~sysfs~ é montado em /sys/ e contém diretórios que organizam os dispositivos conectados ao sistema de diversas maneiras.
+
+dir /sys ->
+#+begin_src sh
+[15:12][]/sys ✮ l
+total 4,0K
+dr-xr-xr-x  13 root root    0 dez  5 13:21 .
+drwxr-xr-x  22 root root 4,0K set 24 14:39 ..
+drwxr-xr-x   2 root root    0 dez  5 13:21 block
+drwxr-xr-x  51 root root    0 dez  5 13:21 bus
+drwxr-xr-x  79 root root    0 dez  5 13:21 class
+drwxr-xr-x   4 root root    0 dez  5 13:21 dev
+drwxr-xr-x  27 root root    0 dez  5 13:21 devices
+drwxr-xr-x   6 root root    0 dez  5 13:21 firmware
+drwxr-xr-x   9 root root    0 dez  5 13:21 fs
+drwxr-xr-x   2 root root    0 dez  5  2025 hypervisor
+drwxr-xr-x  16 root root    0 dez  5 13:21 kernel
+drwxr-xr-x 266 root root    0 dez  5 13:21 module
+drwxr-xr-x   3 root root    0 dez  5  2025 power
+#+end_src
+
+o dir block/ armazena informações referentes aos dispositivos de bloco
+#+begin_src sh
+[15:14][]/sys ✮ ls -l block/sda
+lrwxrwxrwx 1 root root 0 dez  5 13:21 block/sda -> ../devices/pci0000:00/0000:00:17.0/a
+ta4/host3/target3:0:0/3:0:0:0/block/sda
+#+end_src
+
+o dir dev/ armazena informações referentes a arquivos da memoria ram, arquivos que identificam HDs, mouse, IDEs, TTYs
+
+o dir proc/ é composto por dirs que na verdade são nomeados com o PID de um processo especifico.
+
+* identificar dispositivos IDE, SATA e SCSI
+** SCSI
+todos os dispositivos SCSI que o sistema encontra são listados em ~/proc/scsi/scsi~, eles possuem 2 tipos principais ->
+
+- 8 bits que concta até 7 dispositivos
+
+- 16 bits que conecta até 15 dispositivos
+
+** IDE
+os dispositivos de disco IDE são representados como ~/dev/hd*~, sendo o primeiro disco ~/dev/hda~ e o secundário ~/dev/hdb~
+
+** SATA
+os dispositivos SATA são representados sempre como ~/dev/sd*~, sendo o primeiro disco ~/dev/sda~ e o secundário sendo representado como ~/dev/sdb~
