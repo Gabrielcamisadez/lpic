@@ -1,0 +1,44 @@
+#+title: Differences between grub legacy & grub 2
+
+* Arquivos de configuração
+** grub legacy
+/boot/grub/menu.lst
+/boot/grub/grub.conf
+
+** grub2
+/etc/default/grub
+/boot/grub/grub.cfg
+
+* referência ao disco
+** grub legacy
+/dev/sda1 = hd0,0
+/dev/sda2 = hd0,1
+/dev/sdc1 = hd2,0
+/dev/sdc2 = hd3,1
+
+** grub2
+/dev/sda1 = hd0,1
+/dev/sda2 = hd0,2
+/dev/sdc1 = hd2,1
+/dev/sdd2 = hd3,1
+
+* principais parâmetros
+** grub legacy
+#+begin_src sh
+title CentOS
+root (hd0,0)
+kernel /vmlinuz -2.6.32-71.el6lx86_64 ro
+root=/dev/VolGroup/lv_root
+initrd /initramfs-2.6.32-71.el6lx86_64
+rpv-trf1.trf1.jus.br:1194:udp
+#+end_src
+
+** grub2
+#+begin_src sh
+menuentry "CentOS" {
+    set root (hd0,1)
+    linux /vmlinuz -2.6.32-71.el6lx86_64 ro
+    root=/dev/VolGroup/lv_root
+    initrd /initramfs -2.6.32-71.el6lx86_64
+}
+#+end_src
