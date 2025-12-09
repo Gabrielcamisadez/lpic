@@ -1,7 +1,7 @@
 #+title: Modificar Prioridade
 #+author:gabriel
 
-* executar um programa com maior ou menor prioridade do que o padrão
+y* executar um programa com maior ou menor prioridade do que o padrão
 a prioriade é definida conforme o programa, por exemplo um programa que depende de I/O tem maior prioridade, quem faz esse cálculo é o próprio sistema.
 
 quanto menor o número da prioridade, maior será o uso de processamento com este processo para executa-lo mais rápido

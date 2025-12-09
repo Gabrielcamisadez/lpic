@@ -65,3 +65,4 @@ gpasswd -a gabriel sysadmins
 #+begin_src sh
 getent group sysadmins
 #+end_src
+//

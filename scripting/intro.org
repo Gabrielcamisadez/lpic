@@ -1,0 +1,38 @@
+#+title: Intro
+#+author: gabriel
+
+The shell, a fundamental part of Linux operating systems, allows users to manage their systems through the terminal on various distributions such as Ubuntu, Debian, CentoOS, SUSE...
+
+** Kernel ->
+The kernel is like the brain of a computer; it resides at the heart of the operating system and is responsible for managing all activities within the system.
+
+ The kernel manages a set of critical resources that are the building blocks of the Linux operating system:
+
+- Organization and accessibility of files,
+- Initialization, management, and termination of processes,
+- Handling of input and output operations,
+- Efficient use of memory,
+- Communication between various devices.
+
+  Like an orchestra conductor, these tasks ensure the system works in harmony and that the computer performs many complex functions in an organized manner.
+
+** Shell ->
+  The shell is an important tool that allows a user to interact with the operating system. It serves as a bridge between you and the computer's kernel, understanding your language and converting your instructions into a format the computer can understand.
+
+   Commands entered from the keyboard or instructions taken from files are made comprehensible to the operating system through the shell.
+
+   It automatically comes into action when a user opens a terminal or logs into their computer.
+
+[[./imgs/kr.png]]
+
+* Command-Line Shell
+This type of shell allows users to interact with the operating system using text-based commands. Commands are entered via the keyboard and enable the execution of various tasks and operations.
+
+Commands are given through a "Terminal" application on Linux or macOS, and through the "Command Prompt" on Windows. Users can list files (ls), view file contents (cat), and perform many other tasks
+
+** Terminal
+The terminal opens a window to use the shell in your computer's operating system and is a powerful program that allows direct dialogue with the system.
+
+Essentially, it enables users to enter written commands and see the results of these commands through a text-based interface.
+
+The difference between a terminal and a shell; the shell is the background engine that processes commands, while the terminal is the interface that allows you to interact with this engine.
