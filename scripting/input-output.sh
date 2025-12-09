@@ -33,8 +33,8 @@ n_ip='172.16.6.40'
 
 counter=1
 
-while [ $value -eq 5 ]
+while [ $counter -le 5 ]
 do
-    echo "counter value: $value"
+    echo "counter value: $arrayy"
     counter=$((counter + 1))
 done
