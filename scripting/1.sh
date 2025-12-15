@@ -3,14 +3,20 @@
 test='intro to shell scripting'
 echo $test
 
-yy=("test" "2" "blue")
+#yy=("172.16.60.20" "172.16.60.21" "172.16.60.23")
 
 echo "${yy[@]}"
 
-number=10
+number=1
+ip=172.16.60.
 
-if [ $number -gt 0 ]; then
-  echo "The number is positive."
-elif [ $number -lt 0 ]; then
-  echo "The number is negative."
-fi
+while [ $number -lt 20 ];do
+	ping -c 1 $ip$number 
+	echo "\n"
+	number=$((number + 1))
+done
+
+
+
+
+
