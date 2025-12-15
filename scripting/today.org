@@ -1,0 +1,10 @@
+#+title: Today
+#+Author: gabriel
+
+* strings
+*Atribuindo valor a uma variavel e printando* -->
+#+begin_src sh
+test='value'
+echo $test
+
+#+end_src
