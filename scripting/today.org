@@ -6,5 +6,29 @@
 #+begin_src sh
 test='value'
 echo $test
+#+end_src
+
+*finding the length of a string* -->
+para determinar o tamanho de uma string, usamos o symbol *#*
+#+begin_src sh
+#! /bin/bash
+
+title='cybersecurity'
+echo ${title}
+echo${#title}
+#+end_src
+
+*concatenando strings* -->
+#+begin_src sh
+var=${var1}${var2}${var3}
+
+var=$var1$var2$var3
+
+var="$var1""$var2""$var3"
+#+end_src
+
+*extraindo uma substring de uma posição especifica de uma string* -->
+#+begin_src sh
+${test:3}
 
 #+end_src

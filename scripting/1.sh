@@ -1,10 +1,13 @@
-#!/usr/bin/env sh
+#!/usr/bin/zsh
 
-test='value'
+test='intro to shell scripting'
 echo $test
 
-test2="value"
-echo ${test2}
+title="new intro"
+echo ""
+echo ${test:1}
 
-test3=value
-echo "$test3"
+
+
+#test3=value
+#echo "$test3"
