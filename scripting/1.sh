@@ -3,11 +3,9 @@
 test='intro to shell scripting'
 echo $test
 
-title="new intro"
-echo ""
-echo ${test:1}
+yy=("test" "2" "blue")
+
+echo "${yy[@]}"
 
 
 
-#test3=value
-#echo "$test3"
