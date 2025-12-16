@@ -1,11 +1,11 @@
 #!/usr/bin/zsh
 
 test='intro to shell scripting'
-echo $test
+echo ${test:1:20}
 
 yy=("172.16.60.20" "172.16.60.21" "172.16.60.23")
 
-echo "${yy[@]}"
+#echo "${yy[@]}"
 
 number=1
 ip=172.16.60.
@@ -18,7 +18,7 @@ ip=172.16.60.
 
 for ip in $yy
 do
-	host $ip
+	ping -c 1 -t 1 $ip | grep -v "0 received"
 done
 
 
