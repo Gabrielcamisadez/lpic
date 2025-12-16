@@ -17,6 +17,22 @@ Há um conjunto especial de permissões também conhecidos como bits especiais, 
 
 Quando o comando pertence ao usuário root, um usuário qualquer irá executá-lo com as permissões de root desde que tenha permissões para executá-lo.
 
+*buscando por SUIDs no sistema* -->
+#+begin_src sh
+find / -type f -perm -4000 -ls 2>/dev/null
+#+end_src
+
+
+* Capabilities
+Em vez de conceder a um programa ou processo acesso total (root) ou nenhum acesso, as Capabilities permitem que você conceda apenas os privilégios específicos de que um processo precisa para executar uma função isolada.
+
+o programa binário adquire todas as permissões do proprietário (geralmente root) durante a execução. Isso é um risco de segurança, pois um programa comprometido ganha poder total de root.
+
+*busca por capabilities* -->
+#+begin_src sh
+
+
+#+end_src
 
 * SGID bit
 

