@@ -1,19 +1,5 @@
 .
-├── README.org
-├── scripting
-│   ├── imgs
-│   │   ├── append.png
-│   │   ├── cut.png
-│   │   ├── hashtag.png
-│   │   └── kr.png
-│   └── scripting.org
-├── simulations
-│   ├── octal_perms.png
-│   ├── topic_101.org
-│   ├── topic_102.org
-│   ├── topic_103.org
-│   └── topic_104.org
-├── topic_101
+├── 101
 │   ├── files_edit
 │   │   └── definir_editor_default.org
 │   ├── filesystems
@@ -30,8 +16,10 @@
 │   │   └── XFS.txt
 │   ├── find_files
 │   │   ├── 2.org
+│   │   ├── find_1.md
 │   │   └── find_1.org
 │   ├── grub
+│   │   ├── differences.org
 │   │   ├── grb2.org
 │   │   ├── grb2.txt
 │   │   ├── GRUB_2.org
@@ -44,7 +32,8 @@
 │   │   ├── block_devices.org
 │   │   ├── block_devices.txt
 │   │   ├── determinar_configurações_de_hardware.org
-│   │   └── determinar_configurações_de_hardware.txt
+│   │   ├── determinar_configurações_de_hardware.txt
+│   │   └── proc_sys_dev.org
 │   ├── layout_disk
 │   │   ├── fdisk_basics.org
 │   │   ├── fdisk_basics.txt
@@ -104,11 +93,28 @@
 │   │   │   ├── 3_file.png
 │   │   │   └── pulo_gato.png
 │   │   ├── perms.org
+│   │   ├── python3.12
 │   │   ├── special_permissions.org
+│   │   ├── today.org
+│   │   ├── today.txt
 │   │   └── umask.org
+│   ├── process
+│   │   ├── modificar_prioridade.org
+│   │   ├── montiring.org
+│   │   └── ps.org
+│   ├── search_at_text_files
+│   │   ├── grep.org
+│   │   └── sed.org
 │   ├── shared_libs
 │   │   ├── control_libs.org
 │   │   └── control_libs.txt
+│   ├── shell-basics
+│   │   ├── imgs
+│   │   │   └── 1.png
+│   │   ├── sequential_commands.org
+│   │   ├── shell-basics.md
+│   │   ├── shell-basics.org
+│   │   └── variables.org
 │   ├── systemd
 │   │   ├── logs.org
 │   │   ├── logs.txt
@@ -143,6 +149,26 @@
 │       ├── services_management_red-hat.org
 │       ├── services_management_red-hat.txt
 │       └── sysvinit.org
+├── README.org
+├── scripting
+│   ├── 1.sh
+│   ├── basics.org
+│   ├── decoder_bash.zip
+│   ├── decoder.sh
+│   ├── imgs
+│   │   ├── append.png
+│   │   ├── cut.png
+│   │   ├── hashtag.png
+│   │   └── kr.png
+│   ├── intro.org
+│   ├── scripting.org
+│   └── today.org
+├── simulations
+│   ├── octal_perms.png
+│   ├── topic_101.org
+│   ├── topic_102.org
+│   ├── topic_103.org
+│   └── topic_104.org
 └── tree.txt
 
-22 directories, 124 files
+26 directories, 146 files
