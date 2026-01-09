@@ -1,2 +1,7 @@
 #+title: Definir editor de arquivos padrão
 #+description: 103.8
+
+
+#+begin_src sh
+sudo update-alternatives --config editor
+#+end_src
